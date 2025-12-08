@@ -1,0 +1,51 @@
+\begin{figure}[!htbp]
+  \centering
+  \begin{tikzpicture}[
+      node distance=0.8cm,
+      >=Latex,
+      innerstep/.style={
+          rectangle,
+          draw,
+          rounded corners,
+          align=center,
+          text centered,
+          text width=2.8cm,
+          minimum height=1.2cm
+        },
+      bigbox/.style={
+          rectangle,
+          draw,
+          rounded corners,
+          inner sep=0.5cm
+        },
+      align=center,
+    ]
+
+    % Four transformation steps
+    \node[innerstep] (bucket) {Value bucketing\\(age, frequency, time)};
+    \node[innerstep, below=of bucket] (hash) {Hashing and salting\\(content groups, dedup)};
+    \node[innerstep, below=of hash] (agg) {Aggregation\\(temporal and structural)};
+    \node[innerstep, below=of agg] (kcheck) {k-anonymity check\\and suppression};
+
+    \draw[->] (bucket) -- (hash);
+    \draw[->] (hash) -- (agg);
+    \draw[->] (agg) -- (kcheck);
+
+    % Outer box around steps
+    \node[bigbox, fit=(bucket) (kcheck)] (box) {};
+
+    % Input / output nodes
+    \node[left=2.5cm of box] (raw) {Raw \\ local \\ metadata};
+    \node[right=3.0cm of box] (ptag) {Released \\ P3Tag \\ fields};
+
+    \draw[->] (raw.east) -- node[above, sloped, font=\small]{internal only} (box.west);
+    \draw[->] (box.east) -- node[above, sloped, font=\small]{privacy-preserving} (ptag.west);
+
+    % Title above box
+    \node[above=0.2cm of box, font=\small]{Privacy-preserving transform pipeline};
+
+  \end{tikzpicture}
+  \caption{Privacy transformation pipeline showing the four-stage process that converts raw metadata into P3Tags.
+    Sequential application of bucketing, hashing, aggregation, and k-anonymity verification ensures all released fields meet privacy guarantees while preserving coordination signals.}
+  \label{fig:P3Tag-privacy-transform}
+\end{figure}

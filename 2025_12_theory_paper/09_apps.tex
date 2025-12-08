@@ -1,0 +1,48 @@
+% ============================================================
+\section{Applications}
+% ============================================================
+\label{sec:apps}
+
+This section illustrates how the categorical semantics developed above
+manifest in real-world civic data workflows. Each example highlights a
+core CEP invariant and shows how the categorical structure enforces it.
+
+\subsection{Civic Entity Records: Identity Stability}
+
+A municipal entity’s lifecycle is modeled as a chain of morphisms in
+$\mathbf{CEP}$:
+\[
+E_1 \xrightarrow{f_1} E_2 \xrightarrow{f_2} \cdots
+\]
+where each $E_i$ is a revision of the same entity.
+Identity Invariance (Section~3.2) ensures that any
+identity-preserving amendment $f_i$ leaves the canonical form unchanged:
+\[
+\mathcal{C}(E_i) = \mathcal{C}(E_{i+1}).
+\]
+Thus the SNFEI remains stable even as auxiliary data (e.g., address,
+classification, or contact fields) evolves over time.
+
+\subsection{Campaign Finance: Compositional Provenance}
+
+A donation from a donor $D$ to a committee $C$ is modeled as an exchange
+morphism $f : D \to C$. A subsequent transfer from $C$ to a subcommittee
+$S$ is a morphism $g : C \to S$. The composed morphism
+$g \circ f : D \to S$ represents the derived provenance lineage.
+Because composition in $\mathbf{CEP}$ is associative, this lineage is
+canonical and immutable, enabling consistent financial traceability
+across multiple reporting systems.
+
+\subsection{Public Contracting: Data Fusion via Pullbacks}
+
+Consider a Vendor Registry record $R_V$ and a Contract Record $R_C$
+that both reference the same underlying legal entity $A$.
+The pullback
+\[
+P = R_V \times_A R_C
+\]
+constructs the maximal consistent set of facts compatible with both
+records. This is exactly the categorical mechanism that guarantees
+sound cross-system data integration (Section~3.3) and supports
+audits that reconcile public procurement data across heterogeneous
+jurisdictional sources.

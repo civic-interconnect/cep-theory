@@ -1,0 +1,53 @@
+# .github/workflows/build.yml
+name: Build LaTeX PDF
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "2025_12_theory_paper/**"
+      - ".github/workflows/build.yml"
+  pull_request:
+    branches: [main, master]
+    paths:
+      - "2025_12_theory_paper/**"
+      - ".github/workflows/build.yml"
+  workflow_dispatch:
+
+env:
+  PAPER_DIR: 2025_12_theory_paper
+  MAIN_TEX: 00_cep_formal_semantics.tex
+
+jobs:
+  build-pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Install TeX Live and latexmk
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-science \
+            texlive-pictures \
+            texlive-bibtex-extra \
+            latexmk
+
+      - name: Build PDF with latexmk
+        working-directory: ${{ env.PAPER_DIR }}
+        run: |
+          latexmk -pdf -bibtex -interaction=nonstopmode -halt-on-error $MAIN_TEX
+
+      - name: Upload built PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: cep_formal_semantics
+          path: |
+            ${{ env.PAPER_DIR }}/build/00_cep_formal_semantics.pdf
+            ${{ env.PAPER_DIR }}/build/00_cep_formal_semantics.log
+          if-no-files-found: error

@@ -1,0 +1,134 @@
+% ============================================================
+\section{Canonicalization as a Monoidal Functor}
+\label{sec:canonicalization}
+% ============================================================
+
+Canonicalization is the mathematical step that guarantees the stability
+and uniqueness of the SNFEI identifier. In this section we model the
+normalization and assembly pipeline as a composition of functors with
+a strict monoidal structure.
+
+% ------------------------------------------------------------
+\subsection{The Normalizing Functor
+  \texorpdfstring{$\mathcal{F}_{\mathrm{normalize}}$}{F\_normalize}}
+% ------------------------------------------------------------
+
+Let $\mathbf{R}_{\text{raw}}$ denote raw, noisy input states and
+$\mathbf{R}_{\text{canon}}$ denote canonical states in which Unicode
+normalization, abbreviation expansion, and filtering have been applied.
+The deterministic cleanup step is a functor
+\begin{equation}
+  \mathcal{F}_{\mathrm{normalize}} :
+  \mathbf{R}_{\text{raw}} \to \mathbf{R}_{\text{canon}}.
+\end{equation}
+
+By functoriality, any valid transformation of raw records
+$f : R \to R'$ in $\mathbf{R}_{\text{raw}}$ induces a corresponding
+transformation of canonical records
+$\mathcal{F}_{\mathrm{normalize}}(f) :
+ \mathcal{F}_{\mathrm{normalize}}(R) \to
+ \mathcal{F}_{\mathrm{normalize}}(R')$,
+ensuring that normalization behaves consistently under updates and
+repairs.
+
+% ------------------------------------------------------------
+\subsection{Monoidal Structure and the Canonicalization Functor
+  \texorpdfstring{$\mathcal{C}$}{C}}
+% ------------------------------------------------------------
+
+The canonicalization process orders and concatenates normalized
+components (e.g., name, address, date, jurisdiction) into a single
+string. Both $\mathbf{R}_{\text{canon}}$ and the category of canonical
+strings $\mathbf{C}$ carry a monoidal structure $(\otimes, I)$ given
+by concatenation and an appropriate unit (e.g., the empty string).
+
+The overall assembly process is a strict monoidal functor
+\begin{equation}
+  \mathcal{C} : (\mathbf{R}_{\text{canon}}, \otimes, I)
+    \to (\mathbf{C}, \otimes, I),
+\end{equation}
+satisfying
+\begin{equation}
+  \mathcal{C}(x \otimes y) = \mathcal{C}(x) \otimes \mathcal{C}(y),
+  \quad
+  \mathcal{C}(I) = I.
+\end{equation}
+
+Intuitively, $\mathcal{C}$ is the disciplined concatenation procedure:
+it respects both the component-wise structure and the fixed ordering
+prescribed by CEP (for example, name first, then address, then date,
+then country code).
+
+% ------------------------------------------------------------
+\subsection{From Canonical Strings to SNFEI}
+% ------------------------------------------------------------
+
+Let $H : \mathbf{C} \to \mathbf{ID}$ be the hashing functor that maps
+canonical strings to 256-bit identifiers using SHA--256. For any
+canonicalized record $R_{\text{canon}}$ we write
+\begin{equation}
+  \text{SNFEI}(R) = H(\mathcal{C}(R_{\text{canon}})),
+\end{equation}
+where $R_{\text{canon}} =
+ \mathcal{F}_{\mathrm{normalize}}(R_{\text{raw}})$.
+
+The composite
+\begin{equation}
+  H \circ \mathcal{C} \circ \mathcal{F}_{\mathrm{normalize}} :
+  \mathbf{R}_{\text{raw}} \to \mathbf{ID}
+\end{equation}
+is the full canonicalization pipeline from raw inputs to stable
+identifiers.
+
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[node distance=3.5cm,>=Stealth]
+    \node (raw)   {$\mathbf{R}_{\text{raw}}$};
+    \node (canon) [right of=raw] {$\mathbf{R}_{\text{canon}}$};
+    \node (C)     [right of=canon] {$\mathbf{C}$};
+    \node (id)    [right of=C] {$\mathbf{ID}$};
+
+    \draw[->] (raw)   -- node[above]
+      {$\mathcal{F}_{\mathrm{normalize}}$} (canon);
+    \draw[->] (canon) -- node[above]
+      {$\mathcal{C}$} (C);
+    \draw[->] (C)     -- node[above]
+      {$H$} (id);
+  \end{tikzpicture}
+  \caption{Canonicalization pipeline from raw records to stable identifiers.}
+  \label{fig:canonicalization-pipeline}
+\end{figure}
+
+% ------------------------------------------------------------
+\subsection{Identifier Invariance and Equivalence Classes}
+% ------------------------------------------------------------
+
+The central invariant of CEP can now be stated categorically.
+
+\medskip
+\noindent
+\textbf{Invariance Principle.}
+If $f : R \to R'$ is a valid identity-preserving morphism in
+$\mathbf{CEP}$, then
+\begin{equation}
+  H \circ \mathcal{C} \circ \mathcal{F}_{\mathrm{normalize}}(R)
+  =
+  H \circ \mathcal{C} \circ \mathcal{F}_{\mathrm{normalize}}(R').
+\end{equation}
+
+In other words, identity-preserving updates do not change the SNFEI.
+Two record states $R$ and $R'$ belong to the same equivalence class
+precisely when they share the same canonical string and hence the same
+SNFEI. The strict monoidality of $\mathcal{C}$ guarantees that
+reordering or omitting required components is not permitted by the
+schema, and thus cannot occur along valid morphisms in
+$\mathbf{CEP}$.
+
+\FigureCallout{Canonicalization as a Monoidal Functor and Identity Guarantee}{
+Because $\mathcal{F}_{\mathrm{normalize}}$ and $\mathcal{C}$ are
+functorial, and $\mathcal{C}$ is strictly monoidal, the canonical
+string associated with an entity is uniquely determined by its
+identity-bearing fields. The SNFEI is therefore a function of an
+equivalence class of records, not of any particular representation,
+which is exactly the identity guarantee CEP requires.
+}

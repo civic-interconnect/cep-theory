@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite as shown below."
+title: "Categorical Semantics for the Civic Exchange Protocol (CEP)"
+authors:
+  - family-names: C ase
+    given-names: Denise
+    affiliation: "Northwest Missouri State University; Civic Interconnect"
+date-released: 2025-11-18
+version: "draft"
+type: article
+repository-code: "https://github.com/civic-interconnect/cep-theory"
+abstract: >
+  This repository contains the LaTeX sources, figures, and reproducibility
+  materials for the CEP theory paper.

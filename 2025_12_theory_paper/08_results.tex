@@ -1,0 +1,113 @@
+% ============================================================
+\section{Interoperability Results}
+\label{sec:results}
+% ============================================================
+
+The categorical semantics developed in the preceding sections yields
+formal guarantees for CEP's central interoperability claims. These
+results follow from functoriality, naturality, monoidal structure, and
+the oplax semantics of adapters.
+
+% ------------------------------------------------------------
+\subsection{Functorial Consistency}
+% ------------------------------------------------------------
+
+We first show that the interaction between record evolution and
+attestation is coherent under composition.
+
+\begin{lemma}[Functorial Consistency of Attested Evolutions]
+\label{lemma:functorial-consistency}
+Let $f : R \to R'$ and $g : R' \to R''$ be morphisms in
+$\mathbf{CEP}$, and let $\alpha : \mathcal{E} \Rightarrow \mathcal{E}'$
+be the natural transformation representing attestation.
+Then the following diagram commutes:
+\[
+\mathcal{E}'(g \circ f)
+  \;=\;
+\alpha_{R''} \circ \mathcal{E}(g \circ f)
+  \;=\;
+\mathcal{E}'(g) \circ \mathcal{E}'(f).
+\]
+\end{lemma}
+
+\begin{proof}
+By naturality of $\alpha$, each attestation map satisfies
+$\alpha_{R'} \circ \mathcal{E}(f) = \mathcal{E}'(f) \circ \alpha_{R}$.
+Associativity of morphism composition in $\mathbf{CEP}$ gives the result.
+\end{proof}
+
+This establishes that CEP's update–attestation workflow is
+compositionally well-behaved, enabling reliable audit chains and
+provable immutability of provenance.
+
+% ------------------------------------------------------------
+\subsection{Identifier Preservation}
+% ------------------------------------------------------------
+
+We now formalize the guarantee that canonical identifiers remain stable
+under all valid record evolutions.
+
+\begin{theorem}[Identifier Preservation]
+\label{thm:identifier-preservation}
+Let $f : R \to R'$ be any morphism in $\mathbf{CEP}$.
+Let $\mathcal{C}$ denote the canonicalization functor and $H$ the
+deterministic hash used to compute the SNFEI.
+Then:
+\[
+H(\mathcal{C}(R)) \;=\; H(\mathcal{C}(R')).
+\]
+\end{theorem}
+
+\begin{proof}
+By definition of a valid $\mathbf{CEP}$ morphism, $f$ preserves the
+canonical components of the record. By the strict monoidality of
+$\mathcal{C}$, we have $\mathcal{C}(R) = \mathcal{C}(R')$. Since $H$ is
+a pure function, the SNFEI values coincide.
+\end{proof}
+
+This result provides the mathematical foundation for CEP's claim of
+\emph{identity stability across revisions}, ensuring that record
+evolution does not alter canonical identity.
+
+% ------------------------------------------------------------
+\subsection{Cross-Jurisdiction Reconciliation}
+% ------------------------------------------------------------
+
+Jurisdictional adapters mediate between heterogeneous local structures
+and the global CEP vocabulary. We show that their oplax semantics
+preserves canonical equivalence classes.
+
+\begin{theorem}[Canonical Equivalence Preservation Under Adapters]
+\label{thm:adapter-preservation}
+Let $\mathcal{A}_1, \mathcal{A}_2$ be valid jurisdictional adapters
+(as defined in Section~\ref{sec:adapters}).  
+If two local records $R$ and $R'$ satisfy
+\[
+H(\mathcal{C}(\mathcal{A}_1(R)))
+  \;=\;
+H(\mathcal{C}(\mathcal{A}_1(R'))),
+\]
+then after composition with a second adapter,
+\[
+H(\mathcal{C}(\mathcal{A}_2(\mathcal{A}_1(R))))
+  \;=\;
+H(\mathcal{C}(\mathcal{A}_2(\mathcal{A}_1(R')))).
+\]
+\end{theorem}
+
+\begin{proof}
+Each adapter $\mathcal{A}_i$ is oplax, meaning it may weaken local
+structure but cannot introduce new canonical content (Section~6.3).
+Thus $\mathcal{C}(\mathcal{A}_i(R))$ is defined and stable. The strict
+monoidality of $\mathcal{C}$ ensures that canonical strings are preserved
+under composition of such structure-weakening functors. Applying $H$
+yields the claimed equality.
+\end{proof}
+
+\noindent
+This theorem establishes that cross-jurisdiction data pipelines cannot
+violate CEP's canonical identity invariants, provided the adapters
+conform to the correctness criteria of Section~\ref{sec:adapters}.  
+It provides the formal backbone for CEP's claim of
+\emph{globally consistent, locally autonomous interoperability}.
+

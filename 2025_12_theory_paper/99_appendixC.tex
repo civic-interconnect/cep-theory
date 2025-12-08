@@ -1,0 +1,122 @@
+% ============================================================
+\clearpage
+\section*{Appendix C. Proof Sketches}
+\addcontentsline{toc}{section}{Appendix C. Proof Sketches}
+% ============================================================
+
+This appendix provides informal but rigorous proof sketches
+supporting the main theorems in the paper.
+They are intended to clarify correctness arguments for CEP
+canonicalization, provenance, and interoperability.
+
+% ------------------------------------------------------------
+\subsection*{C.1 Identifier Preservation Under CEP Morphisms}
+% ------------------------------------------------------------
+
+\textbf{Theorem.}
+If $f : R \to R'$ is a morphism in $\mathbf{CEP}$,
+then
+\[
+\mathcal{C}(R) = \mathcal{C}(R')
+\quad\text{and thus}\quad
+\text{SNFEI}(R) = \text{SNFEI}(R').
+\]
+
+\textbf{Sketch.}
+Morphisms in $\mathbf{CEP}$ preserve:
+
+\begin{itemize}
+    \item canonical fields,
+    \item their normalized values,
+    \item revision monotonicity,
+    \item schema validity.
+\end{itemize}
+
+The canonicalization functor $\mathcal{C}$ is strict monoidal.
+Thus for any decomposition of fields into components $x_i$,
+\[
+\mathcal{C}(R) = \bigotimes_i \mathcal{F}_{normalize}(x_i)
+\]
+and the same decomposition holds for $R'$.
+Since $f$ does not alter canonical components,
+the equality follows immediately.
+
+Hashing with $H$ preserves equality of inputs.
+
+
+% ------------------------------------------------------------
+\subsection*{C.2 Naturality of Attestations Implies Provenance Consistency}
+% ------------------------------------------------------------
+
+\textbf{Theorem.}
+If $\alpha : \mathcal{E} \Rightarrow \mathcal{E}'$ is the attestation
+transformation, then for any valid $f : P \to P'$, the provenance chain is
+consistent.
+
+\textbf{Sketch.}
+By naturality,
+\[
+\alpha_{P'} \circ \mathcal{E}(f)
+  = \mathcal{E}'(f) \circ \alpha_P.
+\]
+Interpreting $\mathcal{E}(f)$ and $\mathcal{E}'(f)$ as envelope-level
+updates and $\alpha$ as a cryptographic attestation, the equation says:
+\[
+\text{attest then update} = \text{update then attest},
+\]
+ensuring an immutable provenance chain.
+
+
+% ------------------------------------------------------------
+\subsection*{C.3 Pullbacks Guarantee Consistent Joins}
+% ------------------------------------------------------------
+
+\textbf{Theorem.}
+If two record fragments map to a common object $A$ in $\mathbf{CEP}$,
+and the pullback exists, then the join is guaranteed not to violate
+identity or schema constraints.
+
+\textbf{Sketch.}
+Let $f : R \to A$ and $g : R' \to A$.
+The pullback $P$ satisfies:
+\[
+\pi_1 : P \to R,
+\qquad
+\pi_2 : P \to R',
+\]
+with universal property:
+
+any object that maps into both $R$ and $R'$ in a way compatible with
+$f$ and $g$ factors uniquely through $P$.
+
+Identity preservation follows because both $R$ and $R'$ share the same
+canonical image in $A$.
+Schema consistency follows from stability under limits (finite
+completeness).
+
+% ------------------------------------------------------------
+\subsection*{C.4 Oplax Adapters Preserve Canonical Equivalence Classes}
+% ------------------------------------------------------------
+
+\textbf{Theorem.}
+If $\mathcal{A}$ is an oplax jurisdictional adapter satisfying the
+criteria in \S6.3, then two local records that map to the same global
+canonical string must belong to the same SNFEI equivalence class.
+
+\textbf{Sketch.}
+The oplax coherence map
+\[
+\mathcal{A}(x) \otimes \mathcal{A}(y)
+   \to \mathcal{A}(x \otimes y)
+\]
+may not be invertible, but it is still functorial.
+Thus the normalized canonical fragments commute with the adapter.
+
+If two local records $R_\ell, R'_\ell$ satisfy:
+\[
+\mathcal{C}(\mathcal{A}(R_\ell))
+  = \mathcal{C}(\mathcal{A}(R'_\ell)),
+\]
+then their SNFEI values match.
+Thus canonical identity is preserved under adapter weakening.
+

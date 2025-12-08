@@ -1,0 +1,205 @@
+% ============================================================
+% Appendix E: Glossary for Non-Category Theory Readers
+% ============================================================
+\clearpage
+\section*{Appendix E. Glossary for Non-Category Theory Readers}
+\addcontentsline{toc}{section}{Appendix E. Glossary for Non-Category Theory Readers}
+This appendix provides short, non-technical explanations of the categorical
+concepts used in the paper.  The intention is to make the mathematical structure
+of CEP more accessible to readers from computer science, data engineering,
+public administration, and civic-technology communities.
+
+% ------------------------------------------------------------
+\subsection*{E.1 Categories}
+A \emph{category} is a mathematical setting that describes:
+\begin{itemize}
+    \item some \textbf{objects} (things), and
+    \item some \textbf{morphisms} (arrows) between them.
+\end{itemize}
+
+You can think of a category as a directed graph with rules:
+every morphism has a source and target, arrows can be composed, and each object
+has an identity arrow that does nothing.
+
+In CEP:
+\begin{itemize}
+    \item objects = record states,
+    \item morphisms = valid record transformations (updates, amendments, joins).
+\end{itemize}
+
+% ------------------------------------------------------------
+\subsection*{E.2 Functors}
+A \emph{functor} is a mapping between categories that preserves structure.
+It sends:
+\begin{itemize}
+    \item each object to another object, and
+    \item each morphism to another morphism,
+\end{itemize}
+in a way that respects composition and identity.
+
+In CEP, a functor often represents a pipeline stage, such as:
+\begin{itemize}
+    \item wrapping a payload in an envelope,
+    \item normalizing noisy text into canonical components,
+    \item assembling canonical strings.
+\end{itemize}
+
+Functors ensure that if a record evolves legally, its transformed
+version evolves legally too.
+
+% ------------------------------------------------------------
+\subsection*{E.3 Natural Transformations}
+A \emph{natural transformation} is a structured way of comparing two functors.
+If functors are "processing stages," a natural transformation is a
+systematic way to convert the output of one stage into the output of another.
+
+In CEP, attestations are modeled as natural transformations:
+\begin{itemize}
+    \item the envelope functor produces a plain metadata wrapper,
+    \item the attested-envelope functor produces a cryptographically validated wrapper.
+\end{itemize}
+
+Naturality expresses the idea:
+\begin{quote}
+    "Whether you process then attest, or attest then process,
+    you end up with consistent provenance."
+\end{quote}
+
+% ------------------------------------------------------------
+\subsection*{E.4 Monoidal Categories}
+A \emph{monoidal category} is a category equipped with a notion of
+"combining things."
+
+Examples:
+\begin{itemize}
+    \item strings combine by concatenation,
+    \item datasets combine by joining,
+    \item workflows combine by sequencing.
+\end{itemize}
+
+Canonicalization in CEP is monoidal because it combines
+individual normalized components into a single canonical string
+in a strictly deterministic order.
+
+% ------------------------------------------------------------
+\subsection*{E.5 Strict Monoidal Functors}
+A \emph{strict monoidal functor} is a functor that preserves the
+combination structure exactly.
+
+In CEP:
+\begin{itemize}
+    \item the order of pieces (name, address, date, jurisdiction)
+          must always be preserved,
+    \item no additional symbols or whitespace are introduced,
+    \item the final output is the canonical string fed to SHA--256.
+\end{itemize}
+
+This strictness is what guarantees the stability of the SNFEI identifier.
+
+% ------------------------------------------------------------
+\subsection*{E.6 Oplax Functors}
+An \emph{oplax functor} preserves structure in a weakened way.
+
+Think of it as "oppositionally lax".  
+It is "lax" as in loose, but the op- signals that the direction of the non-invertible natural transformation ($\alpha$) is reversed or "opposite".
+
+It allows:
+\begin{itemize}
+    \item missing fields,
+    \item lossy interpretations,
+    \item mappings that preserve meaning but not full structure.
+\end{itemize}
+
+Jurisdictional adapters in CEP behave oplaxly because:
+\begin{itemize}
+    \item local data models may omit fields,
+    \item global vocabularies may have stricter typing,
+    \item some equivalences hold only "up to" a coherence rule.
+\end{itemize}
+
+Oplax behavior models "local autonomy with global convergence."
+
+% ------------------------------------------------------------
+\subsection*{E.7 Pullbacks (Consistent Joins)}
+A \emph{pullback} is the categorical notion of a consistent join.
+
+If two data sources both refer to the same entity or event,
+the pullback constructs the most precise version of their agreement.
+
+This formalizes CEP's guarantee that:
+\begin{quote}
+    Records may be joined only when they assert compatible facts.
+\end{quote}
+
+% ------------------------------------------------------------
+\subsection*{E.8 Fibered Categories}
+A \emph{fibered category} describes a setting where each object has a
+family of additional structures "above it."
+
+In CEP:
+\begin{itemize}
+    \item the base category is $\mathbf{CEP}$,
+    \item the fibers contain context tags (CTags).
+\end{itemize}
+
+This cleanly separates:
+\begin{itemize}
+    \item \textbf{identity} (in the base category), and
+    \item \textbf{interpretation or annotation} (in the fiber).
+\end{itemize}
+
+This is why CTags do not affect the SNFEI identifier.
+
+% ------------------------------------------------------------
+\subsection*{E.9 Universal Properties}
+A \emph{universal property} describes an object that is "best" or "most
+canonical" for a specific purpose.
+
+SNFEI behaves like a universal construction because:
+
+\begin{itemize}
+    \item it is determined by a canonical string,
+    \item it is invariant under allowed morphisms,
+    \item any other identifier consistent with CEP's invariants must
+          factor uniquely through this construction.
+\end{itemize}
+
+This is the mathematical justification for treating SNFEI as a stable,
+verifiable, compositional global identifier.
+
+% ------------------------------------------------------------
+\subsection*{E.10 Summary Table}
+\begin{center}
+    \begin{tabular}{p{0.20\linewidth} p{0.35\linewidth} p{0.35\linewidth}}
+        \toprule
+        \textbf{Concept}        & \textbf{Intuition}         & \textbf{CEP Role}           \\
+        \midrule
+        Category                & Things, allowed changes & Record states and updates   \\
+        Functor                 & Structure-preserving map   & Normalization, envelopes \\
+        Natural trans-formation & Coherent comparison        & Attestations                \\
+        Monoidal category       & Combine things             & Canonical assembly          \\
+        Strict monoidal functor & Combine exactly            & SNFEI stability             \\
+        Oplax functor           & Weak structure map         & Jurisdiction adapters       \\
+        Pullback                & Consistent join            & Merging record fragments    \\
+        Fibered category        & Per-object annotations     & CTags above records         \\
+        Universal property      & Optimal construction       & Identifier uniqueness       \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+% ------------------------------------------------------------
+\subsection*{E.11 Closing Note}
+These notions are not introduced for abstraction's sake—they express
+precisely the structural guarantees CEP requires for interoperability,
+trust, and cross-jurisdiction governance.
+
+They allow the protocol to be:
+\begin{itemize}
+    \item modular,
+    \item formally verifiable,
+    \item robust to heterogeneity,
+    \item and extensible to future domains.
+\end{itemize}
+
+By grounding CEP in category theory, we provide a rigorous foundation
+for its design principles and operational claims.
