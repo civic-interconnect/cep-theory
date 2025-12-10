@@ -16,7 +16,7 @@ on:
 
 env:
   PAPER_DIR: 2025_12_theory_paper
-  MAIN_TEX: 00_cep_formal_semantics.tex
+  MAIN_TEX: 00_cep_semantics.tex
 
 jobs:
   build-pdf:
@@ -44,10 +44,10 @@ jobs:
           latexmk -pdf -bibtex -interaction=nonstopmode -halt-on-error $MAIN_TEX
 
       - name: Upload built PDF
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: cep_formal_semantics
           path: |
-            ${{ env.PAPER_DIR }}/build/00_cep_formal_semantics.pdf
-            ${{ env.PAPER_DIR }}/build/00_cep_formal_semantics.log
+            ${{ env.PAPER_DIR }}/build/00_cep_semantics.pdf
+            ${{ env.PAPER_DIR }}/build/00_cep_semantics.log
           if-no-files-found: error

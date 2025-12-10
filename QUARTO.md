@@ -17,10 +17,10 @@ $env:PATH += ";C:\Program Files\Quarto\bin"
 quarto install tinytex
 ```
 
-## Build 
+## Build
 
 ```shell
 cd 2025_12_theory_paper
-quarto render 00_cep_formal_semantics.tex --to pdf
+quarto render 00_cep_semantics.tex --to pdf
 quarto render paper.qmd --to pdf
 ```

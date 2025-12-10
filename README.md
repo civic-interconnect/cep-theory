@@ -38,24 +38,21 @@ From the repository root:
 ```shell
 cd 2025_12_theory_paper
 latexmk -C
-latexmk -pdf -bibtex -interaction=nonstopmode 00_cep_formal_semantics.tex
+latexmk -pdf -bibtex -interaction=nonstopmode 00_cep_semantics.tex
+cd ..
 ```
 
 This will:
 
 - Clean auxiliary files
 - Run pdflatex and bibtex as needed,
-- Produce build/00_cep_formal_semantics.pdf (the compiled paper),
+- Produce the compiled PDF paper in build/,
 - Re-run LaTeX enough times to resolve cross-references and citations.
 
-### Paper PDF
-
-The latest build is available here: 
-
-[Download PDF](https://github.com/civic-interconnect/cep-theory/releases/download/0.0.1/00_cep_formal_semantics.pdf)
+See draft paper at [00_cep_semantics.pdf](./00_cep_semantics.pdf).
 
 ## Repository Status
 
-The December 2025 paper is under active development.
+This work is under active development.
 
 For more information, see the [CEP Repository](https://github.com/civic-interconnect/civic-interconnect).

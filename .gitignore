@@ -88,4 +88,14 @@ latexmkrc
 # ----------------------------------------
 build/
 *.pdf
-!00_cep_formal_semantics.pdf
+!00_cep_semantics.pdf
+
+# references
+2025_12_theory_paper/refs/AbstractModelTheory.pdf
+2025_12_theory_paper/refs/AllAboutMaude.pdf
+2025_12_theory_paper/refs/BasicCategoryTheory.pdf
+2025_12_theory_paper/refs/Categorical Logic.pdf
+2025_12_theory_paper/refs/CategoryTheory.pdf
+2025_12_theory_paper/refs/Compilers Principles Techniques and Tools (2nd Edition).pdf
+2025_12_theory_paper/refs/Invitation to Applied Category Theory.pdf
+2025_12_theory_paper/refs/JoyOfCats.pdf
