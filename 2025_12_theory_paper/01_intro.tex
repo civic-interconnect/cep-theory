@@ -1,45 +1,105 @@
-% ============================================================
+% !TeX root = 00_cep_semantics.tex
 \section{Introduction}
-% ============================================================
 
-Civic information ecosystems contain heterogeneous data about
-entities, relationships, and exchanges. These data are typically
-fragmented across jurisdictions, systems, formats, and organizational
-boundaries. The Civic Exchange Protocol (CEP) provides a unified,
-verifiable, schema-based framework for representing such data in an
-interoperable manner. CEP specifies four record families---entities,
-relationships, exchanges, and context tags---all wrapped by a shared
+Civic information ecosystems contain heterogeneous data about entities,
+relationships, and exchanges.
+These data are typically fragmented across jurisdictions, systems,
+formats, and organizational boundaries.
+The Civic Exchange Protocol (CEP) provides a unified, verifiable,
+schema-based framework for representing such data in an interoperable manner.
+CEP specifies four record families: entities,
+relationships, exchanges, and context tags, all wrapped by a shared
 record envelope with stable identifiers, attestations, and lifecycle
 metadata.
 
 While CEP has a concrete implementation in JSON Schema, Rust, and
 Python, its underlying structure is fundamentally compositional.
-This paper develops a \emph{categorical semantics} for CEP. Our
+This paper develops a \emph{categorical semantics} for CEP.
+Our
 motivation is threefold: (1) to formalize the invariants that CEP
 relies on for interoperability and identity stability; (2) to express
 its record structures in a precise mathematical language; and (3) to
 establish a foundation for evaluating transformations, adapters, and
 identifier derivations across heterogeneous civic data sources.
 
-Our contributions are:
+We treat CEP canonicalization as a structured rewriting system,
+which can be viewed categorically as a 2\=/category or polygraph whose
+1\=/morphisms are rewrite steps and whose 2\=/morphisms capture coherence between
+rewrite paths.
+As in standard rewriting frameworks, not all rewrite rules
+commute: information-preserving rewrites must precede information-reducing
+ones.
+CEP therefore adopts an ordered, stratified rewrite strategy to ensure
+determinism and semantic fidelity.
+This perspective is developed more fully in
+Section~\ref{sec:canonicalization}.
+
+CEP applies rewriting-theoretic ideas beyond name canonicalization,
+including adapter chains, entity-merge logic, canonical-string
+construction for hashing, and vocabulary evolution.
+We unify several layers of rewriting:
+\begin{itemize}
+  \item lexical and orthographic normalization,
+  \item semantic expansion (corporate forms, jurisdiction forms),
+  \item schema alignment and jurisdictional adapter chains,
+  \item provenance-graph normalization,
+  \item vocabulary evolution and version migration,
+  \item entity-merge rewriting with trust and timestamp rules,
+  \item cryptographic canonicalization of canonical strings.
+\end{itemize}
+
+Conceptually, this draws on ideas from term-rewriting theory and related
+areas, including compiler intermediate representations, natural-language
+tokenization and normalization, linked-data graph canonicalization, blockchain determinism,
+and provenance alignment~\cite{baader1998term,terese2003rewriting,spivak2014category}.
+
+Given the heterogeneity and path-dependence of civic data pipelines, the global
+rewrite system is \emph{not} designed to be:
+\begin{itemize}
+  \item commutative or order-independent,
+  \item symmetric,
+  \item context-free.
+\end{itemize}
+Instead, CEP is engineered as a \emph{strategy-governed} rewrite system whose
+evaluation order is explicitly specified, versioned, and enforced.
+Within this
+framework, CEP aims for:
+\begin{itemize}
+  \item termination (rewriting pipelines always complete),
+  \item determinism (a given input and strategy yield a unique output),
+  \item consistency (strategies respect CEP invariants), and
+  \item documentation (strategies and rules are inspectable and auditable).
+\end{itemize}
+
+This paper makes three main contributions:
 \begin{enumerate}
-    \item A construction of a category \textbf{CEP} whose objects are
-    well-typed record states and whose morphisms represent valid,
-    provenance-preserving transformations.
-    \item A functorial account of envelopes, attestations, and context
-    tags as natural transformations between appropriate record
-    functors.
-    \item A characterization of canonicalization as a monoidal
-    functor that induces stable identifiers (SNFEI) and preserves
-    equivalence classes of civic actors and events.
-    \item A semantics for jurisdictional adapters as oplax functors
-    mediating between local schemas and global vocabularies.
+  \item We formalize the Civic Exchange Protocol as a category $\mathbf{CEP}$
+        whose objects are well-typed record states and whose
+        morphisms represent valid, provenance-preserving transformations between them.
+
+  \item We introduce \emph{CEP canonicalization} as a structured rewriting
+        system: a stratified, strategy-governed rewriting pipeline that produces
+        deterministic canonical forms suitable for hashing, comparison, and linkage.
+        Categorically, we characterize canonicalization as a monoidal
+        functor that induces stable identifiers (SNFEI) and preserves
+        equivalence classes of civic actors and events.
+
+  \item We give a categorical semantics for jurisdictional adapters, vocabularies,
+        and envelopes: adapters are modeled as (op)lax functors mediating
+        between local schema categories and the global CEP category; envelopes
+        and context tags arise as natural transformations between record
+        functors.
+        We demonstrate that this framework extends uniformly across
+        domains (campaign finance, environmental regulation, education), each
+        equipped with its own controlled vocabularies and adapters, showing
+        that a single compositional rewriting framework can support
+        heterogeneous civic data while preserving determinism and provenance.
 \end{enumerate}
 
 The goal is not to introduce new implementation mechanisms, but to
 clarify the mathematical structure implicit in CEP and justify its
-identity, integrity, and interoperability guarantees. A categorical
-perspective exposes CEP's compositionality, makes explicit the
+identity, integrity, and interoperability guarantees.
+A categorical perspective exposes CEP's compositionality, makes explicit the
 conditions under which identifiers and transformations remain stable,
 and provides a principled basis for future extensions in federation,
 data fusion, and cross-jurisdiction civic analytics.

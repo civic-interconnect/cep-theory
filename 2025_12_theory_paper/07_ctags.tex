@@ -1,120 +1,129 @@
-% ============================================================
+% !TeX root = 00_cep_semantics.tex
+
 \section{Context Tags as Indexed Families}
 \label{sec:ctags}
-% ============================================================
 
 \subsection{\texorpdfstring{Fibered Category
-        $\pi : \mathbf{CT} \to \mathbf{CEP}$}
-    {Fibered Category pi : CT → CEP}}
+    $\pi : \mathbf{CT} \to \mathbf{CEP}$}
+  {Fibered Category pi : CT → CEP}}
 % ------------------------------------------------------------
 
 Context tags (CTags) are interpretive annotations attached to a record
-without altering its canonical identity. Their semantics is most
-naturally expressed via a \emph{fibered category}:
+without altering its canonical identity.
+Their semantics is captured by a
+\emph{fibered category}
 \begin{equation}
-    \pi : \mathbf{CT} \longrightarrow \mathbf{CEP},
+  \pi : \mathbf{CT} \longrightarrow \mathbf{CEP},
 \end{equation}
 where:
 \begin{itemize}
-    \item $\mathbf{CEP}$ is the base category of identity-bearing records,
-    \item $\mathbf{CT}$ is the category whose objects are
-          \emph{pairs} $(R, T)$ of a record and a context tag attached to it,
-    \item $\pi$ is the projection functor $\pi(R, T) = R$.
+  \item $\mathbf{CEP}$ is the base category of identity-bearing records,
+  \item $\mathbf{CT}$ consists of pairs $(R, T)$ of a CEP record $R$ and an attached context tag $T$,
+  \item $\pi$ is the projection functor $\pi(R, T) = R$.
 \end{itemize}
 
-For each base object $R \in \mathbf{CEP}$, the \emph{fiber}
-$\mathbf{CT}_R$ is the collection of all valid context tags that may be
-attached to $R$. These fibers encode interpretive or analytic
-information without modifying the canonical structure of the underlying
-record.
+For a base object $R \in \mathbf{CEP}$, the fiber
+\[
+  \mathbf{CT}_R = \{ (R, T) \in \mathbf{CT} \mid \pi(R,T) = R \}
+\]
+collects all valid context tags that may be associated with $R$.
+These fibers encode analytic or interpretive information while leaving the
+canonical structure and identifier of $R$ unchanged.
 
 \FigureCallout{Context Tags in a Fibered Category (Separation of Concerns)}{
-    The fibration $\pi : \mathbf{CT} \to \mathbf{CEP}$ cleanly separates
-    identity (base objects in $\mathbf{CEP}$) from interpretation (fibers
-    $\mathbf{CT}_R$). Any morphism in the base category induces a structured
-    reindexing between fibers, guaranteeing that context tags track valid
-    record evolutions without affecting the canonical identifier. This
-    formalizes the principle that CTags annotate a record but never influence
-    its SNFEI identity.
+  The projection $\pi : \mathbf{CT} \to \mathbf{CEP}$ cleanly separates
+  \emph{identity} (records in $\mathbf{CEP}$) from \emph{interpretation}
+  (tags in the fibers $\mathbf{CT}_R$).
+  Any morphism in $\mathbf{CEP}$
+  induces a coherent reindexing across fibers, ensuring that context tags
+  evolve with records while never influencing their SNFEI identity.
 }
 
 % ------------------------------------------------------------
 \subsection{Functoriality and Reindexing}
 % ------------------------------------------------------------
 
-Given a morphism
+Let
+\[
+  f : R \longrightarrow R'
+\]
+be a morphism in $\mathbf{CEP}$ representing a valid evolution or update
+of a record.
+The fibration provides a corresponding \emph{reindexing
+  functor}
 \begin{equation}
-    f : R \longrightarrow R'
-\end{equation}
-in the base category $\mathbf{CEP}$ (representing a valid record
-evolution or update), the fibration supplies a corresponding
-\emph{reindexing functor}:
-\begin{equation}
-    f^\ast : \mathbf{CT}_{R'} \longrightarrow \mathbf{CT}_R.
+  f^\ast : \mathbf{CT}_{R'} \longrightarrow \mathbf{CT}_R.
 \end{equation}
 
-Intuitively, $f^\ast$ describes how tags on a revised record $R'$ may be
-pulled back to valid tags on the earlier state $R$, preserving their
-interpretive meaning.
+Intuitively, $f^\ast$ specifies how tags attached to the updated record
+$R'$ may be pulled back to valid tags on the earlier state $R$,
+preserving interpretive meaning along the update path.
 
-\begin{figure}[h]
-    \centering
-    \begin{tikzpicture}[node distance=2.8cm,>=Stealth]
-        \node (CR) {$\mathbf{CT}_R$};
-        \node (CRp) [right of=CR] {$\mathbf{CT}_{R'}$};
+\begin{figure}[ht]
+  \centering
+  \begin{tikzpicture}[node distance=2.8cm,>=Stealth]
+    \node (CR) {$\mathbf{CT}_R$};
+    \node (CRp) [right of=CR] {$\mathbf{CT}_{R'}$};
 
-        \node (R) [below of=CR] {$R$};
-        \node (Rp) [below of=CRp] {$R'$};
+    \node (R) [below of=CR] {$R$};
+    \node (Rp) [below of=CRp] {$R'$};
 
-        \draw[->] (CRp) -- node[above] {$f^\ast$} (CR);
-        \draw[->] (R) -- node[below] {$f$} (Rp);
+    \draw[->] (CRp) -- node[above] {$f^\ast$} (CR);
+    \draw[->] (R) -- node[below] {$f$} (Rp);
 
-        \draw[->] (CR) -- node[left] {$\pi$} (R);
-        \draw[->] (CRp) -- node[right] {$\pi$} (Rp);
-    \end{tikzpicture}
-    \caption{Reindexing in the fibration $\pi : \mathbf{CT} \to \mathbf{CEP}$.}
-    \label{fig:fibration-reindex}
+    \draw[->] (CR) -- node[left] {$\pi$} (R);
+    \draw[->] (CRp) -- node[right] {$\pi$} (Rp);
+  \end{tikzpicture}
+  \caption{Reindexing in the fibration $\pi : \mathbf{CT} \to \mathbf{CEP}$.}
+  \label{fig:fibration-reindex}
 \end{figure}
 
-The reindexing condition ensures:
+Reindexing satisfies the standard fibration condition:
 \begin{equation}
-    \pi \circ f^\ast = f \circ \pi,
+  \pi \circ f^\ast = f \circ \pi,
 \end{equation}
-i.e., the diagram in Figure~\ref{fig:fibration-reindex} commutes.
-
-This formalizes an essential CEP design principle:
+so the diagram in Figure~\ref{fig:fibration-reindex} commutes.
+Thisexpresses the guiding CEP principle:
 
 \begin{quote}
-    \textbf{Context tags move with the record's evolution but do not change
-        its identity.}
+  \textbf{Context tags move with the record's evolution but never change
+    its identity.}
 \end{quote}
 
 % ------------------------------------------------------------
 \subsection{Identity Preservation and Canonical Invariance}
 % ------------------------------------------------------------
 
-A tag object $T \in \mathbf{CT}_R$ must not alter any canonical data
-used in identifier generation. Formally:
-
+A tag object $T \in \mathbf{CT}_R$ must not modify any canonical data
+used in identifier generation.
+Formally, if $\mathcal{C}$ denotes thecanonicalization functor, then
 \begin{equation}
-    \mathcal{C}(R) = \mathcal{C}(R,T),
+  \mathcal{C}(R) = \mathcal{C}(R, T),
 \end{equation}
+so attaching tags does not affect the canonical form of $R$.
 
-where $\mathcal{C}$ is the canonicalization functor defined previously.
 Equivalently, the projection functor $\pi$ is \emph{identity-reflecting}:
-if $(R,T)$ and $(R',T')$ share the same canonical identifier, then
-$R$ and $R'$ must already do so in $\mathbf{CEP}$.
+if two tagged objects $(R,T)$ and $(R',T')$
+yield the same canonical identifier,
+then $R$ and $R'$ must already be
+identified in the base category $\mathbf{CEP}$.
 
-Thus:
+Consequently:
 \begin{itemize}
-    \item CTags are \emph{pure annotations};
-    \item they cannot introduce new canonical structure;
-    \item they cannot affect the SNFEI or equivalence classes of records.
+  \item CTags are \emph{pure annotations};
+  \item they introduce no new canonical structure;
+  \item they cannot alter SNFEI values or canonical equivalence classes.
 \end{itemize}
 
-This guarantees a strict separation between:
+This establishes a strict separation between
 \[
-    \text{identity} \quad\text{(base category)} \qquad\text{and}\qquad
-    \text{interpretation} \quad\text{(fibers)}.
+  \text{identity} \quad (\mathbf{CEP})
+  \qquad\text{and}\qquad
+  \text{interpretation} \quad (\mathbf{CT}_R).
 \]
-
+\FigureCallout{Identity Preservation via Context Tags}{
+  Context tags in the fibered category $\pi : \mathbf{CT} \to \mathbf{CEP}$
+  are strictly non-influential on canonical identity. The projection
+  $\pi$ ensures that no tagged object $(R,T)$ can alter the canonical form
+  or SNFEI of its base record $R$, preserving CEP's invariants.
+}

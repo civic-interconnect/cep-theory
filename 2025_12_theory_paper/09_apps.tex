@@ -1,48 +1,106 @@
-% ============================================================
+% !TeX root = 00_cep_semantics.tex
+
 \section{Applications}
-% ============================================================
 \label{sec:apps}
 
-This section illustrates how the categorical semantics developed above
-manifest in real-world civic data workflows. Each example highlights a
-core CEP invariant and shows how the categorical structure enforces it.
+The categorical semantics developed above manifest directly in real civic
+data workflows.
+Domain schemas provide typed structures for entities and exchanges,
+while CEP vocabularies furnish the controlled classifications
+and relationship types used throughout these workflows.
+The following examples illustrate how functoriality, monoidality, pullbacks,
+and oplax adapter semantics enforce CEP's core invariants in practice.
 
+% ------------------------------------------------------------
 \subsection{Civic Entity Records: Identity Stability}
+% ------------------------------------------------------------
 
-A municipal entity’s lifecycle is modeled as a chain of morphisms in
+Every domain schema (e.g., municipal, educational, environmental) defines
+a category of entity revisions whose morphisms correspond to admissible
+updates.
+A municipal entity's lifecycle is therefore a chain in
 $\mathbf{CEP}$:
 \[
-E_1 \xrightarrow{f_1} E_2 \xrightarrow{f_2} \cdots
+  E_1 \xrightarrow{f_1} E_2 \xrightarrow{f_2} \cdots
 \]
-where each $E_i$ is a revision of the same entity.
-Identity Invariance (Section~3.2) ensures that any
-identity-preserving amendment $f_i$ leaves the canonical form unchanged:
-\[
-\mathcal{C}(E_i) = \mathcal{C}(E_{i+1}).
-\]
-Thus the SNFEI remains stable even as auxiliary data (e.g., address,
-classification, or contact fields) evolves over time.
+where each $E_i$ conforms to the relevant domain schema and vocabulary.
 
+Identity Invariance ensures that any identity-preserving update $f_i$
+leaves the canonical form unchanged:
+\[
+  \mathcal{C}(E_i) = \mathcal{C}(E_{i+1}).
+\]
+Thus the SNFEI remains stable even as auxiliary fields (address,
+classification, jurisdictional codes, vocabulary-driven status fields)
+evolve over time.
+The vocabulary layer guarantees that enumerated fields
+(e.g.\ \texttt{ACTIVE}, \texttt{DISSOLVED}) remain consistent across
+revisions and jurisdictions.
+
+This yields a strong operational principle:
+
+\begin{quote}
+  \textbf{Domain schemas define the structure of change; canonicalization
+    guarantees that such change never affects identity.}
+\end{quote}
+
+% ------------------------------------------------------------
 \subsection{Campaign Finance: Compositional Provenance}
+% ------------------------------------------------------------
 
-A donation from a donor $D$ to a committee $C$ is modeled as an exchange
-morphism $f : D \to C$. A subsequent transfer from $C$ to a subcommittee
-$S$ is a morphism $g : C \to S$. The composed morphism
-$g \circ f : D \to S$ represents the derived provenance lineage.
-Because composition in $\mathbf{CEP}$ is associative, this lineage is
-canonical and immutable, enabling consistent financial traceability
-across multiple reporting systems.
+Domain schemas for campaign finance define typed exchange morphisms,
+where controlled vocabulary terms specify the semantics of each transfer
+(e.g.\ \texttt{donation}, \texttt{in-kind}, \texttt{reallocation}).
 
-\subsection{Public Contracting: Data Fusion via Pullbacks}
-
-Consider a Vendor Registry record $R_V$ and a Contract Record $R_C$
-that both reference the same underlying legal entity $A$.
-The pullback
+A donation from a donor $D$ to a committee $C$ is a morphism
+$f : D \to C$.
+A downstream transfer from $C$ to a subcommittee $S$ is
+a morphism $g : C \to S$.
+Their composition
 \[
-P = R_V \times_A R_C
+  g \circ f : D \to S
 \]
-constructs the maximal consistent set of facts compatible with both
-records. This is exactly the categorical mechanism that guarantees
-sound cross-system data integration (Section~3.3) and supports
-audits that reconcile public procurement data across heterogeneous
-jurisdictional sources.
+represents the derived provenance lineage.
+
+Because composition in $\mathbf{CEP}$ is associative and is compatible with the vocabulary-governed domain schema,
+this lineage is canonical across all reporting systems.
+It enables coherent financial traceability even
+when jurisdictions differ in local reporting conventions—oplax adapters
+(Section~\ref{sec:adapters}) ensure that structure-weakening translations
+still preserve this compositional provenance.
+
+% ------------------------------------------------------------
+\subsection{Public Contracting: Data Fusion via Pullbacks}
+% ------------------------------------------------------------
+
+Public contracting data arises from multiple domain schemas:
+\begin{itemize}
+  \item Vendor Registry schema (legal entities, certifications, status),
+  \item Contract schema (awards, amendments, payments),
+  \item Jurisdiction-specific extensions and vocabularies.
+\end{itemize}
+
+Suppose a Vendor Registry record $R_V$ and a Contract Record $R_C$ both
+reference the same underlying legal entity $A$.
+The fiber product
+\[
+  P = R_V \times_A R_C
+\]
+constructs the maximal consistent set of jointly satisfiable facts.
+This pullback operation merges information along the shared canonical identity
+specified by the SNFEI and vocabulary-controlled relationship types.
+
+This is the categorical mechanism that guarantees sound cross-system
+integration.
+It ensures that:
+
+\begin{itemize}
+  \item canonical identity aligns disparate domain schemas,
+  \item vocabulary-governed code systems reconcile classification fields,
+  \item provenance constraints remain intact across fused datasets.
+\end{itemize}
+
+As a result, auditors can reconcile procurement data across heterogeneous
+jurisdictional sources, even when local schemas differ substantially, while
+maintaining CEP's global invariants.
+

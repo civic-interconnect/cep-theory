@@ -1,13 +1,11 @@
-% ============================================================
-% Appendix D: Diagrammatic Intuition
-% ============================================================
+% !TeX root = 00_cep_semantics.tex
 \clearpage
 \section*{Appendix D. Diagrammatic Intuition}
 \addcontentsline{toc}{section}{Appendix D. Diagrammatic Intuition}
 
 This appendix provides informal diagrams for the categorical structures
-introduced in the main text. The goal is to support intuition rather than
-to introduce new formal content.
+introduced in the main text.
+The goal is to support intuition rather than to introduce new formal content.
 
 % ------------------------------------------------------------
 \subsection*{D.1 Morphisms in \texorpdfstring{$\mathbf{CEP}$}{CEP}}
@@ -29,8 +27,10 @@ states and morphisms as provenance-preserving transformations.
 
     \draw[->] (R0) -- node[above]{\small $f_1$} (R1);
     \draw[->] (R1) -- node[above]{\small $f_2$} (R2);
-    \draw[->,bend left=20] (R0) to node[below]{\small $f_2 \circ f_1$} (R2);
+    \draw[->, bend left=35]
+    (R0) to node[below]{\small $f_2 \circ f_1$} (R2);
   \end{tikzpicture}
+
   \caption{Morphisms in $\mathbf{CEP}$ as provenance-preserving transformations.
     Each arrow corresponds to a valid record evolution that preserves schema
     validity, revision monotonicity, and canonical identity.}
@@ -62,7 +62,8 @@ $\mathcal{E}, \mathcal{E}' : \mathbf{P} \to \mathbf{E}$.
     \draw[->] (EP) -- node[left]{\small $\alpha_P$} (E2P);
     \draw[->] (EPP) -- node[right]{\small $\alpha_{P'}$} (E2PP);
   \end{tikzpicture}
-  \caption{Naturality square for attestations. The equality
+  \caption{Naturality square for attestations.
+    The equality
     $\alpha_{P'} \circ \mathcal{E}(f) = \mathcal{E}'(f) \circ \alpha_P$
     expresses that attestation commutes with valid transformations of payloads.}
   \label{fig:naturality-attestations}
@@ -95,15 +96,15 @@ pipeline: normalization, assembly, and hashing.
     \node[stage, text width=1.5cm] at (10.8,0) (hash) {SNFEI\\{\small $H(\mathcal{C}(R))$}};
 
     % Arrows from right edge to left edge
-    \draw[->] (raw.east)   -- 
-    node[above]{\small normal-} 
+    \draw[->] (raw.east)   --
+    node[above]{\small normal-}
     node[below]{\small ization}
-         (norm.west);
+    (norm.west);
     \draw[->] (norm.east) --
     node[above]{\small monoidal}
     node[below]{\small assembly}
-    (canon.west);    
-    \draw[->] (canon.east) -- node[above]{\small hashing}            (hash.west);
+    (canon.west);
+    \draw[->] (canon.east) -- node[above]{\small hashing}  (hash.west);
   \end{tikzpicture}
   \caption{The canonicalization pipeline as a composition of a
     normalization functor, a strict monoidal assembly functor, and a
@@ -145,9 +146,10 @@ $\mathcal{A} : \mathbf{J_{local}} \to \mathbf{J_{global}}$.
     \draw[->] (AY) -- node[right]{\small $\mathcal{A}(g)$} (AZ);
     \draw[->,bend right=15] (AX) to node[below]{\small $\mathcal{A}(g \circ f)$} (AZ);
 
-    % Coherence 2-cell
-    \draw[->,dashed] (AZ) ++(-0.5,0.4) -- ++(0,0.0)
-    node[pos=0.5,left,xshift=-0.1cm]{\small $\phi_{g,f}$};
+    % Coherence 2-cell: vertical dashed arrow left of AZ
+    \draw[->, dashed]
+    ($(AZ.west) + (-0.5,0.35)$) -- ($(AZ.west) + (-0.5,-0.35)$)
+    node[midway,left,xshift=-0.1cm]{\small $\phi_{g,f}$};
 
   \end{tikzpicture}
   \caption{Oplax coherence for a jurisdictional adapter
@@ -161,6 +163,15 @@ $\mathcal{A} : \mathbf{J_{local}} \to \mathbf{J_{global}}$.
 % ------------------------------------------------------------
 \subsection*{D.5 Context Tags as a Fibration}
 % ------------------------------------------------------------
+% Intent: fibers over a base with some functor between them
+% Two base objects R and R'
+% A base arrow f : R → R'
+% Vertical fibers of tags above each
+% Solid arrows down to the base (projection)
+% Dashed arrows between the fibers (reindexing)
+% For a (Grothendieck) fibration
+% Given a base arrow  f : R → R'
+% standard reindexing is contravariant and we pull back tags along f
 
 Figure~\ref{fig:fibration-ctags} shows the projection
 $\pi : \mathbf{CT} \to \mathbf{CEP}$ and the fibers of context tags
@@ -188,15 +199,17 @@ above a base record.
     \node[tag,above=0.5cm of Rp] (T1p) {$T'_1$};
     \node[tag,above=0.5cm of T1p] (T2p) {$T'_2$};
 
-    % Projections
-    \draw[->] (T1) -- (R);
-    \draw[->] (T2) -- (R);
-    \draw[->] (T1p) -- (Rp);
-    \draw[->] (T2p) -- (Rp);
+    % Projections over R
+    \draw[->] ($(T1.south) + (-0.15cm,0)$) -- ($(R.north) + (-0.15cm,0)$);
+    \draw[->] ($(T2.south) + (0.25cm,0)$)  -- ($(R.north) + (0.25cm,0)$);
 
-    % Reindexing along f
-    \draw[->,dashed] (T1) -- node[above]{\small $\mathrm{reindex}(f)$} (T1p);
-    \draw[->,dashed] (T2) -- (T2p);
+    % Projections over R'
+    \draw[->] ($(T1p.south) + (-0.15cm,0)$) -- ($(Rp.north) + (-0.15cm,0)$);
+    \draw[->] ($(T2p.south) + (0.25cm,0)$)  -- ($(Rp.north) + (0.25cm,0)$);
+
+    % Reindexing along f, fiber over R' -> fiber over R
+    \draw[->,dashed] (T1p) -- node[above]{\small $\mathrm{reindex}(f)$} (T1);
+    \draw[->,dashed] (T2p) -- (T2);
 
   \end{tikzpicture}
   \caption{Context tags as a fibration $\pi : \mathbf{CT} \to \mathbf{CEP}$.

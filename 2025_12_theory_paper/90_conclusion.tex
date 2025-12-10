@@ -1,9 +1,33 @@
-% ============================================================
+% !TeX root = 00_cep_semantics.tex
 \section{Conclusion}
-% ============================================================
 
-We presented a categorical semantics for the Civic Exchange Protocol.
-This semantics clarifies identity, invariants, and interoperability,
-and provides a foundation for future work in formal verification and
-cross-jurisdiction data reconciliation.
+We presented a categorical semantics for the Civic Exchange Protocol
+that unifies canonicalization, provenance, adapters, and context tags
+into a coherent mathematical framework.
+This perspective makes explicit the invariants that govern identity,
+record evolution, and interoperability across heterogeneous civic data systems.
 
+Canonicalization was formulated as a deterministic monoidal functor,
+ensuring stable identifiers and well-defined equivalence classes.
+Jurisdictional adapters were modeled as oplax functors, capturing how
+local structure may be weakened while preserving global identity.
+Context tags were expressed via a fibered category, isolating
+interpretive annotations from canonical record content.
+Together, these structures yield formal guarantees for identifier preservation,
+compositional provenance, and cross-jurisdiction reconciliation.
+
+The resulting semantics provides a rigorous foundation for validation,
+verification, and future extensions of CEP.
+It enables principled design of domain schemas, vocabularies,
+and interoperability standards, while remaining extensible to evolving civic workflows.
+As civic data ecosystems continue to grow in scale and complexity,
+categorical methods offer a durable and expressive language for ensuring that shared
+identities and exchanges remain consistent, transparent, and reliable.
+
+
+\section*{Acknowledgements}
+
+Generative AI tools were used to assist with editing and formatting during manuscript preparation.
+All ideas, analyses, and conclusions are the authors' own.
+All AI-assisted edits were reviewed and validated,
+and the authors take full responsibility for the accuracy and integrity of this manuscript.

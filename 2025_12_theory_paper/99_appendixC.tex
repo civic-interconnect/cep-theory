@@ -1,48 +1,48 @@
-% ============================================================
+% !TeX root = 00_cep_semantics.tex
 \clearpage
 \section*{Appendix C. Proof Sketches}
 \addcontentsline{toc}{section}{Appendix C. Proof Sketches}
-% ============================================================
 
-This appendix provides informal but rigorous proof sketches
-supporting the main theorems in the paper.
-They are intended to clarify correctness arguments for CEP
-canonicalization, provenance, and interoperability.
+This appendix provides informal but rigorous proof sketches supporting
+the main theorems of the paper.
+Each argument reflects the categorical and rewriting-theoretic semantics developed above,
+including stratified canonicalization, functorial provenance, limit constructions, and oplax
+adapter behavior.
 
 % ------------------------------------------------------------
 \subsection*{C.1 Identifier Preservation Under CEP Morphisms}
 % ------------------------------------------------------------
 
 \textbf{Theorem.}
-If $f : R \to R'$ is a morphism in $\mathbf{CEP}$,
-then
+If $f : R \to R'$ is a morphism in $\mathbf{CEP}$, then
 \[
-\mathcal{C}(R) = \mathcal{C}(R')
-\quad\text{and thus}\quad
-\text{SNFEI}(R) = \text{SNFEI}(R').
+  \mathcal{C}(R) = \mathcal{C}(R')
+  \quad\text{and hence}\quad
+  \text{SNFEI}(R) = \text{SNFEI}(R').
 \]
 
 \textbf{Sketch.}
 Morphisms in $\mathbf{CEP}$ preserve:
-
 \begin{itemize}
-    \item canonical fields,
-    \item their normalized values,
-    \item revision monotonicity,
-    \item schema validity.
+  \item all canonical fields required for identifier construction,
+  \item their normalized values under the stratified rewriting system,
+  \item revision monotonicity and schema validity.
 \end{itemize}
 
-The canonicalization functor $\mathcal{C}$ is strict monoidal.
-Thus for any decomposition of fields into components $x_i$,
+Normalization uses a stratified rewriting system whose evaluation order
+is fixed; canonicalization is implemented as a strict monoidal functor.
+Thus for any canonical decomposition of record components $x_i$:
 \[
-\mathcal{C}(R) = \bigotimes_i \mathcal{F}_{normalize}(x_i)
+  \mathcal{C}(R)
+  = \bigotimes_i \mathcal{F}_{normalize}(x_i),
+  \qquad
+  \mathcal{C}(R')
+  = \bigotimes_i \mathcal{F}_{normalize}(x_i'),
 \]
-and the same decomposition holds for $R'$.
-Since $f$ does not alter canonical components,
-the equality follows immediately.
+and $f$ preserves each canonical component $x_i = x_i'$.
+Therefore $\mathcal{C}(R) = \mathcal{C}(R')$.
 
-Hashing with $H$ preserves equality of inputs.
-
+Applying the hashing endofunctor $H$ preserves equality.
 
 % ------------------------------------------------------------
 \subsection*{C.2 Naturality of Attestations Implies Provenance Consistency}
@@ -50,73 +50,78 @@ Hashing with $H$ preserves equality of inputs.
 
 \textbf{Theorem.}
 If $\alpha : \mathcal{E} \Rightarrow \mathcal{E}'$ is the attestation
-transformation, then for any valid $f : P \to P'$, the provenance chain is
+transformation, then for any valid $f : P \to P'$, provenance remains
 consistent.
 
 \textbf{Sketch.}
-By naturality,
+Naturality gives:
 \[
-\alpha_{P'} \circ \mathcal{E}(f)
+  \alpha_{P'} \circ \mathcal{E}(f)
   = \mathcal{E}'(f) \circ \alpha_P.
 \]
-Interpreting $\mathcal{E}(f)$ and $\mathcal{E}'(f)$ as envelope-level
-updates and $\alpha$ as a cryptographic attestation, the equation says:
-\[
-\text{attest then update} = \text{update then attest},
-\]
-ensuring an immutable provenance chain.
 
+Interpreting $\mathcal{E}$ and $\mathcal{E}'$ as envelope-constructing
+functors and $\alpha$ as an attestation step:
+\[
+  \text{attest then update}
+  =
+  \text{update then attest}.
+\]
+
+Thus provenance chains commute with record evolution and cannot be
+invalidated by further updates.
 
 % ------------------------------------------------------------
 \subsection*{C.3 Pullbacks Guarantee Consistent Joins}
 % ------------------------------------------------------------
 
 \textbf{Theorem.}
-If two record fragments map to a common object $A$ in $\mathbf{CEP}$,
-and the pullback exists, then the join is guaranteed not to violate
-identity or schema constraints.
+If two record fragments map to a common object $A$ in $\mathbf{CEP}$ and
+the pullback exists, then the join is consistent with canonical identity
+and schema constraints.
 
 \textbf{Sketch.}
-Let $f : R \to A$ and $g : R' \to A$.
-The pullback $P$ satisfies:
+Given morphisms $f : R \to A$ and $g : R' \to A$, the pullback $P$ has
+projections
 \[
-\pi_1 : P \to R,
-\qquad
-\pi_2 : P \to R',
+  \pi_1 : P \to R,
+  \qquad
+  \pi_2 : P \to R',
 \]
-with universal property:
+satisfying the universal property: any object mapping compatibly into
+$R$ and $R'$ factors uniquely through $P$.
 
-any object that maps into both $R$ and $R'$ in a way compatible with
-$f$ and $g$ factors uniquely through $P$.
-
-Identity preservation follows because both $R$ and $R'$ share the same
-canonical image in $A$.
-Schema consistency follows from stability under limits (finite
-completeness).
+Identity consistency follows because both $R$ and $R'$ map to the same
+canonical representative in $A$.
+Schema consistency follows from finite completeness of the category of CEP records:
+limit constructions preserve well-formedness and canonical identity invariants.
 
 % ------------------------------------------------------------
 \subsection*{C.4 Oplax Adapters Preserve Canonical Equivalence Classes}
 % ------------------------------------------------------------
 
 \textbf{Theorem.}
-If $\mathcal{A}$ is an oplax jurisdictional adapter satisfying the
-criteria in \S6.3, then two local records that map to the same global
-canonical string must belong to the same SNFEI equivalence class.
+If $\mathcal{A}$ is a valid oplax jurisdictional adapter, then local
+records that map to the same global canonical string belong to the same
+SNFEI equivalence class.
 
 \textbf{Sketch.}
-The oplax coherence map
+An oplax functor allows structure weakening but supplies coherence maps:
 \[
-\mathcal{A}(x) \otimes \mathcal{A}(y)
-   \to \mathcal{A}(x \otimes y)
+  \mathcal{A}(x) \otimes \mathcal{A}(y)
+  \to
+  \mathcal{A}(x \otimes y),
 \]
-may not be invertible, but it is still functorial.
-Thus the normalized canonical fragments commute with the adapter.
+which need not be invertible but remain functorial.
+This ensures that stratified normalization and strict monoidal
+canonicalization commute with $\mathcal{A}$ up to coherence.
 
 If two local records $R_\ell, R'_\ell$ satisfy:
 \[
-\mathcal{C}(\mathcal{A}(R_\ell))
-  = \mathcal{C}(\mathcal{A}(R'_\ell)),
+  \mathcal{C}(\mathcal{A}(R_\ell))
+  =
+  \mathcal{C}(\mathcal{A}(R'_\ell)),
 \]
-then their SNFEI values match.
-Thus canonical identity is preserved under adapter weakening.
-
+then their canonical forms agree after adapter translation.
+Applying $H$ yields identical SNFEI values, so canonical identity is
+preserved even under adapter weakening.
