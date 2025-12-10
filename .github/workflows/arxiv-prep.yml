@@ -51,7 +51,7 @@ jobs:
           zip -r ../arxiv-source.zip .
 
       - name: Upload arXiv source artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: arxiv-source
           path: arxiv-source.zip
