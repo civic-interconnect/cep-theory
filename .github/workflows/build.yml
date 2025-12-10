@@ -41,7 +41,7 @@ jobs:
       - name: Build PDF with latexmk
         working-directory: ${{ env.PAPER_DIR }}
         run: |
-          latexmk -pdf -bibtex -interaction=nonstopmode -halt-on-error $MAIN_TEX
+          latexmk -pdf -bibtex -interaction=nonstopmode -halt-on-error -outdir=build $MAIN_TEX
 
       - name: Upload built PDF
         uses: actions/upload-artifact@v5
