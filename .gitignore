@@ -54,7 +54,7 @@ __pycache__/
 # WHY: Build directory and intermediate PDFs
 build/
 *.pdf
-!00P1_cae_ontology.pdf    # OBS: Final papers committed to root
+!00P1_cae_ontology.pdf
 !00P2_cep_semantics.pdf
 !00P3_cee_verticals.pdf
 
