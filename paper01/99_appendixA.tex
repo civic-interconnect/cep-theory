@@ -1,0 +1,303 @@
+% !TeX root = 00P1_cae_ontology.tex
+
+\clearpage
+\section*{Appendix A. Worked Examples}
+\addcontentsline{toc}{section}{Appendix A. Worked Examples}
+
+This appendix provides concrete examples illustrating how CAE's six entity
+kinds and relationship constraints apply across different civic domains.
+The goal is to demonstrate that the ontology is sufficient for modeling
+diverse accountability scenarios without domain-specific extensions.
+
+The following examples use real-world entities purely for illustrative purposes.
+No evaluative, legal, or causal claims are implied beyond the structural relationships shown.
+
+% ------------------------------------------------------------
+\subsection*{A.1 Chicago Procurement: Following Federal Funds to Local Contractors}
+% ------------------------------------------------------------
+
+
+\textbf{Scenario:}
+The Federal Highway Administration (FHWA) provides funding to the Illinois
+Department of Transportation (IDOT), which contracts with a construction
+company to repair Chicago infrastructure.
+
+\textbf{CAE Representation:}
+
+\begin{mdframed}
+    \textbf{Actors (A):}
+    \begin{itemize}[nosep]
+        \item FHWA (federal agency)
+        \item IDOT (state agency)
+        \item ABC Construction Company (contractor)
+        \item City of Chicago (local government)
+    \end{itemize}
+
+    \textbf{Instruments (I):}
+    \begin{itemize}[nosep]
+        \item Federal Highway Act (normative instrument)
+        \item IDOT-FHWA Grant Agreement (programmatic instrument)
+        \item Construction Contract (programmatic instrument)
+    \end{itemize}
+
+    \textbf{Events (E):}
+    \begin{itemize}[nosep]
+        \item Payment from FHWA to IDOT (\$2.5M, 2024-03-15)
+        \item Payment from IDOT to ABC Construction (\$2.4M, 2024-04-01)
+        \item Project completion inspection (2024-11-20)
+    \end{itemize}
+
+    \textbf{Sites (S):}
+    \begin{itemize}[nosep]
+        \item Bridge on Interstate 90 (infrastructure site)
+    \end{itemize}
+
+    \textbf{Jurisdictions (J):}
+    \begin{itemize}[nosep]
+        \item United States (federal scope)
+        \item Illinois (state scope)
+        \item Chicago (municipal scope)
+    \end{itemize}
+
+    \textbf{Observations (O):}
+    \begin{itemize}[nosep]
+        \item Bridge safety rating (2025-01-10: "Good")
+        \item Project completion rate (100\%, within budget)
+    \end{itemize}
+\end{mdframed}
+
+\textbf{Key Relationships:}
+\begin{itemize}[nosep]
+    \item \emph{enacts}: Congress $\rightarrow$ Federal Highway Act
+    \item \emph{implements}: IDOT-FHWA Grant $\rightarrow$ Federal Highway Act
+    \item \emph{party-to}: FHWA $\rightarrow$ IDOT-FHWA Grant
+    \item \emph{party-to}: IDOT $\rightarrow$ IDOT-FHWA Grant
+    \item \emph{occurs-under}: Payment Event $\rightarrow$ IDOT-FHWA Grant
+    \item \emph{acts-on}: Inspection Event $\rightarrow$ I-90 Bridge
+    \item \emph{located-in}: I-90 Bridge $\rightarrow$ Chicago
+    \item \emph{measures}: Safety Rating $\rightarrow$ I-90 Bridge
+\end{itemize}
+
+\textbf{Note:} This example demonstrates selective inclusion.
+Many other federal programs, state agencies, and contractors exist but are not modeled
+unless they participate in accountability-bearing relationships relevant to
+this exchange.
+
+% ------------------------------------------------------------
+\subsection*{A.2 Public Health Program: Statute to Population Outcomes}
+% ------------------------------------------------------------
+
+
+\textbf{Scenario:}
+The Affordable Care Act (ACA) authorizes the Department of Health and Human
+Services (HHS) to expand Medicaid.
+States adopt the expansion, health insurance coverage increases, and population health outcomes improve over time.
+
+\textbf{CAE Representation:}
+
+\begin{mdframed}
+    \textbf{Actors (A):}
+    \begin{itemize}[nosep]
+        \item U.S. Congress
+        \item HHS (federal agency)
+        \item California Department of Health Care Services (state agency)
+        \item Kaiser Permanente (health insurer)
+    \end{itemize}
+
+    \textbf{Instruments (I):}
+    \begin{itemize}[nosep]
+        \item Affordable Care Act (normative instrument)
+        \item Medicaid Expansion Regulation (regulatory instrument)
+        \item California Medicaid Plan (programmatic instrument)
+    \end{itemize}
+
+    \textbf{Events (E):}
+    \begin{itemize}[nosep]
+        \item California adopts Medicaid expansion (2014-01-01)
+        \item Enrollment event (2014-03-15, 500,000 new enrollees)
+        \item Claims payments (ongoing, monthly)
+    \end{itemize}
+
+    \textbf{Jurisdictions (J):}
+    \begin{itemize}[nosep]
+        \item United States
+        \item California
+    \end{itemize}
+
+    \textbf{Observations (O):}
+    \begin{itemize}[nosep]
+        \item Uninsured rate (2013: 17\%, 2020: 7\%)
+        \item Preventable hospitalizations (2013: 45 per 1000, 2020: 32 per 1000)
+        \item Life expectancy (measured at county level, longitudinal)
+    \end{itemize}
+\end{mdframed}
+
+\textbf{Temporal Structure:}
+Events occur at specific times (2014-01-01, 2014-03-15), while Observations
+track outcomes over years (2013-2020).
+The ACA (Instrument) remains an enduring entity throughout this period.
+
+\textbf{Accountability Chain:}
+Observations are connected to the ACA through shared Jurisdictions and temporal
+overlap, enabling analysis of health outcomes before and after expansion.
+CAE does not assert that the ACA caused the improvements, but it makes the
+structural connections explicit for hypothesis testing.
+
+% ------------------------------------------------------------
+\subsection*{A.3 Environmental Regulation: Permits and Emissions}
+% ------------------------------------------------------------
+
+
+\textbf{Scenario:}
+The Clean Air Act authorizes the EPA to regulate emissions.
+A state environmental agency issues a permit to a power plant.
+The plant submits emissions reports, and air quality is monitored.
+
+\textbf{CAE Representation:}
+
+\begin{mdframed}
+    \textbf{Actors (A):}
+    \begin{itemize}[nosep]
+        \item EPA (federal regulator)
+        \item Ohio EPA (state regulator)
+        \item FirstEnergy (power plant operator)
+    \end{itemize}
+
+    \textbf{Instruments (I):}
+    \begin{itemize}[nosep]
+        \item Clean Air Act (normative instrument)
+        \item Title V Operating Permit (regulatory instrument)
+    \end{itemize}
+
+    \textbf{Events (E):}
+    \begin{itemize}[nosep]
+        \item Permit issuance (2020-06-01)
+        \item Quarterly emissions report (2024-10-01)
+        \item Compliance inspection (2024-11-15)
+    \end{itemize}
+
+    \textbf{Sites (S):}
+    \begin{itemize}[nosep]
+        \item W.H. Sammis Power Plant (coal facility)
+    \end{itemize}
+
+    \textbf{Jurisdictions (J):}
+    \begin{itemize}[nosep]
+        \item United States
+        \item Ohio
+        \item Stratton Air Basin (regulatory region)
+    \end{itemize}
+
+    \textbf{Observations (O):}
+    \begin{itemize}[nosep]
+        \item \(O_{\mathrm{SO_2}}^{\mathrm{intensity}}(2024\text{Q3}) = 0.12 \;\text{lb/MMBtu}\)
+        \item \(O_{\mathrm{PM}_{2.5}}^{\mathrm{ambient}} = 8.5 \;\mu\text{g/m}^3\)
+    \end{itemize}
+\end{mdframed}
+
+\textbf{Jurisdictional Nesting:}
+The Stratton Air Basin (environmental jurisdiction) overlaps with Ohio
+(political jurisdiction).
+Both are represented as distinct Jurisdictions with explicit \emph{contains} relationships.
+
+\textbf{Actor-Site Distinction:}
+FirstEnergy (Actor) operates the Sammis Plant (Site).
+The permit constrains the Site's operations, while FirstEnergy bears the legal obligation to comply.
+
+% ------------------------------------------------------------
+\subsection*{A.4 Infrastructure Investment: Long-Term Public Value}
+% ------------------------------------------------------------
+
+
+\textbf{Scenario:}
+A state issues bonds to fund rural broadband infrastructure.
+Private ISPs are awarded contracts to build fiber networks.
+Over time, internet access and economic indicators improve.
+
+\textbf{CAE Representation:}
+
+\begin{mdframed}
+    \textbf{Actors (A):}
+    \begin{itemize}[nosep]
+        \item Minnesota Department of Employment and Economic Development (state agency)
+        \item Arvig Communications (ISP contractor)
+        \item Local counties (grant recipients)
+    \end{itemize}
+
+    \textbf{Instruments (I):}
+    \begin{itemize}[nosep]
+        \item Minnesota Broadband Development Act (normative instrument)
+        \item Bond authorization (programmatic instrument)
+        \item Construction grant (programmatic instrument)
+    \end{itemize}
+
+    \textbf{Events (E):}
+    \begin{itemize}[nosep]
+        \item Bond issuance (2018-03-01, \$100M)
+        \item Grant award (2018-06-01, \$5M to Arvig)
+        \item Network completion (2020-12-01)
+    \end{itemize}
+
+    \textbf{Sites (S):}
+    \begin{itemize}[nosep]
+        \item Fiber optic network (rural Minnesota)
+    \end{itemize}
+
+    \textbf{Jurisdictions (J):}
+    \begin{itemize}[nosep]
+        \item Minnesota
+        \item Clay County, Norman County (rural counties)
+    \end{itemize}
+
+    \textbf{Observations (O):}
+    \begin{itemize}[nosep]
+        \item Broadband access rate (2018: 45\%, 2023: 92\%)
+        \item Median household income (2018: \$52K, 2023: \$58K)
+        \item Remote work adoption (2019: 8\%, 2023: 24\%)
+    \end{itemize}
+\end{mdframed}
+
+\textbf{Longitudinal Analysis:}
+Observations span 5+ years, tracking outcomes well beyond the initial
+investment Events.
+This structure supports analysis of public value that
+accrues over decades, not just immediate financial returns.
+
+\textbf{Diffuse Benefits:}
+Unlike direct procurement (Example B.1), infrastructure benefits are diffuse
+and population-level.
+Observations capture these outcomes explicitly rather
+than inferring them from transaction Events.
+
+% ------------------------------------------------------------
+\subsection*{A.5 Role Multiplicity: University as Multi-Role Actor}
+% ------------------------------------------------------------
+
+
+\textbf{Scenario:}
+A university receives federal research grants, operates regulated laboratories,
+employs faculty researchers, and reports compliance data.
+
+\textbf{CAE Representation:}
+
+\begin{mdframed}
+    \textbf{Single Actor (A):}
+    \begin{itemize}[nosep]
+        \item University of Minnesota
+    \end{itemize}
+
+    \textbf{Multiple Relationship Patterns:}
+    \begin{itemize}[nosep]
+        \item \emph{party-to}: University $\rightarrow$ NSF Grant (role: grant recipient)
+        \item \emph{operates}: University $\rightarrow$ Biosafety Lab (role: facility operator)
+        \item \emph{employs}: University $\rightarrow$ Researcher (role: employer)
+        \item \emph{subject-of}: Compliance Inspection $\rightarrow$ University (role: regulated entity)
+    \end{itemize}
+\end{mdframed}
+
+\textbf{Role as Relationship Pattern:}
+The university is a single Actor.
+Its roles (recipient, operator, employer, regulated entity)
+emerge from its relational position with respect to
+Instruments, Sites, and Events.
+No reclassification is needed when roles change.
