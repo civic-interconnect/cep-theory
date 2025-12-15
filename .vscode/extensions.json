@@ -1,0 +1,16 @@
+// WHY: Recommends VS Code extensions for this repository
+// OBS: VS Code prompts to install these on first open
+// ALT: Users can ignore recommendations if they prefer different tools
+
+{
+  "recommendations": [
+    // REQ: LaTeX compilation
+    "james-yu.latex-workshop",
+
+    // OBS: Standard across all repos
+    "github.vscode-github-actions", // GitHub Actions syntax
+    "redhat.vscode-yaml", // YAML validation
+    "yzhang.markdown-all-in-one", // Markdown preview
+    "eamodio.gitlens" // Git integration
+  ]
+}

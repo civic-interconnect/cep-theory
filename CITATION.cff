@@ -1,14 +1,63 @@
 cff-version: 1.2.0
 message: "If you use this work, please cite as shown below."
-title: "Categorical Semantics for the Civic Exchange Protocol (CEP)"
+title: "Civic Exchange Protocol - Mathematical Theory"
+# WHY: Single citation for the complete three-paper framework
+# OBS: Covers CAE ontology, CEP semantics, and CEE verticals
+
 authors:
-  - family-names: C ase
-    given-names: Denise
+  - family-names: Case
+    given-names: Denise M.
+    orcid: "https://orcid.org/0000-0001-6165-7389"
     affiliation: "Northwest Missouri State University; Civic Interconnect"
-date-released: 2025-11-18
-version: "draft"
-type: article
+
+date-released: 2025-12-14 # WHY: Updated to current date
+version: "draft" # OBS: Papers under active development
+type: dataset # WHY: Repository contains multiple papers plus code/data
 repository-code: "https://github.com/civic-interconnect/cep-theory"
+
 abstract: >
-  This repository contains the LaTeX sources, figures, and reproducibility
-  materials for the CEP theory paper.
+  This repository contains the mathematical foundations for civic accountability
+  tracking through three formal papers: (1) A Categorical Ontology for Civic
+  Accountable Entities (CAE), which partitions civic reality into six
+  non-overlapping entity kinds; (2) A Categorical Semantics for the Civic
+  Exchange Protocol (CEP), which defines the minimum structure required for
+  civic accountability records; and (3) A Bicategorical Semantics of Civic
+  Explanations and Vertical Domains (CEE), which provides structured
+  explanations for civic decisions and defines vertical domain slices.
+  Includes LaTeX sources, figures, and reproducibility materials.
+
+keywords: # WHY: Helps with discovery
+  - civic accountability
+  - category theory
+  - data exchange protocols
+  - transparency
+  - civic tech
+
+# WHY: Individual paper references for granular citation
+references:
+  - type: article
+    title: "A Categorical Ontology for Civic Accountable Entities (CAE)"
+    authors:
+      - family-names: Case
+        given-names: Denise M.
+        orcid: "https://orcid.org/0000-0001-6165-7389"
+    date-released: 2025-12-14
+    version: "draft"
+
+  - type: article
+    title: "A Categorical Semantics for the Civic Exchange Protocol (CEP)"
+    authors:
+      - family-names: Case
+        given-names: Denise M.
+        orcid: "https://orcid.org/0000-0001-6165-7389"
+    date-released: 2025-12-14
+    version: "draft"
+
+  - type: article
+    title: "A Bicategorical Semantics of Civic Explanations and Vertical Domains (CEE)"
+    authors:
+      - family-names: Case
+        given-names: Denise M.
+        orcid: "https://orcid.org/0000-0001-6165-7389"
+    date-released: 2025-12-14
+    version: "draft"

@@ -1,0 +1,85 @@
+% !TeX root = 00P3_cee_verticals.tex
+
+\section{Vertical Domains}
+\label{sec:verticals}
+
+Informally, practitioners already speak of ``verticals'': procurement
+verticals, health verticals, education verticals, and so on.
+In most software settings these labels refer to application silos or
+product lines.
+In the CEP+CEE setting we adopt a more structural definition.
+
+\begin{definition}[Vertical domain]
+  A \emph{vertical domain} \(V\) consists of three interlocking
+  components:
+  \begin{enumerate}[label=(\alph*)]
+    \item A \emph{CEP scope} \(C_V\): a selected subset of CEP schemas,
+          vocabularies, and identifier schemes, together with the
+          induced rewriting and identity rules on the corresponding
+          entity and relationship objects.
+    \item An \emph{adapter scope} \(A_V\): a set of deterministic
+          adapters that map one or more raw data sources into canonical
+          CEP entities and relationships within \(C_V\).
+    \item A \emph{CEE scope} \(E_V\): a family of explanation types,
+          evidence-set schemas, and attribution-set schemas that attach
+          structured explanations to entities and relationships in
+          \(C_V\).
+  \end{enumerate}
+\end{definition}
+
+Intuitively, \(C_V\) specifies \emph{what in the civic universe we
+  are looking at}; \(A_V\) specifies \emph{how raw data enters that
+  universe}; and \(E_V\) specifies \emph{why certain parts of that
+  universe are highlighted as important}.
+A vertical is therefore not merely an application domain but a
+\emph{sustained lens} on the canonical civic graph.
+
+\paragraph{Examples.}
+
+\begin{itemize}
+  \item A \textbf{SME-friendly procurement} vertical might include
+        entities for buyers, tenders, lots, contracts, and suppliers;
+        relationships describing which buyer issues which tender and
+        which contract is awarded to which supplier; adapters from
+        OCDS-style procurement releases into that schema; and CEE
+        explanation types that answer questions such as ``Why is this
+        lot SME-friendly?''.
+  \item A \textbf{community asset access} vertical might include
+        entities for public assets (parks, libraries, recreation
+        centres), neighbourhoods, and jurisdictions; relationships
+        placing assets into neighbourhoods and neighbourhoods into
+        jurisdictions; adapters from city open data portals and
+        population grids; and explanations that answer ``Why is this
+        neighbourhood prioritized for new assets?''.
+\end{itemize}
+
+In both cases the vertical is defined by a \emph{coherent pattern of
+  use} across CEP, adapters, and CEE, not by any single file or schema.
+
+\paragraph{Design constraints.}
+
+Vertical domains are subject to several design constraints that
+distinguish them from one-off analyses:
+
+\begin{enumerate}[label=(\roman*)]
+  \item \textbf{Reusability.}  The CEP scope \(C_V\) should reuse
+        existing canonical schemas and vocabularies wherever possible,
+        rather than proliferating bespoke types.
+  \item \textbf{Determinism.}  Adapters in \(A_V\) must respect CEP's
+        canonicalization and identity rules so that repeated runs
+        produce stable entity identifiers and graph structure.
+  \item \textbf{Legibility.}  Explanations in \(E_V\) must satisfy
+        CEE's evidence and attribution constraints, so that their
+        semantics are inspectable, testable, and comparable across
+        instances and time.
+  \item \textbf{Locality.}  Each vertical should be cancellable or
+        extensible with minimal disruption to others: one can remove
+        the community asset vertical without affecting the SME
+        procurement vertical, and vice versa.
+\end{enumerate}
+
+These constraints are reflected in the repository structure: each
+vertical has its own \emph{about} file, examples, adapters, and tests,
+but they all sit on top of the same CEP and CEE foundations.
+They ensure that verticals compose cleanly into a larger civic data
+ecosystem.

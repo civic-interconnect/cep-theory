@@ -1,0 +1,100 @@
+% !TeX root = 00P3_cee_verticals.tex
+\clearpage
+\section*{Appendix E. Categorical Concepts for CEE}
+\label{app:E}
+\addcontentsline{toc}{section}{Appendix E. Categorical Concepts for CEE}
+
+This appendix extends the categorical glossary in CEP Appendix~E to cover
+concepts specific to the bicategorical semantics of CEE.
+For foundational definitions of \emph{category}, \emph{functor},
+\emph{natural transformation}, \emph{monoidal category}, \emph{oplax functor},
+\emph{pullback}, and \emph{fibered category}, see CEP Appendix~E.
+
+% ------------------------------------------------------------
+\subsection*{E.1 Bicategory (New in CEE)}
+% ------------------------------------------------------------
+
+Formally, CEE is modeled as a bicategory whose hom-categories
+capture explanatory variation over CEP morphisms.
+A \emph{bicategory} generalizes a category by allowing transformations
+between morphisms, called \emph{2-morphisms}.
+
+\begin{itemize}
+  \item \textbf{0-cells}: objects (civic entities)
+  \item \textbf{1-morphisms}: relationships between entities
+  \item \textbf{2-morphisms}: transformations between relationships
+\end{itemize}
+
+In CEE, explanations live as 2-morphisms: they relate one interpretation
+of a relationship to another, providing the ``why'' behind civic claims.
+This is the key structural innovation that distinguishes CEE from CEP.
+
+% ------------------------------------------------------------
+\subsection*{E.2 Fibered Category (Extended)}
+% ------------------------------------------------------------
+
+CEP Appendix~E introduces fibered categories as ``contextual layers.''
+CEE extends this with multiple fibered layers over the CEP base:
+
+\[
+  p_{\mathrm{CTag}} : \mathrm{CTag} \to \mathrm{CEP}
+  \qquad
+  p_V : V \to \mathrm{CEP}
+  \qquad
+  p_{\mathrm{CEE}} : \mathrm{CEE} \to \mathrm{CEP}
+\]
+
+Each projection sends annotations, vertical semantics, or explanations
+to the CEP record they describe. The fiber over a record $r$ is the
+collection of all structures ``about'' $r$. This layered architecture
+allows CEE to extend CEP without modifying the base protocol.
+
+% ------------------------------------------------------------
+\subsection*{E.3 Universal Property (Clarified)}
+% ------------------------------------------------------------
+
+CEP Appendix~E describes universal properties as ``uniqueness by optimality.''
+In CEE, we clarify the role of SNFEI within this construction:
+
+\begin{itemize}
+  \item The \emph{stable verifiable ID} is the universal construction.
+  \item SNFEI is the \emph{canonical fallback} when no external registry
+        identifier (LEI, SAM UEI, etc.) is available.
+  \item Any deterministic identification scheme respecting CEP invariants
+        factors uniquely through the verifiable ID scheme.
+\end{itemize}
+
+% ------------------------------------------------------------
+\subsection*{E.4 Summary Table}
+% ------------------------------------------------------------
+
+\begin{center}
+  \small
+  \begin{tabular}{p{0.24\linewidth} p{0.34\linewidth} p{0.32\linewidth}}
+    \toprule
+    \textbf{Concept}       & \textbf{Intuition}          & \textbf{CEE Role}               \\
+    \midrule
+    Category               & Things, allowed changes     & CEP record layer (see CEP)      \\
+    Functor                & Structure-preserving map    & Adapters (see CEP)              \\
+    Natural transformation & Coherent comparison         & Attestations (see CEP)          \\
+    Monoidal category      & Combine objects             & Canonicalization (see CEP)      \\
+    \textbf{Bicategory}    & Morphisms between morphisms & \textbf{CEE explanations}       \\
+    Oplax functor          & Weak preservation           & Jurisdiction adapters (see CEP) \\
+    Pullback               & Consistent join             & Data fusion (see CEP)           \\
+    Fibered category       & Contextual layers           & CTags, verticals, CEE layers    \\
+    Universal property     & Optimal construction        & Verifiable ID (SNFEI fallback)  \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+% ------------------------------------------------------------
+\subsection*{E.5 Closing Note}
+% ------------------------------------------------------------
+
+CEE's bicategorical structure provides the vocabulary for civic explanations:
+evidence chains, attribution, and narratives become first-class mathematical
+objects. Combined with CEP's categorical foundation, this enables explanations
+that are coherent, auditable, and interoperable across domains.
+
+For additional categorical terminology used in CEE (Cartesianness,
+compositionality, lifting, quotienting, etc.), see Appendix~F.

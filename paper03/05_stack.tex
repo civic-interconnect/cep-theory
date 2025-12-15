@@ -1,0 +1,82 @@
+% !TeX root = 00P3_cee_verticals.tex
+
+\section{The Stack of Vertical Domains}
+\label{sec:stack}
+
+Although vertical domains can be developed independently, they share a
+common architectural pattern.
+We describe this pattern as a \emph{stack} layered over the CEP base.
+
+% ------------------------------------------------------------
+\subsection{Layers of the Stack}
+% ------------------------------------------------------------
+
+Conceptually, the stack has four layers:
+\begin{enumerate}[label=(\arabic*),nosep]
+  \item \textbf{Canonical base (CEP).}
+        Schemas, vocabularies, identity,
+        canonicalization, and graph normalization.
+  \item \textbf{Adapters.}
+        Deterministic mappings from raw sources into
+        CEP entities and relationships.
+  \item \textbf{Explanations (CEE).}
+        Explanation types, evidence sets,
+        attribution sets, and narratives over canonical graphs.
+  \item \textbf{Vertical domains.}
+        Slices that select subsets of the
+        above three layers for specific civic questions.
+\end{enumerate}
+
+The first three layers are domain-agnostic:
+they apply to any civic context expressible in CEP.
+The fourth layer instantiates them for
+particular questions of interest.
+
+% ------------------------------------------------------------
+\subsection{Verticals as Fibers over the CEP Universe}
+% ------------------------------------------------------------
+
+Let $\mathcal{U}_{\mathrm{CEP}}$ denote the ``universe'' of CEP schemas
+and vocabularies.
+Each vertical $V$ chooses a subset
+$\mathcal{U}_V \subseteq \mathcal{U}_{\mathrm{CEP}}$
+together with adapters and explanations.
+
+The collection of all verticals can be
+arranged as a family of fibers over
+$\mathcal{U}_{\mathrm{CEP}}$:
+\[
+  \pi : \mathsf{Vert} \to \mathcal{U}_{\mathrm{CEP}},
+\]
+where the fiber over a given subset of schemas is the set of verticals
+that use exactly those schemas (up to specified equivalence).
+
+We do not formalize this as a fibration in the categorical sense,
+but the analogy is useful:
+moving along the base corresponds to changing
+which parts of CEP are in scope;
+moving within a fiber corresponds to changing
+explanations or adapters while keeping the same schemas.
+
+% ------------------------------------------------------------
+\subsection{Reusability Across Verticals}
+% ------------------------------------------------------------
+
+A major benefit of the stack perspective is reusability.
+Because verticals share the CEP base,
+several components can be reused:
+
+\begin{itemize}
+  \item entity schemas (e.g., municipalities, regions, facilities)
+        may appear in multiple verticals;
+  \item identity schemes (e.g., SNFEI)
+        provide cross-vertical linking;
+  \item vocabularies (e.g., procedure types, violation types)
+        can be shared;
+  \item explanation types may be reused or adapted
+        across verticals.
+\end{itemize}
+
+This manifests as maps between vertical domains,
+a topic we return to in Section~\ref{sec:bicat}
+and Section~\ref{sec:cases}.

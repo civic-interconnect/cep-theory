@@ -1,0 +1,80 @@
+% !TeX root = 00P2_cep_semantics.tex
+
+
+\section{Limitations and Future Work}
+\label{sec:limitations}
+
+The categorical core presented in this paper captures identity,
+canonicalization, provenance, and interoperability for discrete,
+revision-based civic records.
+Several important extensions remain outside the present scope.
+
+Many civic systems also generate data that is statistical, uncertain, or
+continuously updated (e.g., longitudinal indicators, evolving aggregates).
+Incorporating such information may require probabilistic semantics or
+temporal indexing, which are not modeled in the current framework.
+
+Jurisdictions evolve data models over time.
+Although CEP supports adapters for structural variation,
+a full account of schema evolution, including additions,
+deprecations, and long-term migration paths, remains future work.
+
+\paragraph{Multi-Stage and Nested Exchanges.}
+
+Some workflows involve layered or multi-party processes
+(e.g., multi-level budget allocations, nested reporting pipelines).
+These may benefit from higher-structured categorical tools,
+but such extensions lie beyond the scope of this foundational treatment.
+
+\paragraph{Rule Sensitivity in Canonicalization.}
+
+Certain linguistic cases (such as expansions of abbreviations like “S.A.”)
+require stratified rule ordering within the normalization pipeline rather
+than treating all rewrite rules as freely permutable.
+This refinement does not affect the well-definedness of the canonicalization
+function but does highlight the need for continued empirical tuning of rule strata.
+
+\medskip
+
+The present semantics establish a robust core for identity and interoperability.
+Extending CEP to the richer data practices found across governments and civic ecosystems
+is a key direction for future work.
+
+% ------------------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+
+We presented a categorical semantics for the Civic Exchange Protocol
+that unifies canonicalization, provenance, adapters, and context tags
+into a coherent mathematical framework.
+This perspective makes explicit the invariants that govern identity,
+record evolution, and interoperability across heterogeneous civic data systems.
+
+Canonicalization was formulated as a deterministic monoidal functor,
+ensuring stable identifiers and well-defined equivalence classes.
+Jurisdictional adapters were modeled as oplax functors, capturing how
+local structure may be weakened while preserving global identity.
+Context tags were expressed via a fibered category, isolating
+interpretive annotations from canonical record content.
+Together, these structures yield formal guarantees for identifier preservation,
+compositional provenance, and cross-jurisdiction reconciliation.
+
+The resulting semantics provides a rigorous foundation for validation,
+verification, and future extensions of CEP.
+It enables principled design of domain schemas, vocabularies,
+and interoperability standards, while remaining extensible to evolving civic workflows.
+As civic data ecosystems continue to grow in scale and complexity,
+categorical methods offer a durable and expressive language for ensuring that shared
+identities and exchanges remain consistent, transparent, and reliable.
+
+
+\section*{Acknowledgements}
+
+Portions of this work were developed through human-computer collaboration
+using modern computational tools.
+Generative language models were used to assist with editing, formatting,
+and consistency checking during manuscript preparation.
+All conceptual framing, formal development, results, interpretations, and conclusions
+are the author's own.
+All generated suggestions were critically reviewed and validated, and
+the author takes full responsibility for the content of this work.

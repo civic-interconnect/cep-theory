@@ -1,0 +1,153 @@
+% !TeX root = 00P2_cep_semantics.tex
+\clearpage
+\section*{Appendix C. Proof Sketches}
+\addcontentsline{toc}{section}{Appendix C. Proof Sketches}
+
+This appendix provides informal but rigorous proof sketches supporting
+the main theorems of the paper.
+Each argument reflects the categorical and rewriting-theoretic semantics developed above,
+including stratified canonicalization, functorial provenance, limit constructions, and oplax
+adapter behavior.
+
+% ------------------------------------------------------------
+\subsection*{C.1 Identifier Preservation Under CEP Morphisms}
+% ------------------------------------------------------------
+
+\textbf{Theorem.}
+If $f : R \to R'$ is a morphism in $\mathbf{CEP}$, then
+\[
+  \mathcal{C}(R) = \mathcal{C}(R')
+  \quad\text{and hence}\quad
+  \text{SNFEI}(R) = \text{SNFEI}(R').
+\]
+
+\textbf{Sketch.}
+Morphisms in $\mathbf{CEP}$ preserve:
+\begin{itemize}
+  \item all canonical fields required for identifier construction,
+  \item their normalized values under the stratified rewriting system,
+  \item revision monotonicity and schema validity.
+\end{itemize}
+
+Normalization uses a stratified rewriting system whose evaluation order
+is fixed; canonicalization is implemented as a strict monoidal functor.
+Thus for any canonical decomposition of record components $x_i$:
+\[
+  \mathcal{C}(R)
+  = \bigotimes_i \mathcal{F}_{normalize}(x_i),
+  \qquad
+  \mathcal{C}(R')
+  = \bigotimes_i \mathcal{F}_{normalize}(x_i'),
+\]
+and $f$ preserves each canonical component $x_i = x_i'$.
+Therefore $\mathcal{C}(R) = \mathcal{C}(R')$.
+
+Applying the hashing endofunctor $H$ preserves equality.
+
+% ------------------------------------------------------------
+\subsection*{C.2 Naturality of Attestations Implies Provenance Consistency}
+% ------------------------------------------------------------
+
+\textbf{Theorem (Naturality $\Rightarrow$ provenance coherence).}
+Let $\mathcal{P}$ be a category of normalized payloads and payload updates, and let
+$\mathcal{R}$ be a category of CEP records and record-evolution morphisms (revision steps).
+Let
+\[
+  \mathcal{E},\mathcal{E}' : \mathcal{P} \to \mathcal{R}
+\]
+be two envelope-constructing functors, where $\mathcal{E}$ constructs the envelope
+without requiring attestations, and $\mathcal{E}'$ constructs the same envelope shape
+but \emph{requires} a non-empty attestation list and carries it as envelope metadata.
+If
+\[
+  \alpha : \mathcal{E} \Rightarrow \mathcal{E}'
+\]
+is a natural transformation that adds (or injects) the upstream attestation block(s)
+for each payload, then for any morphism $f : P \to P'$ in $\mathcal{P}$, the induced
+record evolution in $\mathcal{R}$ is provenance-consistent:
+\[
+  \alpha_{P'} \circ \mathcal{E}(f)
+  \;=\;
+  \mathcal{E}'(f) \circ \alpha_{P}.
+\]
+
+\textbf{Sketch.}
+Naturality gives the commuting square:
+\[
+  \begin{tikzcd}
+    \mathcal{E}(P) \arrow[r, "\mathcal{E}(f)"] \arrow[d, "\alpha_P"'] & \mathcal{E}(P') \arrow[d, "\alpha_{P'}"] \\
+    \mathcal{E}'(P) \arrow[r, "\mathcal{E}'(f)"'] & \mathcal{E}'(P')
+  \end{tikzcd}
+\]
+Interpreting $\mathcal{E}(f)$ as the deterministic record-evolution step (updating
+the envelope revision metadata while preserving the stable verifiable ID) and
+$\alpha$ as the operation that \emph{injects the upstream attestations} for a given
+payload version, the equation reads:
+\[
+  \text{evolve then attach attestations}
+  \;=\;
+  \text{attach attestations then evolve (in the attested world)}.
+\]
+
+The important consequence is not that old attestations remain valid for a changed
+payload, but that record evolution cannot \emph{silently} break provenance structure:
+the evolution morphism in $\mathcal{E}'$ must transport the prior attestation history
+and (when required by policy) append fresh attestations for the new revision.
+Thus attestation metadata is coherent with revision-chain structure, and provenance
+relationships commute with record evolution rather than being ad hoc side effects.
+
+
+% ------------------------------------------------------------
+\subsection*{C.3 Pullbacks Guarantee Consistent Joins}
+% ------------------------------------------------------------
+
+\textbf{Theorem.}
+If two record fragments map to a common object $A$ in $\mathbf{CEP}$ and
+the pullback exists, then the join is consistent with canonical identity
+and schema constraints.
+
+\textbf{Sketch.}
+Given morphisms $f : R \to A$ and $g : R' \to A$, the pullback $P$ has
+projections
+\[
+  \pi_1 : P \to R,
+  \qquad
+  \pi_2 : P \to R',
+\]
+satisfying the universal property: any object mapping compatibly into
+$R$ and $R'$ factors uniquely through $P$.
+
+Identity consistency follows because both $R$ and $R'$ map to the same
+canonical representative in $A$.
+Schema consistency follows from finite completeness of the category of CEP records:
+limit constructions preserve well-formedness and canonical identity invariants.
+
+% ------------------------------------------------------------
+\subsection*{C.4 Oplax Adapters Preserve Canonical Equivalence Classes}
+% ------------------------------------------------------------
+
+\textbf{Theorem.}
+If $\mathcal{A}$ is a valid oplax jurisdictional adapter, then local
+records that map to the same global canonical string belong to the same
+SNFEI equivalence class.
+
+\textbf{Sketch.}
+An oplax functor allows structure weakening but supplies coherence maps:
+\[
+  \mathcal{A}(x) \otimes \mathcal{A}(y)
+  \to
+  \mathcal{A}(x \otimes y),
+\]
+which need not be invertible but remain functorial.
+This ensures that stratified normalization and strict monoidal
+canonicalization commute with $\mathcal{A}$ up to coherence.
+
+If two local records $R_\ell, R'_\ell$ satisfy:
+\[
+  \mathcal{C}(\mathcal{A}(R_\ell))
+  =
+  \mathcal{C}(\mathcal{A}(R'_\ell)),
+\]
+then their canonical forms agree after adapter translation.
+Applying $H$ yields identical SNFEI values, so canonical identity is
+preserved even under adapter weakening.

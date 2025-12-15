@@ -1,0 +1,174 @@
+\PassOptionsToPackage{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}{hyperref}
+% REQ-FILE: The above line, \PassOptionsToPackage{} must be very first line.
+
+\documentclass[11pt]{article}
+
+% Encoding and font setup for cross-platform reproducibility
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Improve readability for dense theoretical material
+\usepackage{setspace}
+\onehalfspacing
+
+% Mathematical notation and table formatting for formal semantics
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{bookmark}
+\usepackage{graphicx}
+
+% Theorem environments for definitions, lemmas, and formal statements
+\usepackage{amsthm}
+
+% plain style is italic body text (for theorems, lemmas, etc.)
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+% definition style = upright body text (for definitions, examples)
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+% remark style = upright, lighter weight (for remarks, notes)
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+
+% Bibliography management and hyperlink support
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{natbib}
+
+% Support multiple author affiliations
+\usepackage{authblk}
+
+% Improve typographic quality and line breaking
+\usepackage{microtype}
+
+% Categorical and commutative diagrams
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta,calc,fit,positioning,shapes.geometric}
+
+% Callout boxes for examples and emphasis
+\usepackage{mdframed}
+\usepackage[most]{tcolorbox}
+
+% Keywords macro for structured abstract metadata
+\providecommand{\keywords}[1]{\textbf{Keywords: } #1}
+
+% Notation for Raw vs Canonical categories in CEP/CEE
+\newcommand{\Raw}{\mathsf{Raw}}
+\newcommand{\Canon}{\mathsf{Canon}}
+
+% Reusable figure callout box for visual emphasis
+\newcommand{\FigureCallout}[2]{%
+  \begin{tcolorbox}[
+    colback=gray!5,
+    colframe=black!40,
+    title={#1},
+    fonttitle=\bfseries,
+    arc=3pt,
+    boxrule=0.5pt,
+    width=\linewidth,
+    enhanced,
+    breakable
+  ]
+  #2
+  \end{tcolorbox}
+}
+
+% Paragraph spacing prioritizes readability over traditional indentation
+\setlength{\parskip}{0.75em}
+\setlength{\parindent}{0em}
+
+% Compact list formatting for dense conceptual content
+\usepackage{enumitem}
+\setlist[itemize]{itemsep=0.2em, topsep=0.2em, parsep=0em, partopsep=0em}
+
+% Defensive re-definition ensures commands exist if loaded earlier
+\providecommand{\Raw}{\mathrm{Raw}}
+\providecommand{\Canon}{\mathrm{Canon}}
+
+\title{A Bicategorical Semantics of Civic Explanations and Vertical Domains}
+
+\author[1,2]{Denise Case}
+\affil[1]{Northwest Missouri State University, Computer Science and Information Systems, Maryville, MO, USA}
+\affil[2]{Civic Interconnect, Ely, MN, USA}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\vspace{-1em}
+
+% Explicitly mark preprint status
+\begin{tcolorbox}[colback=gray!10, colframe=black!20, boxrule=0.3pt]
+  \textbf{Preprint Notice.}
+  This preprint has not undergone peer review.
+  It is shared to support community discussion, transparency research,
+  and early technical evaluation.
+\end{tcolorbox}
+
+\begin{abstract}
+  The Civic Exchange Protocol (CEP) provides a canonical substrate for
+  civic entities, relationships, and exchanges.
+  The Contextual Evidence and Explanations (CEE) layer extends this
+  substrate with structured, evidence-based explanations of why
+  particular civic decisions, alerts, or highlights occur.
+  This paper develops a geometric and categorical perspective on the
+  combined CEP+CEE architecture.
+  We introduce the notion of a \emph{vertical domain} as a structured
+  slice through the global civic graph, and show how verticals compose
+  into a stack with a bicategorical semantics:
+  objects as entities, 1-morphisms as relationships plus provenance,
+  and 2-morphisms as explanations that relate one morphism-level
+  interpretation to another.
+  The resulting framework is mathematically tidy yet operationally
+  useful: it supports interoperable modeling across domains such as
+  SME-friendly procurement, community asset access, environmental
+  compliance, education access, and disaster resilience, while making
+  the logic of explanations explicit and reusable.
+\end{abstract}
+
+\begin{keywords}
+  Civic data;
+  category theory;
+  functorial data modeling;
+  interoperability;
+  canonicalization;
+  identifiers;
+  provenance.
+\end{keywords}
+
+\input{01_intro}       % Introduction
+\input{02_background}  % Background and preliminaries
+\input{03_cep}         % Recap of CEP canonical layer
+\input{04_verticals}   % Vertical domains
+\input{05_stack}       % Stack of vertical domains
+\input{06_bicat}       % Bicategorical semantics
+\input{06_maps}        % Maps between vertical domains
+\input{07_cases}       % Illustrative case studies
+\input{08_related}     % Related work
+\input{09_agenda}      % Research agenda
+\input{90_conclusion}  % Limitations, future work, conclusion
+
+\appendix
+\clearpage
+
+\input{99_appendixA}   % Category background
+\input{99_appendixB}   % Worked examples
+\input{99_appendixC}   % Proof sketches
+\input{99_appendixD}   % Diagrammatic intuition
+\input{99_appendixE}   % Categorical Concepts for CEE
+\input{99_appendixF}   % Supporting categorical terminology
+
+\bibliographystyle{plainnat}
+\bibliography{bib_shared}
+\end{document}

@@ -1,13 +1,22 @@
-# .github/workflows/arxiv-prep.yml
+# WHY: Prepares clean source package for arXiv submission
+# OBS: Removes build artifacts and CI files that arXiv doesn't need
+# REQ: Create account on arxiv.org and start a paper for each one before using this
+# CUSTOM: Select paper directory when triggering workflow
+
 name: Prepare arXiv Source
 
 on:
   workflow_dispatch:
     inputs:
       paper_dir:
-        description: "Relative path to the paper directory (e.g., 2025_12_theory_paper)"
+        description: "Paper directory to package (paper01, paper02, or paper03)"
         required: true
-        default: "2025_12_theory_paper"
+        default: "paper03"
+        type: choice # WHY: Dropdown prevents typos
+        options:
+          - paper01 # CAE ontology
+          - paper02 # CEP semantics
+          - paper03 # CEE verticals
 
 jobs:
   arxiv-source:
@@ -18,41 +27,51 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6 # OBS: v6 current as of Dec 2025
 
+      # WHY: Create clean staging area for arXiv-specific files only
       - name: Create staging directory
         run: |
           mkdir -p arxiv_src
           cp -R "$PAPER_DIR"/* arxiv_src/
+          # WHY: Include shared bibliography - arXiv needs all dependencies
+          cp bib_shared.bib arxiv_src/
 
-      - name: Remove CI- and build-specific files
+      # WHY: Update bib path for shared bib
+      - name: Update bibliography path
         working-directory: arxiv_src
         run: |
-          # Remove latexmk config (arXiv should manage its own build)
-          if [ -f ".latexmkrc" ]; then
-            rm .latexmkrc
-          fi
+          # WHY: Change ../bib_shared to bib_shared since file is now local
+          sed -i 's|\\bibliography{../bib_shared}|\\bibliography{bib_shared}|g' *.tex
 
-          # Remove build directory if present
-          if [ -d "build" ]; then
-            rm -rf build
-          fi
+      # WHY: arXiv builds from source - doesn't need our build configs or artifacts
+      - name: Remove CI and build artifacts
+        working-directory: arxiv_src
+        run: |
+          # WHY: arXiv manages its own build process
+          rm -f .latexmkrc
 
-          # Remove common LaTeX auxiliary files
+          # WHY: Build outputs aren't needed in source package
+          rm -rf build
+
+          # WHY: Remove LaTeX auxiliary files from local builds
           find . -type f \( \
-            -name "*.aux" -o -name "*.log"  -o -name "*.out"  -o -name "*.toc" -o\
-            -name "*.bbl" -o -name "*.bcf"  -o -name "*.blg"  -o -name "*.run.xml" -o\
+            -name "*.aux" -o -name "*.log"  -o -name "*.out"  -o -name "*.toc" -o \
+            -name "*.bbl" -o -name "*.bcf"  -o -name "*.blg"  -o -name "*.run.xml" -o \
             -name "*.fls" -o -name "*.fdb_latexmk" -o -name "*.synctex.gz" \
           \) -delete
 
+      # WHY: arXiv requires submission as zip file
       - name: Create arXiv source zip
         run: |
           cd arxiv_src
           zip -r ../arxiv-source.zip .
 
+      # WHY: Download this artifact to upload to arxiv.org
+      # OBS: Artifact includes paper directory name for clarity
       - name: Upload arXiv source artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6 # OBS: v6 current as of Dec 2025
         with:
-          name: arxiv-source
+          name: arxiv-source-${{ env.PAPER_DIR }}
           path: arxiv-source.zip
-          if-no-files-found: error
+          if-no-files-found: error # WHY: Fail if packaging didn't work

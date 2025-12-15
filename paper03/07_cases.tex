@@ -1,0 +1,69 @@
+% !TeX root = 00P3_cee_verticals.tex
+\section{Illustrative Case Studies of Vertical Domains}
+\label{sec:cases}
+
+We briefly illustrate how the preceding ideas manifest in concrete
+verticals.
+Each case study is treated schematically; detailed schemas
+and examples are available in the accompanying implementation.
+
+\subsection{SME-Friendly Procurement}
+
+The SME procurement vertical $V_{\mathrm{SME}}$ selects:
+\begin{itemize}[nosep]
+  \item entities: buyers, tenders, lots, contracts, suppliers;
+  \item relationships: buyer--issues--tender, tender--has--lot,
+        contract--awarded-to--supplier, and so on;
+  \item adapters: mappings from OCDS-style releases to CEP entities;
+  \item explanation types: SME-friendly procurement explanations
+        attached to lot entities.
+\end{itemize}
+The primary question is:
+\begin{quote}
+  Why is this lot considered SME-friendly?
+\end{quote}
+Evidence includes lot value relative to a threshold, procedure type, lot
+structure, and possibly historical SME participation.
+Attribution identifies the rule or model version and responsible agents.
+
+In bicategorical terms, SME-friendly explanations are 2-morphisms in
+$\mathbf{Civ}_{\mathrm{SME}}$ that refine classifications of lots.
+They enable functorial comparison across jurisdictions and time.
+
+\subsection{Community Asset Access}
+
+The community asset vertical $V_{\mathrm{Assets}}$ selects:
+\begin{itemize}[nosep]
+  \item entities: assets (parks, libraries), areas, jurisdictions;
+  \item relationships: asset--located-in--area, area--part-of--jurisdiction;
+  \item adapters: from open data portals and population grids;
+  \item explanation types: area access priority explanations.
+\end{itemize}
+The primary question is:
+\begin{quote}
+  Why is this neighborhood prioritized for investment in community assets?
+\end{quote}
+Evidence aggregates population, distance to nearest assets, asset counts
+within thresholds, and equity indices.
+These explanations act as 2-morphisms over morphisms 
+that connect areas to assets and jurisdictions.
+
+\subsection{Environmental Compliance, Education Access, and Resilience}
+
+Similarly structured verticals arise for environmental compliance,
+education access and value, and disaster resilience.
+In each case:
+\begin{itemize}
+  \item a subset of CEP schemas defines the entities and relationships;
+  \item adapters bring public data into canonical form;
+  \item explanations attach to highlighted entities or relationships,
+        answering a focused ``why'' question.
+\end{itemize}
+Across these verticals, common entities (e.g., municipalities) and
+indices (e.g., deprivation measures) appear repeatedly, enabling maps
+between sub-bicategories and composition of explanations.
+
+These case studies illustrate how vertical domains instantiate the
+abstract framework of bicategories of explanations, providing
+structured, interpretable insights tailored to specific civic questions.
+

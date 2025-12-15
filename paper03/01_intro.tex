@@ -1,0 +1,115 @@
+% !TeX root = 00P3_cee_verticals.tex
+
+\section{Introduction}
+\label{sec:intro}
+
+The development of the Civic Exchange Protocol (CEP) was motivated by
+a familiar problem in civic data work: heterogeneous sources,
+idiosyncratic schemas, and ad hoc integrations make it difficult to
+reason about civic processes in a principled way.
+
+CEP responds by providing a uniform, deterministic substrate for
+civic entities, relationships, exchanges, and their provenance~\cite{case2025cep}.
+The entity model partitions civic data into six disjoint kinds---Actors (A),
+Sites (S), Instruments (I), Events (E), Jurisdictions (J), and
+Observations (O)---as defined by the Civic Accountable Entities (CAE)
+ontology~\cite{case2025cae}.
+CAE establishes \emph{what kinds of things exist} in civic systems;
+CEP establishes \emph{how they are represented and exchanged}.
+At this level the primary concerns are canonicalization, identity,
+and graph-level normalization.
+
+Contextual Evidence and Explanations (CEE) extend this substrate in a
+different direction.
+Where CAE defines \emph{what} civic entities are, and CEP defines
+\emph{how} they flow, CEE addresses \emph{why} particular nodes,
+edges, or subgraphs matter in a given context.
+CEE expresses evidence sets, attribution chains, and explanation
+bundles that make model behavior, rule-based systems, and analytic
+pipelines \emph{legible} to both humans and machines.
+
+Taken together, CAE, CEP, and CEE invite a higher-order point of view.
+Instead of treating each use case---SME-friendly procurement,
+community asset access, environmental compliance, education access,
+or disaster resilience---as a separate system, we view each as a
+\emph{vertical domain}: a structured slice through the same canonical
+civic universe.
+Each vertical selects a subset of CAE entity kinds, a family of
+CEP adapters from raw data into canonical form, and a set of CEE
+explanation types that capture domain-specific notions of
+accountability and impact.
+
+Once this perspective is made explicit, a striking simplification occurs.
+Apparent complexity collapses into a small number of recurring patterns.
+Different verticals reuse the same canonicalization machinery, the
+same identity semantics, and the same explanation contracts.
+They differ mainly in which portions of the civic landscape they
+highlight and which explanations they attach.
+
+The central claim of this paper is that this simplification reflects
+deeper mathematical structure.
+We argue that the combined CAE+CEP+CEE architecture admits a natural
+\emph{bicategorical} interpretation:
+\begin{itemize}
+  \item \textbf{0-cells} (objects) correspond to canonical entities
+        classified by CAE kinds,
+  \item \textbf{1-morphisms} correspond to relationships and exchanges
+        governed by CEP semantics, and
+  \item \textbf{2-morphisms} correspond to CEE explanations that relate
+        one interpretation of a relationship to another.
+\end{itemize}
+
+Vertical domains then appear as structured slices or fibres in this
+bicategorical space, and maps between verticals correspond to functors
+and natural transformations that transport both data and explanations.
+
+This paper makes three contributions:
+\begin{enumerate}
+  \item We formalize \emph{vertical domains} as fibered structures over
+        the CEP base category, showing how domain-specific semantics
+        layer cleanly atop the shared canonical substrate.
+
+  \item We develop a \emph{bicategorical semantics} for CEE explanations,
+        capturing how evidence chains, attributions, and narratives
+        compose across accountability relationships.
+
+  \item We demonstrate the framework on two concrete verticals (SME-friendly
+        procurement and community asset access), showing that diverse
+        policy domains instantiate the same structural patterns.
+\end{enumerate}
+
+The remainder of the paper is organized as follows.
+Section~\ref{sec:background} reviews the Civic Accountable Entities (CAE)
+ontology and the categorical semantics of the Civic Exchange Protocol (CEP)
+on which Contextual Evidence and Explanations (CEE) is built.
+Section~\ref{sec:cep-recap} summarizes the categorical structure of CEP as the
+canonical exchange layer.
+Section~\ref{sec:verticals} introduces vertical domains at an operational
+level, emphasizing how domain-specific entities, relationships, and
+exchanges are composed.
+Section~\ref{sec:stack} describes the layered stack architecture relating
+CAE, CEP, jurisdictional adapters, and CEE.
+Section~\ref{sec:bicat} develops the bicategorical semantics underlying
+vertical composition and interaction.
+Section~\ref{sec:maps} explores functorial and oplax maps between vertical
+domains.
+Section~\ref{sec:cases} instantiates the framework on concrete verticals,
+including SME-friendly public procurement and community asset access.
+Section~\ref{sec:related} discusses related work.
+Section~\ref{sec:agenda} outlines a forward-looking research agenda.
+Section~\ref{sec:conclusion} concludes.
+
+In addition, the appendices collect background material and supporting
+exposition intended to improve accessibility without interrupting the main
+narrative.
+Appendix~A reviews category-theoretic background required for the paper.
+Appendix~B presents worked examples illustrating vertical composition and
+explanation generation.
+Appendix~C provides proof sketches for key semantic claims, including
+bicategorical coherence conditions.
+Appendix~D offers diagrammatic intuition using commutative and bicategorical
+diagrams.
+Appendix~E introduces categorical concepts specific to CEE, including
+observations, explanations, and attribution.
+Appendix~F provides additional plain-language explanations of categorical
+terminology used throughout the paper for non-specialist readers.

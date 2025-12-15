@@ -1,0 +1,100 @@
+% !TeX root = 00P3_cee_verticals.tex
+\section{Background}
+\label{sec:background}
+
+This section summarizes the ingredients on which our framework rests:
+the Civic Exchange Protocol (CEP), the Contextual Evidence and
+Explanations (CEE) layer, and the categorical tools we draw upon.
+
+\subsection{The Civic Exchange Protocol (CEP)}
+
+CEP is a schema- and rewriting-based specification for civic data.
+At a high level, CEP defines:
+\begin{itemize}[nosep]
+  \item \emph{Entity schemas} for units such as municipalities, facilities,
+        tenders, lots, contracts, programs, shelters, and so on;
+  \item \emph{Relationship schemas} for links such as buyer--issues--tender,
+        asset--located-in--area, facility--has--permit;
+  \item \emph{Exchange and record-envelope schemas} that bundle entities
+        and relationships with provenance and validation artifacts;
+  \item \emph{Vocabularies} for shared codes (procedure types, violation
+        types, status codes, etc.);
+  \item \emph{Canonicalization and identity rules} that normalize data and
+        compute stable fingerprints such as SNFEI.
+\end{itemize}
+
+The operational specification and reference implementation are maintained
+in the open-source \emph{Civic Interconnect} project~\citep{cep2025spec},
+which also defines concrete schemas, vocabularies, and adapters for
+multiple domains (campaign finance, municipalities, environment,
+education, and procurement).
+We refer the reader to the companion CEP theory paper for the underlying
+theory of rewriting, canonical forms, graph normalization, and identity
+fingerprints, which builds on standard accounts of term rewriting
+systems~\citep{baader1998term,terese2003rewriting}.
+
+\subsection{Contextual Evidence and Explanations (CEE)}
+
+CEE is a nascent but structurally constrained layer that sits above CEP.
+Conceptually, CEE introduces three core artifacts:
+\begin{description}
+  \item[Evidence sets] summarizing the facts, metrics, and features that
+        support a particular decision or classification.
+  \item[Attribution sets] describing which models, rules, pipelines, and
+        agents are responsible for that decision.
+  \item[Explanation bundles] packaging evidence, attribution, and
+        narrative fields for a specific subject entity or graph.
+\end{description}
+
+An explanation bundle is always anchored to one or more CEP entities or
+relationships, and to an explicit \emph{explanation type}, such as:
+\begin{itemize}[nosep]
+  \item SME-friendly procurement lot;
+  \item Priority neighborhood for community asset investment;
+  \item Elevated environmental compliance risk facility;
+  \item High-value education program for a given learner profile;
+  \item Critical shelter or route in a resilience plan.
+\end{itemize}
+In this way, CEE does not operate over arbitrary raw data, but over
+canonicalized CEP graphs.
+This dependency is central to the semantic structure developed later:
+explanations are layered \emph{on top of} canonical entities and
+relationships, and they inherit their invariants from the underlying
+canonicalization and identity rules.
+
+\subsection{Category Theory and Categorical Semantics}
+
+At a technical level, we appeal to standard notions from category theory
+and bicategory theory.
+Good general references include Mac~Lane's classic treatment of
+categories~\citep{maclane1998categories},
+modern introductions by Awodey~\citep{awodey2010category},
+Leinster~\citep{leinster2014basic},
+and Riehl~\citep{riehl2017category},
+and applied accounts such as
+Spivak's work on functorial data modeling and migration
+\citep{spivak2013functorial,spivak2014category}
+and Fong and Spivak's ``Seven Sketches''~\citep{fong2019seven}.
+We assume familiarity with:
+\begin{itemize}[nosep]
+  \item categories, functors, and natural transformations;
+  \item monoidal structure and composition of morphisms;
+  \item bicategories, 2-morphisms, and coherence conditions.
+\end{itemize}
+Appendix~\ref{app:A} provides a brief, self-contained
+review of the categorical notions we rely on, and Appendix~\ref{app:E}
+offers a glossary-oriented view for non-specialists.
+
+Informally, we will use the following guiding intuition:
+\begin{itemize}
+  \item CEP canonical graphs form (at least) a category: objects are
+        canonical entities or graphs; morphisms are relationships and
+        validated transformations between them.
+  \item CEE explanations behave like 2-morphisms: they ``sit between''
+        morphisms, refining or annotating one morphism with respect to
+        another.
+\end{itemize}
+This is enough to motivate a bicategorical semantics without committing
+to a fully formalized construction in this paper.
+The remainder of the paper builds on this background to develop the
+notion of vertical domains and their bicategorical structure.

@@ -1,0 +1,143 @@
+% !TeX root = 00P3_cee_verticals.tex
+
+% ------------------------------------------------------------
+\section{Limitations}
+\label{sec:limitations}
+% ------------------------------------------------------------
+
+This paper develops a structural and categorical perspective on civic
+explanations and vertical domains.
+Several limitations should be made explicit.
+
+First, the bicategorical semantics proposed here is intentionally
+\emph{schematic}.
+While the objects, 1-morphisms, and 2-morphisms are well motivated by
+CEP and CEE practice, we do not provide a fully formalized construction
+of the bicategory $\mathbf{Civ}$, nor do we prove full coherence or
+universality results.
+The aim is conceptual clarity rather than maximal formal generality.
+
+Second, the scope of this work is restricted to \emph{canonical,
+  revision-based civic records}.
+Streaming data, probabilistic estimates, continuously updated signals,
+and purely statistical aggregates are not modeled.
+Extending the framework to such settings may require enriched,
+temporal, or probabilistic categorical structures.
+
+Third, explanations in CEE are treated as structured, inspectable
+artifacts, not as psychological or normative guarantees.
+This paper does not claim that explanations defined in this framework
+are sufficient for fairness, accountability, or regulatory compliance
+in all settings; rather, it provides a semantic substrate on which such
+claims can be evaluated.
+
+Finally, while vertical domains are motivated by real civic use cases,
+the examples in this paper are illustrative rather than exhaustive.
+Production deployments raise additional concerns around governance,
+institutional incentives, data quality, and long-term maintenance that
+lie beyond the present treatment.
+
+% ------------------------------------------------------------
+\section{Future Work}
+\label{sec:future-work}
+% ------------------------------------------------------------
+
+The framework developed here opens several natural directions for
+extension.
+
+On the theoretical side, future work includes completing the formal
+bicategorical construction sketched in Section~\ref{sec:bicat},
+establishing coherence laws for explanation composition, and clarifying
+the precise categorical status of vertical domains as indexed or
+fibered substructures over the CEP base.
+
+On the semantic side, richer explanation types may be developed,
+including counterfactual explanations, contrastive explanations, and
+policy-sensitive explanations that depend explicitly on normative or
+regulatory regimes.
+Integrating such explanations while preserving modularity and
+inspectability remains an open challenge.
+
+On the systems side, further work is needed to connect the semantics to
+robust tooling.
+This includes automated validation of explanation bundles, regression
+testing of verticals across data updates, and visualization techniques
+that make the layered structure of entities, relationships, and
+explanations legible to practitioners.
+
+Finally, the interaction between CEP+CEE and external governance
+frameworks—such as procurement law, environmental regulation, and AI
+oversight regimes—deserves sustained study.
+The categorical perspective developed here provides a promising
+foundation for such work, but its institutional implications remain to
+be explored.
+
+% ------------------------------------------------------------
+\section{Conclusion}
+\label{sec:conclusion}
+% ------------------------------------------------------------
+
+This paper has proposed a way to see civic data and civic explanations as
+parts of a single geometric and categorical architecture.
+The Civic Exchange Protocol (CEP) supplies a canonical substrate for
+entities, relationships, identities, and provenance.
+The Contextual Evidence and Explanations (CEE) layer adds contracts for
+evidence, attribution, and narratives.
+Vertical domains then appear as structured slices through this shared
+universe: they select particular schemas, adapters, and explanation
+types to answer concrete civic questions.
+
+By interpreting entities as objects, relationships (with provenance) as
+1-morphisms, and explanations as 2-morphisms in a bicategory, we obtain
+a language for reasoning both \emph{within} and \emph{across} domains.
+A single municipality, facility, or program can participate in multiple
+verticals without duplication; explanation patterns can be transported,
+compared, and composed; and new verticals can be added without
+destabilizing existing ones.
+In this view, civic explanations are not merely annotations on a graph
+but first-class morphisms between morphisms: disciplined ways of saying
+\emph{why} a relationship holds, under what assumptions, and how it
+relates to other relationships.
+
+From a practical standpoint, the framework offers a disciplined path for
+building end-to-end pipelines that are simultaneously interoperable,
+explainable, and mathematically coherent.
+It suggests how civic technologists, regulators, and communities might
+coordinate around shared abstractions—schemas, adapters, and
+explanation types—rather than bespoke one-off systems.
+
+From a theoretical standpoint, it opens a research program at the
+intersection of category theory, graph rewriting, and AI transparency:
+formalizing the bicategory of civic entities and explanations,
+characterizing verticals via universal properties, and studying when and
+how explanations can be transported between domains.
+
+Perhaps the most striking feature is the simplification effect.
+What begins as an apparently intractable landscape of heterogeneous
+systems resolves, under the right abstractions, into a small collection
+of reusable patterns and maps between them.
+This is often the signature of a durable theory: once the correct level
+of description is found, what was impossibly complicated can suddenly
+appear almost self-evident.
+
+The work ahead—including refining the formal semantics, validating
+verticals on real data, and stress-testing explanation transport across
+domains—is substantial but tractable.
+More importantly, it is grounded in concrete civic questions:
+who is affected, what decisions are being made, and how those decisions
+can be explained and improved.
+In that sense, the stack of vertical domains is not simply an abstract
+construction; it is a proposed blueprint for civic infrastructure that
+can reason about itself in ways that are legible and justifiable to the
+communities it serves.
+
+\section*{Acknowledgements}
+
+Portions of this work were developed through human-computer collaboration
+using modern computational tools.
+Generative language models were used to assist with editing, formatting,
+and consistency checking during manuscript preparation.
+All conceptual framing, formal development, results, interpretations,
+and conclusions are the author's own.
+All generated suggestions were critically reviewed and validated, and
+the author takes full responsibility for the content of this work.

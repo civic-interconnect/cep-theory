@@ -1,0 +1,110 @@
+% !TeX root = 00P1_cae_ontology.tex
+
+\section{Laws, Regulations, and Accountability Chains}
+\label{sec:laws}
+
+This section describes how laws and regulations are represented within the CAE
+ontology and how they participate in accountability chains without requiring
+exhaustive modeling of legal texts.
+CAE treats statutes and regulations as Instruments that ground 
+authority, obligations, and enforcement while remaining
+structurally compatible with exchange and evidence semantics.
+
+The objective is not to encode legal doctrine, but to preserve the causal and
+accountability structure through which public authority produces concrete
+actions and observable outcomes.
+
+\subsection{Normative and Regulatory Instruments}
+\label{subsec:normative}
+
+Within CAE, laws and regulations are modeled uniformly as Instruments.
+A statute, act, or treaty is treated as a normative instrument: an enduring
+construct that establishes authority, delegates power, or defines obligations at
+a high level.
+Regulations, rules, and administrative codes are treated as
+regulatory instruments: instruments that operationalize normative instruments by
+specifying procedures, thresholds, or reporting requirements.
+
+Both normative and regulatory instruments share the defining property of
+grounding accountability relationships.
+They differ only in scope and level of abstraction, not in ontological kind.
+This approach avoids proliferating entity types while preserving 
+the hierarchical structure of legal authority.
+
+\subsection{Delegation and Implementation Chains}
+\label{subsec:delegation}
+
+Accountability chains emerge through explicit relationships between instruments
+and actors.
+A normative instrument may delegate authority to one or more Actors,
+which in turn issue regulatory or programmatic instruments.
+These downstream instruments constrain Events and give rise to Observations.
+
+For example, a statute enacted by a legislature delegates authority to an agency.
+The agency issues regulations implementing the statute, which authorize permits
+governing the operation of facilities.
+Compliance reports, inspections, and violations occur as Events under these permits, 
+and population-level impacts are captured as Observations.
+
+Representing delegation and implementation explicitly allows CAE to trace how
+authority flows from abstract law to concrete outcomes without conflating
+normative intent with execution.
+
+\subsection{Selective Inclusion and Lazy Modeling}
+\label{subsec:selective}
+
+CAE does not require comprehensive inclusion of all laws or regulations.
+Normative and regulatory instruments are introduced only when they ground
+accountability-bearing Events or Observations.
+This selective inclusion strategy prevents ontological bloat and supports scalable implementation.
+
+For instance, a health statute need not be modeled until insurance programs,
+payments, enforcement actions, or outcome measurements associated with that
+statute are introduced.
+The presence of an instrument in CAE is therefore driven
+by its operational relevance rather than by its legal prominence.
+
+This design ensures that CAE remains extensible and performant while preserving
+the structural relationships necessary for downstream semantics.
+
+\subsection{Jurisdictional Scope and Applicability}
+\label{subsec:scope}
+
+Every normative or regulatory instrument applies within one or more
+Jurisdictions.
+Jurisdictional scope is represented explicitly through
+relationships rather than being implied by instrument identity.
+This allows instruments with overlapping or nested applicability to coexist without ambiguity.
+
+Explicit jurisdictional modeling supports comparative analysis across regions and
+time, enabling the study of how differing legal regimes relate to variations in
+events and observations.
+It also permits instruments to evolve or be superseded
+without altering the identity of affected entities.
+
+\subsection{Accountability Chains and Observability}
+\label{subsec:chains}
+
+An accountability chain is defined as a connected subgraph linking normative or
+regulatory instruments to concrete events and observations through delegation,
+issuance, participation, and measurement relationships.
+Such chains make explicit how public authority is exercised and how its consequences are observed.
+
+CAE does not assert causal claims within these chains.
+Instead, it provides a structural representation that allows causal hypotheses to be articulated,
+tested, or debated using evidence attached through CEE.
+This separation of structure from inference ensures neutrality while enabling rigorous analysis.
+
+\subsection{Implications for Longitudinal Analysis}
+\label{subsec:longitudinal}
+
+By modeling laws and regulations as enduring instruments within accountability
+chains, CAE supports longitudinal analysis of public interventions.
+Changes in legal regimes, regulatory thresholds, or enforcement practices can be represented
+as modifications or additions to instruments and relationships rather than as
+redefinitions of entities.
+
+This approach enables comparative study of long-term public investments and
+policy choices, such as infrastructure development, public health interventions,
+or environmental regulation, while preserving continuity of entity identity
+across time.

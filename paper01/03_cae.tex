@@ -1,0 +1,136 @@
+% !TeX root = 00P1_cae_ontology.tex
+
+\section{Ontological Partition of Accountable Entities}
+\label{sec:ontology}
+
+This section defines the core ontological commitment of the Civic Accountable
+Entities (CAE) framework.
+CAE introduces a strict partition of accountable entities into six disjoint kinds:
+Actors (A), Sites/Assets (S), Instruments (I),
+Events (E), Jurisdictions (J), and Observations (O).
+Each entity instantiated within CAE is assigned exactly one kind.
+Entity kinds are invariant over time:
+entities do not change kind, and apparent role changes are represented through
+relationships rather than reclassification.
+
+The partition is designed to support formal semantics of exchange, authority,
+and evidence while preventing ontological overlap.
+Inclusion of an entity in CAE is driven by participation in obligations, authority relationships, or
+accountability-bearing exchanges, rather than by descriptive completeness or
+sectoral classification.
+
+\subsection{Actors (A)}
+\label{subsec:actors}
+
+Actors are entities capable of bearing rights, obligations, or responsibilities
+within civic systems.
+An Actor may initiate, receive, authorize, or be held
+accountable for actions governed by Instruments and manifested through Events.
+Actors are the only entity kind that may serve as parties to obligations.
+
+Examples of Actors include governments, public agencies, private businesses,
+nonprofit organizations, universities, research institutes, and think tanks.
+Public or private status, sector, mission, and organizational role are treated
+as attributes or relationships, not as entity kinds.
+
+An Actor is introduced into CAE only when it participates in an accountability
+relationship, such as receiving funds, issuing authority, operating regulated
+Sites, or being subject to reporting or enforcement.
+CAE does not attempt to enumerate organizations exhaustively;
+rather, it models Actors insofar as they
+are implicated in civic exchanges or obligations.
+
+\subsection{Sites and Assets (S)}
+\label{subsec:sites}
+
+Sites and Assets are physical or operational entities that are acted upon but do
+not themselves bear obligations.
+They provide the spatial, infrastructural, or
+material substrate upon which civic activity occurs.
+Sites and Assets may be owned, operated, regulated, inspected, or measured,
+but they are not parties to Instruments.
+
+Examples include facilities, buildings, campuses, power plants, laboratories,
+stores, transportation infrastructure, and other physical installations.
+Geographic location is an intrinsic property of Sites and Assets and provides a
+natural point of attachment to Jurisdictions.
+
+Treating Sites and Assets as a distinct entity kind ensures a clear separation
+between accountable actors and the physical or operational entities through
+which obligations are exercised or impacts are realized.
+
+\subsection{Instruments (I)}
+\label{subsec:instruments}
+
+Instruments are enduring constructs that create, modify, delegate, or constrain
+rights, obligations, or authority.
+Instruments mediate relationships between Actors and govern the conditions under which Events may occur.
+Instruments are not time-indexed occurrences but persistent normative or programmatic entities.
+
+CAE distinguishes conceptual subclasses of Instruments without introducing
+additional entity kinds.
+These include normative instruments (such as statutes
+and laws), regulatory instruments (such as rules and regulations), and
+programmatic instruments (such as contracts, grants, permits, licenses, and
+formal programs).
+All such instruments share the defining property of grounding accountability relationships.
+
+Instruments are included in CAE only when they give rise to concrete Events or Observations.
+This design avoids exhaustive modeling of legal or administrative
+texts while preserving the causal and accountability structure necessary for
+exchange and evidence semantics.
+
+\subsection{Events (E)}
+\label{subsec:events}
+
+Events are time-indexed occurrences asserted under the authority of Instruments.
+An Event records that something happened at a particular time and place and may
+involve one or more Actors, Sites, or Jurisdictions.
+Events constitute the primary evidence of activity within civic systems.
+
+Examples include payments, inspections, filings, emissions submissions,
+violations, audits, and enforcement actions.
+Events are not enduring objects;
+their identity is inseparable from their temporal occurrence and provenance.
+
+By separating Events from Instruments, CAE distinguishes between the existence
+of obligations and their execution or violation.
+This separation is essential for representing compliance, performance, and accountability over time.
+
+\subsection{Jurisdictions (J)}
+\label{subsec:jurisdictions}
+
+Jurisdictions are entities that scope authority, applicability, and governance.
+They define where Instruments apply, where Events may occur, and where Observations are interpreted.
+Jurisdictions are not Actors; they do not initiate actions or bear obligations,
+but they structure accountability relationships.
+
+Examples include nations, states, provinces, municipalities, regulatory regions,
+air basins, and watersheds.
+Jurisdictions may be nested or overlapping, and such
+structure is represented explicitly through relationships.
+
+Treating Jurisdictions as a distinct entity kind allows CAE to model legal,
+regulatory, and environmental scope without conflating authority with agency or
+action.
+
+\subsection{Observations (O)}
+\label{subsec:observations}
+
+Observations are measurements or indicators describing the state, performance,
+or outcomes associated with Actors, Sites, Instruments, Events, or Jurisdictions.
+Observations do not create obligations and do not represent actions; they assert
+measured or derived facts with associated provenance.
+
+Examples include health outcomes, coverage rates, emissions intensity, food
+access indicators, educational attainment measures, and other longitudinal or
+comparative metrics.
+Observations may be aggregated, statistical, or model-based
+and are typically associated with populations or regions through attributes and
+relationships.
+
+Introducing Observations as a first-class entity kind enables CAE to represent
+long-term public value, outcomes, and impacts without collapsing measurement into
+events or instruments.
+This separation supports comparative analysis across time
+and jurisdictions while remaining neutral with respect to causal interpretation.

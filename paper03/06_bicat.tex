@@ -1,0 +1,118 @@
+% !TeX root = 00P3_cee_verticals.tex
+
+\section{A Bicategorical Semantics of Civic Explanations}
+\label{sec:bicat}
+
+We now sketch a bicategorical semantics that integrates CEP and CEE.
+The goal is not a fully formal construction, but a coherent picture that
+makes vertical domains and their interconnections mathematically
+transparent.
+
+% ------------------------------------------------------------
+\subsection{CEP as a Category of Canonical Civic Graphs}
+% ------------------------------------------------------------
+
+Let $\mathbf{CEP}$ be the category whose:
+\begin{itemize}[nosep]
+  \item objects are canonical CEP graphs
+        (entities, relationships, envelopes, identity, and provenance)
+        modulo graph normalization;
+  \item morphisms are well-typed graph homomorphisms and
+        schema-respecting transformations,
+        composed by ordinary function composition.
+\end{itemize}
+
+Adapters are then functors
+$F : \mathcal{C} \to \mathbf{CEP}$
+from source categories $\mathcal{C}$ of raw records.
+
+For a vertical $V$, we restrict to a subcategory
+$\mathbf{CEP}_V \subseteq \mathbf{CEP}$
+as in Section~\ref{sec:verticals}.
+
+% ------------------------------------------------------------
+\subsection{CEE Explanations as 2-Morphisms}
+% ------------------------------------------------------------
+
+Explanations in CEE relate not only objects but \emph{morphisms}.
+Informally:
+\begin{itemize}
+  \item A relationship, classification, or decision is represented by a
+        morphism $f : X \to Y$ in $\mathbf{CEP}_V$.
+  \item An explanation bundle describes why $f$ holds,
+        which evidence it depends on,
+        and which agents or models are responsible.
+\end{itemize}
+
+Given two morphisms $f,g : X \to Y$
+(for example, two different ways of classifying the same lot or facility),
+an explanation can be understood as a 2-morphism
+\[
+  \alpha : f \Rightarrow g
+\]
+witnessing how $f$ is obtained from $g$
+under a particular explanatory contract,
+or how $f$ is justified relative to a baseline.
+
+This motivates the following heuristic construction.
+
+\begin{conjecture}
+  There exists a bicategory $\mathbf{Civ}$ whose:
+  \begin{itemize}
+    \item objects are canonical civic graphs
+          (or families of entities);
+    \item 1-morphisms are CEP relationships and graph transformations
+          with provenance;
+    \item 2-morphisms are CEE explanations relating 1-morphisms
+          under explanation types and contracts.
+  \end{itemize}
+\end{conjecture}
+
+We do not claim to have constructed $\mathbf{Civ}$ in full generality,
+but the vertical domains we study can be understood as fragments of such
+a bicategory.
+
+% ------------------------------------------------------------
+\subsection{Verticals as Sub-bicategories}
+% ------------------------------------------------------------
+
+For each vertical $V$, we may consider the full sub-bicategory
+$\mathbf{Civ}_V$ of $\mathbf{Civ}$ whose:
+\begin{itemize}[nosep]
+  \item objects are those graphs built from $\mathcal{E}_V$
+        and $\mathcal{R}_V$;
+  \item 1-morphisms are CEP morphisms in $\mathbf{CEP}_V$;
+  \item 2-morphisms are explanations in $\Xi_V$
+        attaching to those morphisms.
+\end{itemize}
+
+This aligns with the architectural view of Section~\ref{sec:stack}:
+each vertical is a slice of the full bicategory,
+with its own adapters and explanation types.
+
+% ------------------------------------------------------------
+\subsection{Maps Between Vertical Domains}
+% ------------------------------------------------------------
+
+Once we acknowledge this bicategorical structure,
+maps between verticals become semantically meaningful.
+For verticals $V$ and $W$ we can study:
+
+\begin{itemize}
+  \item \emph{Entity alignment functors}
+        $F : \mathbf{CEP}_V \to \mathbf{CEP}_W$
+        that identify shared entity types
+        (e.g., municipalities, regions, facilities).
+  \item \emph{Evidence transport}
+        that lifts metrics or indices from one vertical to another
+        (e.g., deprivation indices used in both health
+        and community asset explanations).
+  \item \emph{Explanation composition}
+        where 2-morphisms in $\mathbf{Civ}_V$
+        and $\mathbf{Civ}_W$ compose to yield a joint explanation
+        (e.g., combining SME-friendly procurement
+        with local economic impact).
+\end{itemize}
+
+These constructions are sketched in more concrete form in
+Section~\ref{sec:cases}.

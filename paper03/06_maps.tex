@@ -1,0 +1,79 @@
+% !TeX root = 00P3_cee_verticals.tex
+\section{Maps Between Vertical Domains}
+\label{sec:maps}
+
+Once vertical domains are regarded as structured slices of a common
+bicategorical space, it becomes natural to ask how they relate to one another.
+In this section we sketch three classes of ``maps between verticals'',
+each corresponding to a different way of transporting structure.
+
+\subsection{Entity-Alignment Functors}
+
+The most basic maps are functors that align entities across verticals.
+%
+For instance, the same municipality may appear in both the community
+asset vertical and the environmental compliance vertical.
+%
+Both verticals use the same CEP entity schema and the same SNFEI
+identifier, but they emphasise different relationships and
+explanations.
+
+An \emph{entity-alignment functor} between verticals \(V\) and \(W\)
+is a functor \(F : \mathcal{C}_V \to \mathcal{C}_W\) between the
+underlying entity-relationship categories such that:
+
+\begin{itemize}
+  \item on objects, \(F\) identifies shared entities (e.g.\ a
+        municipality in \(V\) with the same municipality in \(W\));
+  \item on morphisms, \(F\) preserves those relationships that are
+        meaningful in both verticals (e.g.\ jurisdictional embeddings).
+\end{itemize}
+
+These functors formalize the intuition that verticals live in the
+same universe; they differ in focus, not in ontological commitment.
+
+\subsection{Evidence-Transport Maps}
+
+A richer kind of map transports \emph{evidence semantics} from one
+vertical to another.
+%
+For example, a deprivation index used in the community asset vertical
+may also be relevant in a health outcomes vertical, or risk metrics
+computed in an environmental compliance vertical may inform a
+resilience vertical.
+
+Given verticals \(V\) and \(W\), an \emph{evidence-transport map}
+associates to each explanation type in \(V\) a compatible explanation
+type or evidence schema in \(W\), together with transformation rules
+for metric names, scales, and interpretations.
+%
+At the bicategorical level, such a map can be viewed as a 2-functor
+that acts on explanation 2-morphisms.
+
+\subsection{Explanation-Composition Maps}
+
+Finally, explanations from different verticals can sometimes be
+composed to yield higher-level narratives.
+%
+For instance:
+
+\begin{itemize}
+  \item An SME-friendly procurement explanation may be composed with a
+        community asset explanation to yield an account of why a
+        particular procurement decision supports community economic
+        resilience.
+  \item An environmental risk explanation may be composed with a
+        shelter-criticality explanation to express how facility risk
+        impacts evacuation planning.
+\end{itemize}
+
+We refer to such constructions as \emph{explanation-composition
+  maps}.
+%
+Formally, they appear as higher-order 2-morphisms that combine
+explanations from different verticals along shared objects and
+relationships.
+
+These maps are central to the idea of a civic \emph{stack}: they show
+how verticals remain modular while still participating in a coherent
+global semantics.

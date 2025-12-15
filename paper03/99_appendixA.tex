@@ -1,0 +1,89 @@
+% !TeX root = 00P3_cee_verticals.tex
+\section*{Appendix A. Category-Theoretic Background}
+\label{app:A}
+\addcontentsline{toc}{section}{Appendix A. Category-Theoretic Background}
+
+This appendix summarizes the categorical notions used in the bicategorical
+semantics of vertical domains and civic explanations.
+It parallels Appendix~A in the CEP semantics paper but extends it to the
+2-categorical setting required for CEE.
+
+\subsection*{A.1 Categories}
+
+A \emph{category} $\mathbf{C}$ consists of:
+\begin{itemize}
+  \item a collection of \emph{objects},
+  \item a collection of \emph{morphisms} (arrows) between objects,
+  \item a composition law for morphisms,
+  \item identity morphisms for every object,
+\end{itemize}
+satisfying associativity and identity axioms.
+
+In the combined CEP+CEE setting:
+\begin{itemize}
+  \item objects correspond to canonical entity states,
+  \item morphisms correspond to relationships and provenance-preserving
+        transformations between entities.
+\end{itemize}
+
+\subsection*{A.2 Functors}
+
+A \emph{functor} $F : \mathbf{C} \to \mathbf{D}$ maps:
+\begin{itemize}
+  \item each object $X$ to an object $F(X)$,
+  \item each morphism $f : X \to Y$ to a morphism $F(f) : F(X) \to F(Y)$,
+\end{itemize}
+preserving identity and composition.
+
+Adapters in CEP behave functorially under normalization and provenance.
+
+\subsection*{A.3 Natural Transformations}
+
+Given two functors $F, G : \mathbf{C} \to \mathbf{D}$,
+a \emph{natural transformation} $\eta : F \Rightarrow G$ assigns to each object
+$X$ a morphism $\eta_X : F(X) \to G(X)$ such that the usual naturality
+square commutes.
+
+In our setting:
+\begin{itemize}
+  \item natural transformations model attestations,
+  \item they ensure that processing and validating commute coherently.
+\end{itemize}
+
+\subsection*{A.4 Monoidal Categories}
+
+A \emph{monoidal category} adds a binary tensor product $\otimes$ and a unit
+object $I$ satisfying coherence identities.
+
+Canonicalization in CEP is monoidal:
+it combines subcomponents into canonical strings in a deterministic order.
+
+\subsection*{A.5 Bicategories}
+
+A \emph{bicategory} is a weakening of a strict 2-category.
+It has:
+\begin{itemize}
+  \item objects,
+  \item 1-morphisms between objects,
+  \item 2-morphisms between 1-morphisms.
+\end{itemize}
+
+Composition is associative only up to coherent isomorphism.
+
+CEE explanations naturally form 2-morphisms in a bicategory whose
+1-morphisms are provenance-preserving relationships.
+
+\subsection*{A.6 Fibrations and Fibers}
+
+A \emph{fibration} describes a category whose objects carry context-sensitive
+structures above a base.
+CEE's CTags and explanation types live in fibers above canonical entities.
+
+\subsection*{A.7 Universal Properties}
+
+SNFEI exhibits a universal property:
+its canonical string is terminal among structures satisfying invariance,
+determinism, and rewrite stability.
+
+Understanding verticals often hinges on universal constructions across domains.
+

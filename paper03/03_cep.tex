@@ -1,0 +1,65 @@
+% !TeX root = 00P3_cee_verticals.tex
+
+\section{Recap of the CEP Canonical Layer}
+\label{sec:cep-recap}
+
+The first paper in this series develops CEP as a rewriting-based,
+categorical framework for civic data.
+Here we briefly recap the aspects that are most relevant for
+vertical domains and civic explanations.
+
+% ------------------------------------------------------------
+\subsection{Canonical Entities and Relationships}
+% ------------------------------------------------------------
+
+Let $\mathcal{E}$ denote the collection of CEP entity schemas, and
+$\mathcal{R}$ the collection of relationship schemas.
+Each entity instance is normalized by a strategy-controlled rewriting
+system that:
+\begin{itemize}[nosep]
+  \item canonicalizes lexical forms (names, addresses, codes);
+  \item aligns fields with schema-defined structures;
+  \item resolves identifiers and computes SNFEI-style fingerprints.
+\end{itemize}
+
+The result is a set of canonical entities and relationships that can be
+treated as objects and morphisms in a category we denote by
+$\mathbf{CEP}$.
+
+% ------------------------------------------------------------
+\subsection{Graphs, Envelopes, and Provenance}
+% ------------------------------------------------------------
+
+CEP records live not in isolation but as graphs: entities linked by
+relationships, wrapped in record envelopes that carry provenance and
+validation evidence.
+The canonical encoding specification (CEC) and graph normalization
+specification (GNS) ensure that equivalent graphs normalize to identical
+representations and hashes.
+
+For the purposes of this paper, it is enough to view:
+\begin{itemize}
+  \item \emph{Objects} of $\mathbf{CEP}$ as canonical entity-graph
+        components (possibly with envelopes attached);
+  \item \emph{Morphisms} as (typed) relationships, exchanges, or
+        validated graph transformations between such components.
+\end{itemize}
+
+% ------------------------------------------------------------
+\subsection{Adapters as Functorial Bridges}
+% ------------------------------------------------------------
+
+Adapters map raw data from external sources into the canonical CEP
+universe.
+Each adapter:
+\begin{enumerate}[nosep]
+  \item canonicalizes the input (lexical and semantic normalization);
+  \item aligns it to CEP schemas;
+  \item computes identities and attaches attestations.
+\end{enumerate}
+
+Operationally, an adapter behaves like a functor from a ``source
+category'' of raw records to the target category $\mathbf{CEP}$.
+In the first paper, this is treated primarily at the level of rewriting
+and graph semantics; here we build on that intuition to organize
+vertical domains.

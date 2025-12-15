@@ -1,0 +1,44 @@
+% !TeX root = 00P3_cee_verticals.tex
+\section*{Appendix C. Proof Sketches}
+\label{app:C}
+\addcontentsline{toc}{section}{Appendix C. Proof Sketches}
+
+This appendix outlines informal sketches of several propositions stated
+in the main text.
+Full formalization is left for future work.
+
+\subsection*{C.1 SNFEI Uniqueness up to Canonical Equivalence}
+
+\textbf{Claim.}
+If two entities normalize to the same canonical string, then they receive
+the same SNFEI, and any allowed CEP morphism preserves SNFEI.
+
+\emph{Sketch.}
+Normalization is a strict monoidal functor from raw records to canonical
+strings.
+SHA-256 is a deterministic function.
+Thus SNFEI is invariant under any morphism commuting with normalization.
+
+\subsection*{C.2 Explanation Bundles Form 2-Morphisms}
+
+\textbf{Claim.}
+CEE explanations satisfy the axioms of 2-morphisms in a bicategory.
+
+\emph{Sketch.}
+Given relationships $f,g : X \to Y$,
+an explanation bundle assigns contextual evidence relating them.
+Composition of explanations corresponds to sequential evidence refinement.
+Identity explanations come from trivial evidence sets.
+Associativity holds up to narrative equivalence.
+
+\subsection*{C.3 Vertical Domains as Fibers}
+
+\textbf{Claim.}
+Each vertical domain forms a fiber over the CEP base category.
+
+\emph{Sketch.}
+Fix an entity type $E$.
+All CEE explanations whose subject is $E$ form a fiber above $E$.
+Domain boundaries merely restrict fibers to selected schemas and
+explanation types.
+

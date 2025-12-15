@@ -1,0 +1,169 @@
+\PassOptionsToPackage{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}{hyperref}
+% REQ-FILE: The above line, \PassOptionsToPackage{} must be very first line.
+
+\documentclass[11pt]{article}
+
+% Encoding and font setup for cross-platform reproducibility
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Improve readability for dense theoretical material
+\usepackage{setspace}
+\onehalfspacing
+
+% Mathematical notation and table formatting for formal semantics
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{bookmark}
+\usepackage{graphicx}
+
+% Theorem environments for definitions, lemmas, and formal statements
+\usepackage{amsthm}
+
+% plain style is italic body text (for theorems, lemmas, etc.)
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+% definition style = upright body text (for definitions, examples)
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+% remark style = upright, lighter weight (for remarks, notes)
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+
+% Bibliography management and hyperlink support
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{natbib}
+
+% Support multiple author affiliations
+\usepackage{authblk}
+
+% Improve typographic quality and line breaking
+\usepackage{microtype}
+
+% Categorical and commutative diagrams
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{arrows.meta,calc,fit,positioning,shapes.geometric}
+
+% Callout boxes for examples and emphasis
+\usepackage{mdframed}
+\usepackage[most]{tcolorbox}
+
+% Keywords macro for structured abstract metadata
+\providecommand{\keywords}[1]{\textbf{Keywords: } #1}
+
+% Notation for Raw vs Canonical categories in CEP/CEE
+\newcommand{\Raw}{\mathsf{Raw}}
+\newcommand{\Canon}{\mathsf{Canon}}
+
+% Reusable figure callout box for visual emphasis
+\newcommand{\FigureCallout}[2]{%
+  \begin{tcolorbox}[
+    colback=gray!5,
+    colframe=black!40,
+    title={#1},
+    fonttitle=\bfseries,
+    arc=3pt,
+    boxrule=0.5pt,
+    width=\linewidth,
+    enhanced,
+    breakable
+  ]
+  #2
+  \end{tcolorbox}
+}
+
+% Paragraph spacing prioritizes readability over traditional indentation
+\setlength{\parskip}{0.75em}
+\setlength{\parindent}{0em}
+
+% Compact list formatting for dense conceptual content
+\usepackage{enumitem}
+\setlist[itemize]{itemsep=0.2em, topsep=0.2em, parsep=0em, partopsep=0em}
+
+% Defensive re-definition ensures commands exist if loaded earlier
+\providecommand{\Raw}{\mathrm{Raw}}
+\providecommand{\Canon}{\mathrm{Canon}}
+
+\title{A Categorical Semantics for the Civic Exchange Protocol (CEP)}
+
+\author[1,2]{Denise M. Case}
+\affil{Northwest Missouri State University, Computer Science and Information Systems, Maryville, MO, USA \\
+       Civic Interconnect, Ely, MN, USA}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\vspace{-1em}
+
+% Explicitly mark preprint status
+\begin{tcolorbox}[colback=gray!10, colframe=black!20, boxrule=0.3pt]
+    \textbf{Preprint Notice.}
+    This preprint has not undergone peer review.
+    It is shared to support community discussion, transparency research, and early technical evaluation.
+\end{tcolorbox}
+
+\begin{abstract}
+    The Civic Exchange Protocol (CEP) defines entities, relationships, exchanges,
+    and context tags as foundational primitives for civic information systems~\cite{case2025cep}.
+    This paper develops a categorical semantics for CEP, providing a rigorous
+    mathematical basis for its compositional structure, identity guarantees,
+    and interoperability claims.
+    CEP records are modeled as typed objects in a finitely complete category,
+    with morphisms representing provenance-preserving transformations.
+    Envelopes, attestations, and context tags arise as natural transformations
+    between functors encoding system-level views of the data.
+    Canonicalization is formulated as a strict monoidal functor that preserves
+    identity and equivalence classes, while jurisdictional adapters appear as
+    oplax functors mediating between local schemas and global vocabularies.
+    Together, these constructions clarify CEP's invariants, formalize correctness
+    properties of its identifier mechanism (SNFEI),
+    and establish a robust foundation for future work in verification,
+    data fusion, and cross-jurisdiction interoperability.
+\end{abstract}
+
+\begin{keywords}
+    Civic data;
+    category theory;
+    functorial data modeling;
+    interoperability;
+    canonicalization;
+    identifiers;
+    provenance.
+\end{keywords}
+
+\input{01_intro}              % Introduction and Motivation
+\input{02_preliminaries}      % Category Theory Background
+\input{03_cep}                % CEP Category Definition
+\input{04_envelopes}          % Natural Transformations (Envelopes, Attestations)
+\input{05_canonicalization}   % Canonicalization as Strict Monoidal Functor
+\input{06_adapters}           % Jurisdictional Adapters as Oplax Functors
+\input{07_ctags}              % Context Tags as Fibration
+\input{08_results}            % Correctness Results
+\input{09_apps}               % Applications and Use Cases
+\input{90_conclusion}         % Limitations, Future Work, Conclusion
+
+\appendix
+\clearpage
+
+\input{99_appendixA}   % Category theory background for non-specialists
+\input{99_appendixB}   % Worked examples (canonicalization, adapters)
+\input{99_appendixC}   % Proof sketches (monoidal functor, naturality)
+\input{99_appendixD}   % Diagrammatic intuition (commutative diagrams)
+\input{99_appendixE}   % Glossary of categorical terms for non-specialists
+
+\bibliographystyle{plainnat}
+\bibliography{bib_shared}
+\end{document}

@@ -1,0 +1,62 @@
+% !TeX root = 00P3_cee_verticals.tex
+\section*{Appendix B. Worked Examples}
+\label{app:B}
+\addcontentsline{toc}{section}{Appendix B. Worked Examples}
+
+This appendix presents two concrete worked examples of bicategorical
+interpretation: one for SME-friendly procurement and one for community
+asset access.
+
+\subsection*{B.1 SME-Friendly Procurement}
+
+Consider a procurement lot with noisy inputs:
+multiple spellings of the supplier's name,
+ambiguous CPV codes,
+and missing procedure-type metadata.
+
+\paragraph{Step 1: Canonicalization (CEP base).}
+\begin{enumerate}
+  \item Normalize the entity fields (legal name, jurisdiction, value).
+  \item Produce a canonical string in fixed order.
+  \item Compute SNFEI via SHA-256.
+\end{enumerate}
+
+\paragraph{Step 2: Adapter semantics.}
+Jurisdictional quirks (missing CPV codes, inconsistent currencies)
+are handled via oplax functorial rules.
+
+\paragraph{Step 3: CEE explanation.}
+Evidence: low estimated value, open procedure type, minimal documentation.
+Attribution: rule-based model ``sme-rule-v1''.
+Narrative: ``This lot appears SME-friendly because \dots''.
+
+Here the explanation is a 2-morphism refining the procurement relationship.
+
+\subsection*{B.2 Community Asset Access}
+
+Consider a neighborhood polygon and a dataset of parks and libraries.
+
+Step 1: Construct CEP entities:
+\begin{itemize}
+  \item area entity (neighborhood),
+  \item asset entities (parks, libraries),
+  \item relationships linking assets to areas.
+\end{itemize}
+
+Step 2: Compute evidence layers and metrics:
+population-served,
+distance-to-assets,
+equity index.
+
+Step 3: Perform CEE prioritization:
+Based on computed metrics and attribution model,
+the vertical outputs a bundle with AREA\_ACCESS\_PRIORITY.
+This bundle is a 2-morphism living above the area's incoming and
+outgoing relationships.
+
+\subsection*{B.3 Composition Across Verticals}
+
+A municipality appearing in both verticals
+supports functorial maps aligning their CEP entities and enabling
+interoperable explanations.
+

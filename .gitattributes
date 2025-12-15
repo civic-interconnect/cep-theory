@@ -1,0 +1,38 @@
+# WHY: Ensures consistent line endings across Windows, macOS, and Linux
+# WHY: Prevents "every line changed" diffs when collaborators use different OS
+# OBS: Python/shell use LF, PowerShell uses CRLF
+# REQ: Keep this file for cross-platform collaboration
+
+# WHY: Auto-detect text files and normalize line endings
+* text=auto
+
+# WHY: Python and shell must use LF for CI/CD, Linux, containers
+*.py  text eol=lf
+*.sh  text eol=lf
+
+# WHY: PowerShell convention on Windows
+*.ps1 text eol=crlf
+
+# WHY: Config files use LF - standard for cross-platform tools
+*.md   text eol=lf
+*.yaml text eol=lf
+*.yml  text eol=lf
+*.json text eol=lf
+*.jsonc text eol=lf
+*.toml text eol=lf
+
+# WHY: LaTeX files use LF - standard for academic collaboration
+*.tex text eol=lf
+*.bib text eol=lf
+*.cls text eol=lf
+*.sty text eol=lf
+
+# WHY: Exclude docs/tests from language statistics on GitHub (if applicable)
+# ALT: Uncomment if you have these directories
+# docs/** linguist-documentation
+# tests/** linguist-documentation
+
+# WHY: Jupyter notebooks need special diff/merge handling (if applicable)
+# ALT: Uncomment if using notebooks
+# *.ipynb diff=jupyternotebook
+# *.ipynb merge=jupyternotebook

@@ -1,0 +1,22 @@
+// WHY: Quick access to common build tasks
+// OBS: Press Ctrl+Shift+B (Windows/Linux) or Cmd+Shift+B (Mac) to build all papers
+// ALT: Can also run ./build.ps1 directly in terminal
+
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build All Papers",
+      "type": "shell",
+      "command": "./build.ps1",
+      "group": {
+        "kind": "build",
+        "isDefault": true // WHY: Makes this the default build task (Ctrl+Shift+B)
+      },
+      "presentation": {
+        "reveal": "always", // WHY: Always show terminal output
+        "panel": "new" // WHY: Open in new terminal panel
+      }
+    }
+  ]
+}

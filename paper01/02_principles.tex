@@ -1,0 +1,79 @@
+% !TeX root = 00P1_cae_ontology.tex
+
+
+\section{Design Principles and Scope}
+\label{sec:principles}
+
+The design of CAE is guided by a small number of explicit principles intended to
+ensure clarity, stability, and extensibility.
+
+\subsection{Accountability-Driven Inclusion}
+
+CAE models entities only insofar as they participate in accountability-bearing
+relationships.
+An entity is introduced when it bears obligations, exercises
+authority, participates in regulated actions, or is the subject of measurement
+and evaluation.
+CAE does not attempt to enumerate all organizations, facilities,
+laws, or social phenomena exhaustively.
+
+This exchange and obligation-driven inclusion rule prevents ontological bloat
+and ensures that the ontology remains focused on structures that matter for civic
+accountability~\cite{bowker2000sorting}.
+
+In CEP, admissibility is determined by the presence of instrument-grounded events involving accountable actors.
+
+\subsection{Disjoint Entity Kinds}
+
+CAE defines a strict partition of entities into disjoint kinds.
+Each entity is assigned exactly one kind, and entity kinds do not overlap.
+This disjointness is
+a foundational constraint: it prevents ambiguity and supports formal reasoning
+over relationships.
+
+Changes in function, responsibility, or context are represented through
+relationships rather than reclassification.
+An entity does not change kind over
+time, even as its role within civic systems evolves.
+
+\subsection{Roles as Relationships}
+
+CAE does not model roles, sectors, or functions as entity kinds.
+Concepts such as regulator, funder, operator, recipient, or subject of regulation are represented
+as patterns of relationships among entities.
+This approach avoids proliferation of role-specific entity types and
+ensures that entity identity remains stable across contexts.
+
+\subsection{Selective and Lazy Modeling}
+
+Entities, particularly laws and regulations, are included selectively based on
+their operational relevance.
+Normative or regulatory instruments are introduced
+only when they ground concrete events or observations.
+This lazy modeling strategy supports scalable implementation
+and avoids premature commitment to comprehensive legal or administrative catalogs.
+
+\subsection{Neutrality and Separation of Concerns}
+
+CAE is intentionally neutral with respect to causal inference, evaluative
+judgment, and policy interpretation.
+The ontology encodes structural
+relationships that make accountability and outcomes inspectable,
+but it does not assert that particular instruments cause particular
+outcomes or that specific outcomes are desirable~\cite{pearl2009causality}.
+
+Interpretation, explanation, and evidentiary reasoning are deferred to analytic
+layers built upon CAE, including CEP and CEE.
+This separation of concerns
+supports transparency, reproducibility, and pluralistic analysis.
+
+\subsection{Durability and Extensibility}
+
+CAE is designed to remain stable over long time horizons.
+The entity kinds and structural constraints are intended to be invariant even as institutions,
+measurement practices, and data sources evolve~\cite{edwards2011infrastructure}.
+Extension occurs through the addition of entities and relationships,
+not through modification of the underlying ontology.
+
+This design supports incremental adoption and cross-domain interoperability
+without requiring coordinated changes across systems.

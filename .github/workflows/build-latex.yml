@@ -1,0 +1,131 @@
+# WHY: Automatically builds LaTeX PDFs only when papers change
+# OBS: Each paper builds independently - no wasted CI on unchanged papers
+# ALT: Manual trigger available via workflow_dispatch
+
+name: Build LaTeX PDFs
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "paper01/**"
+      - "paper02/**"
+      - "paper03/**"
+      - ".github/workflows/build.yml"
+
+  pull_request:
+    branches: [main, master]
+    paths:
+      - "paper01/**"
+      - "paper02/**"
+      - "paper03/**"
+      - ".github/workflows/build.yml"
+
+  workflow_dispatch:
+
+jobs:
+  build-pdfs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6 # OBS: v6 current as of Dec 2025
+        with:
+          fetch-depth: 2 # WHY: Need previous commit to detect changes
+
+      # WHY: Install LaTeX distribution and build tools
+      - name: Install TeX Live and latexmk
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-science \
+            texlive-pictures \
+            texlive-bibtex-extra \
+            latexmk
+
+      # WHY: BibTeX can't resolve relative paths from auxdir
+      - name: Copy shared bibliography
+        run: |
+          mkdir -p paper01/build paper02/build paper03/build
+          cp bib_shared.bib paper01/build/
+          cp bib_shared.bib paper02/build/
+          cp bib_shared.bib paper03/build/
+
+      # WHY: Build CAE paper only if paper01 directory changed
+      - name: Check if CAE paper changed
+        id: cae-changed
+        run: |
+          if git diff --name-only HEAD^..HEAD | grep -q '^paper01/'; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build CAE Paper
+        if: steps.cae-changed.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        working-directory: paper01
+        run: |
+          latexmk -pdf -bibtex -interaction=nonstopmode -silent -auxdir=build -outdir=build -halt-on-error  00P1_cae_ontology.tex
+
+      # WHY: Build CEP paper only if paper02 directory changed
+      - name: Check if CEP paper changed
+        id: cep-changed
+        run: |
+          if git diff --name-only HEAD^..HEAD | grep -q '^paper02/'; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build CEP Paper
+        if: steps.cep-changed.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        working-directory: paper02
+        run: |
+          latexmk -pdf -bibtex -interaction=nonstopmode -silent -auxdir=build -outdir=build -halt-on-error 00P2_cep_semantics.tex
+
+      # WHY: Build CEE paper only if paper03 directory changed
+      - name: Check if CEE paper changed
+        id: cee-changed
+        run: |
+          if git diff --name-only HEAD^..HEAD | grep -q '^paper03/'; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build CEE Paper
+        if: steps.cee-changed.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        working-directory: paper03
+        run: |
+          latexmk -pdf -bibtex -interaction=nonstopmode -silent -auxdir=build -outdir=build -halt-on-error  00P3_cee_verticals.tex
+
+      # WHY: Upload only papers that were built
+      - name: Upload CAE PDF
+        if: steps.cae-changed.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v6 # OBS: v6 current as of Dec 2025
+        with:
+          name: cae-ontology
+          path: |
+            paper01/build/00P1_cae_ontology.pdf
+            paper01/build/00P1_cae_ontology.log
+
+      - name: Upload CEP PDF
+        if: steps.cep-changed.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v6 # OBS: v6 current as of Dec 2025
+        with:
+          name: cep-semantics
+          path: |
+            paper02/build/00P2_cep_semantics.pdf
+            paper02/build/00P2_cep_semantics.log
+
+      - name: Upload CEE PDF
+        if: steps.cee-changed.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v6 # OBS: v6 current as of Dec 2025
+        with:
+          name: cee-verticals
+          path: |
+            paper03/build/00P3_cee_verticals.pdf
+            paper03/build/00P3_cee_verticals.log

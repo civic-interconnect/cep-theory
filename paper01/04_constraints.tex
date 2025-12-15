@@ -1,0 +1,143 @@
+% !TeX root = 00P1_cae_ontology.tex
+
+\section{Relationships and Structural Constraints}
+\label{sec:relationships}
+
+Having defined the disjoint kinds of civic accountable entities, we now specify
+the admissible relationships between them and the structural constraints that
+govern their composition.
+CAE does not enumerate all possible relationships;
+instead, it constrains the space of valid relationships so that accountability,
+authority, and evidence can be expressed without ontological ambiguity.
+
+Relationships in CAE are typed, directional, and kind-constrained.
+They serve as the primary carriers of semantic meaning, while entity kinds remain invariant
+over time.
+Roles, classifications, and contextual interpretations are expressed
+through relationships and attributes rather than through reclassification of
+entities.
+
+\subsection{Exchange Patterns and Admissibility}
+\label{subsec:exchange-patterns}
+
+\begin{itemize}[nosep]
+    \item Exchanges are subgraph patterns
+    \item CEP operates only on admissible patterns
+    \item CAE constrains but does not enumerate them
+\end{itemize}
+
+\subsection{Kind-Constrained Relationships}
+\label{subsec:kind-constrained}
+
+Each relationship in CAE specifies admissible source and target kinds.
+These constraints prevent category errors such as treating physical Sites as
+obligation-bearing parties or conflating Events with enduring authority.
+
+Representative examples include:
+\begin{itemize}[nosep]
+    \item \emph{enacts} : Actor $\rightarrow$ Instrument
+    \item \emph{implements} : Instrument $\rightarrow$ Instrument
+    \item \emph{issues} : Actor $\rightarrow$ Instrument
+    \item \emph{party-to} : Actor $\rightarrow$ Instrument
+    \item \emph{occurs-under} : Event $\rightarrow$ Instrument
+    \item \emph{involves} : Event $\rightarrow$ Actor
+    \item \emph{acts-on} : Event $\rightarrow$ Site
+    \item \emph{located-in} : Site $\rightarrow$ Jurisdiction
+    \item \emph{applies-in} : Instrument $\rightarrow$ Jurisdiction
+    \item \emph{measures} : Observation $\rightarrow$ (Actor $\mid$ Site $\mid$ Jurisdiction)
+\end{itemize}
+
+These constraints ensure that accountability flows through relationships rather
+than being implicit in entity types.
+
+\subsection{Authority and Obligation Flow}
+\label{subsec:authority}
+
+CAE encodes authority and obligation as relational structure rather than as
+intrinsic properties of entities.
+Authority originates with normative or regulatory Instruments
+enacted or issued by Actors and flows through relationships
+to constrain Events and generate Observations.
+
+For example, a statute (Instrument) enacted by a legislature (Actor) delegates
+authority to an agency (Actor), which issues permits (Instruments) governing the
+operation of facilities (Sites).
+Emissions reports (Events) occur under these permits, and health outcomes (Observations) are measured within relevant
+Jurisdictions.
+
+This directional flow preserves a clear distinction between the existence of
+authority, its execution, and its observed consequences.
+
+\subsection{Temporal Structure and Provenance}
+\label{subsec:temporal}
+
+Time is represented explicitly only through Events and Observations.
+Actors, Sites, Instruments, and Jurisdictions are enduring entities whose identity is not
+defined by temporal occurrence, although they may participate in time-indexed
+relationships.
+
+Every Event and Observation is associated with provenance information specifying
+its source, time, and evidentiary context.
+CAE itself does not prescribe a provenance model;
+rather, it ensures that provenance can be attached without
+conflicting with entity kinds or relationship constraints.
+
+This separation supports longitudinal analysis while avoiding the reification of
+temporal states as distinct entities.
+
+\subsection{Role Representation}
+\label{subsec:roles}
+
+Roles are not modeled as entity kinds within CAE.
+Instead, roles emerge from patterns of relationships.
+An Actor may simultaneously occupy multiple roles,
+such as regulator, funder, operator, or recipient, depending on its relational
+position with respect to Instruments and Events.
+
+For example, a university may act as a grant recipient, a facility operator, and
+a reporting entity without requiring reclassification.
+This approach avoids role-based overlap and ensures that
+entity identity remains stable even as context changes.
+
+\subsection{Structural Invariants}
+\label{subsec:invariants}
+
+CAE enforces several structural invariants:
+\begin{itemize}[nosep]
+    \item Each entity belongs to exactly one entity kind.
+    \item Entity kinds do not change over time.
+    \item Authority and obligation are expressed only through relationships.
+    \item Events and Observations are the only time-indexed entities.
+    \item No relationship may violate declared kind constraints.
+\end{itemize}
+
+These invariants are necessary for defining categorical semantics of exchange and
+evidence in subsequent sections and papers.
+
+\subsection{Implications for Exchange and Evidence Semantics}
+\label{subsec:implications}
+
+By constraining relationships independently of domain or sector, CAE enables
+exchange protocols and evidentiary reasoning to be defined uniformly across
+contexts.
+CEP operates over CAE entities by interpreting specific relationship
+patterns as exchanges, transfers, or obligations, while CEE operates by attaching
+evidence and explanations to Events and Observations grounded in these same
+structures.
+
+This separation of concerns ensures that extensions to exchange semantics or
+evidence models do not require modification of the underlying ontology.
+
+Context tags (CTags) are interpretive annotations attached to a record
+without altering its canonical identity.
+Their semantics is captured by a
+\emph{fibered category}
+\begin{equation}
+    \pi : \mathbf{CT} \longrightarrow \mathbf{CEP},
+\end{equation}
+where:
+\begin{itemize}
+    \item $\mathbf{CEP}$ is the base category of identity-bearing records,
+    \item $\mathbf{CT}$ consists of pairs $(R, T)$ of a CEP record $R$ and an attached context tag $T$,
+    \item $\pi$ is the projection functor $\pi(R, T) = R$.
+\end{itemize}

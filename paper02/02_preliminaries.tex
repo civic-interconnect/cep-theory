@@ -1,0 +1,136 @@
+% !TeX root = 00P2_cep_semantics.tex
+
+\section{Preliminaries}
+\label{sec:preliminaries}
+
+This section reviews the mathematical tools used throughout the
+paper and summarizes the structural elements of the Civic Exchange
+Protocol (CEP).
+We assume only standard familiarity with category theory,
+drawing primarily from Mac~Lane~\cite{maclane1971categories}
+and Spivak~\cite{spivak2014category} for the treatment of categories
+as models of data and structure-preserving transformations.
+
+% ------------------------------------------------------------
+\subsection{Category-Theoretic Background}
+% ------------------------------------------------------------
+
+We recall only the categorical notions required for the development of
+CEP semantics:
+
+\begin{itemize}
+  \item \textbf{Categories}: collections of objects and morphisms equipped with associative composition and identity arrows.
+
+  \item \textbf{Functors}: structure-preserving mappings between categories,
+        sending objects to objects and morphisms to morphisms
+        in a way that respects identities and composition.
+
+  \item \textbf{Natural transformations}: morphisms between
+        functors, providing coherent comparisons between system-level
+        views of the same underlying data.
+
+  \item \textbf{Monoidal categories}: categories equipped with a
+        tensor product $\otimes$ and unit object $I$, allowing formal
+        reasoning about concatenation, aggregation, and combination of
+        structured data streams.
+
+  \item \textbf{Oplax functors}: functors that preserve monoidal or
+        structural properties up to a controlled relaxation, used here to
+        model schema adapters that preserve meaning even when strict
+        equivalence between jurisdictions cannot be enforced.
+\end{itemize}
+
+These constructions provide a natural language for expressing CEP's
+compositional structure:
+canonicalization becomes a monoidal functor,
+envelopes become natural transformations, and adapters become oplax
+mediators between local and global schema categories.
+
+% ------------------------------------------------------------
+\subsection{CEP Structural Recap}
+% ------------------------------------------------------------
+
+CEP defines four record families:
+
+\begin{itemize}
+  \item \textbf{Entities}: civic actors (organizations, agencies, districts, individuals).
+
+  \item \textbf{Relationships}: directed or undirected structural
+        links between entities (membership, control, affiliation, reporting lines).
+
+  \item \textbf{Exchanges}: flows of value, information, or action
+        between entities (payments, transfers, notifications).
+
+  \item \textbf{Context tags}: optional, non-canonical annotations
+        that express interpretive, analytic, or contextual facts about a record.
+\end{itemize}
+
+All record families are wrapped in a shared \emph{record envelope}
+that provides:
+
+\begin{itemize}
+  \item schema and vocabulary references,
+  \item revision numbers and lifecycle status,
+  \item attestation metadata,
+  \item timestamps describing observation and validity intervals,
+  \item stable CEP identifiers (verifiable IDs).
+\end{itemize}
+
+The envelope separates canonical, identity-bearing components of a
+record from contextual or analytic metadata, ensuring both stability
+and extensibility.
+
+% ------------------------------------------------------------
+\subsection{The A-I-E Criterion}
+% ------------------------------------------------------------
+
+Not all civic data qualifies for inclusion in the CEP category.
+We formalize the admission criterion as follows:
+
+\begin{definition}[Admissible-Identifiable-Exchangeable (A-I-E)]
+  \label{def:aie}
+  A civic data record satisfies the \emph{A-I-E criterion} if and only if:
+  \begin{enumerate}
+    \item \textbf{Admissible (A)}: The record conforms to a declared CEP schema
+          and passes validation against its \texttt{recordSchemaUri}.
+          The payload instantiates one of the six CAE entity kinds (Actor, Site,
+          Instrument, Event, Jurisdiction, Observation) or a valid relationship
+          or exchange between such entities.
+
+    \item \textbf{Identifiable (I)}: The record's canonical payload produces a
+          stable identifier under CEP canonicalization---either a registry ID
+          (LEI, SAM UEI, etc.) or a derived SNFEI when no registry ID is available.
+
+    \item \textbf{Exchangeable (E)}: The record is wrapped in a valid envelope
+          with attestation, timestamp, and revision metadata sufficient for
+          provenance-preserving exchange across system boundaries.
+  \end{enumerate}
+\end{definition}
+
+The A-I-E criterion acts as a \emph{filter}: it determines which records
+from heterogeneous civic data sources may be lifted into $\mathbf{CEP}$.
+Records failing any condition are excluded from the category until
+remediated by canonicalization, schema alignment, or envelope construction.
+
+% ------------------------------------------------------------
+\subsection{Canonicalization and Identifiers}
+% ------------------------------------------------------------
+
+
+For entity records, CEP constructs a canonical string from
+jurisdiction-normalized components such as name, address, and
+formation date.
+A SHA-256 hash of this canonical string yields a
+stable identifier known as the \emph{Structured Non-Fungible Entity Identifier} (SNFEI).
+
+In this paper, we treat canonicalization as a deterministic, strictly monoidal process:
+concatenation of components corresponds to a tensor-like operation, and hashing
+corresponds to an endofunctor that collapses equivalence classes of canonical strings
+to identity objects.
+This perspective will be formalized in Section~\ref{sec:canonicalization}.
+
+The stability of SNFEIs under valid record transformations is a core invariant
+that underpins CEP's interoperability guarantees.
+
+The formal semantics developed in subsequent sections establish the precise
+conditions under which this stability holds.

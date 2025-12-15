@@ -1,0 +1,97 @@
+% !TeX root = 00P3_cee_verticals.tex
+
+\section{Research Agenda}
+\label{sec:agenda}
+
+The preceding sections outline a conceptual framework.
+Turning this into a mature theory and a robust body of practice
+requires sustained work along several fronts.
+Here we sketch a research agenda structured around three themes:
+formalization, empirical validation, and tooling.
+
+% ------------------------------------------------------------
+\subsection{Formalization}
+% ------------------------------------------------------------
+
+On the formal side, several questions arise naturally:
+
+\begin{itemize}
+  \item \textbf{Bicategory structure.}
+        Precisely characterize the bicategory of civic entities,
+        relationships, and explanations.
+        %
+        Specify identity and composition laws for 2-morphisms and
+        prove coherence theorems.
+  \item \textbf{Vertical domains as fibres.}
+        Develop a fibration or indexed-category perspective in which
+        each vertical domain appears as a fibre over a base of CEP
+        schemas and vocabularies.
+  \item \textbf{Transport of explanations.}
+        Characterize when explanations in one vertical can be
+        transported to another via functors and 2-functors between
+        corresponding categories.
+  \item \textbf{Universal properties.}
+        Investigate whether certain verticals satisfy universal
+        properties (limits, colimits, adjunctions) with respect to
+        others, especially in multi-criteria decision settings.
+\end{itemize}
+
+These questions are not merely abstract.
+They capture when and how explanations can be safely reused, compared,
+or composed across domains.
+
+% ------------------------------------------------------------
+\subsection{Empirical Validation}
+% ------------------------------------------------------------
+
+The framework must also be tested against real civic data and
+realistic decision contexts.
+
+\begin{itemize}
+  \item \textbf{Case studies.}
+        Develop detailed case studies for a small set of verticals
+        (such as SME procurement and community asset access), tracing
+        the entire pipeline from raw data through CEP, adapters, and
+        CEE into concrete decisions.
+  \item \textbf{Identity robustness.}
+        Evaluate the stability and robustness of SNFEI identifiers and
+        other identity schemes under noisy and adversarial naming
+        conditions, since identity is central to cross-vertical
+        reasoning.
+  \item \textbf{Explanation quality.}
+        Assess whether CEE-style explanations improve human
+        understanding, trust, and decision quality compared to
+        baseline dashboards or opaque scores.
+  \item \textbf{Cross-vertical scenarios.}
+        Design scenarios where decisions depend on combining
+        information from multiple verticals, and study how well the
+        proposed mapping and composition mechanisms behave.
+\end{itemize}
+
+% ------------------------------------------------------------
+\subsection{Tooling and Automation}
+% ------------------------------------------------------------
+
+Finally, there is a practical tooling agenda.
+
+\begin{itemize}
+  \item \textbf{Vertical scaffolding.}
+        Automate the creation of vertical scaffolds from compact
+        \texttt{about.yaml} specifications, including directory
+        layouts, adapter stubs, CEE helper modules, and example tests.
+  \item \textbf{Schema- and vocab-aware IDE support.}
+        Develop editor and CI tooling that keeps schemas, adapters,
+        explanations, and vertical metadata in sync.
+  \item \textbf{Visualization.}
+        Create visualization tools that expose the geometric and
+        categorical structure: civic graphs, explanation layers, and
+        maps between verticals.
+  \item \textbf{Reference implementations.}
+        Maintain a small but representative library of open verticals
+        that act as regression suites for both the theory and the
+        tooling.
+\end{itemize}
+
+Together, these threads describe how the initial geometric and
+bicategorical picture can grow into a stable, shared foundation for
+civic data and civic explanations.

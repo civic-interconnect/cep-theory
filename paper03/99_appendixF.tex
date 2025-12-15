@@ -1,0 +1,97 @@
+% !TeX root = 00P3_cee_verticals.tex
+
+\clearpage
+\section*{Appendix F. Supporting Categorical Terminology}
+\addcontentsline{toc}{section}{Appendix F. Supporting Categorical Terminology}
+
+This appendix defines categorical terms used in CEE that extend beyond the
+foundational concepts in CEP Appendix~E. Readers unfamiliar with category
+theory should consult CEP's glossary first for definitions of \emph{functor},
+\emph{natural transformation}, \emph{monoidal category}, \emph{pullback},
+and \emph{fibered category}.
+
+\begin{description}[style=nextline,leftmargin=1.5cm]
+
+  \item[Cartesianness]
+        A property ensuring structured data can be ``pulled back'' along
+        relationships without losing information. Cartesian structure guarantees
+        that restricting a federal dataset to a state jurisdiction preserves all
+        relevant relationships. See \emph{pullback} in CEP Appendix~E.
+
+  \item[Compositionality]
+        The principle that complex structures are built from simpler parts, with
+        the meaning of the whole determined by the parts and how they combine.
+        CEE's compositional design means evidence chains can be assembled from
+        individual attestations.
+
+  \item[Definedness]
+        Whether an operation or relationship is valid for given inputs. Partial
+        functions may be undefined for some inputs; CEE explicitly tracks
+        definedness to distinguish ``no data'' from ``not applicable.''
+
+  \item[Endofunction]
+        A function from a set to itself. Update operations on entity state are
+        endofunctions: they take a state and return a new state of the same type.
+
+  \item[Fibered Category]
+        A category equipped with a structure-preserving projection to a base
+        category, allowing objects and morphisms to be indexed by elements of
+        that base. In CEE, vertical domains are modeled as fibered categories over
+        the CEP base category, enabling domain-specific semantics layered atop a
+        shared canonical infrastructure. See \emph{fibered category} in CEP
+        Appendix~E.
+
+  \item[Fibered Structure]
+        The organizational pattern induced by a fibered category, in which
+        objects are grouped into fibers over a base category according to
+        context or domain. In CEE, fibered structure allows vertical domains to
+        specialize interpretation and evidence while remaining coherently
+        anchored to the same underlying CEP entities and morphisms.
+
+  \item[Functoriality]
+        The property of preserving structure across transformations. A mapping
+        is \emph{functorial} if it respects composition and identity---translating
+        data between systems without corrupting accountability relationships.
+        See \emph{functor} in CEP Appendix~E.
+
+  \item[Lifting]
+        Given a relationship at one level, finding a corresponding relationship
+        at a higher level that projects down to it. Lifting allows inference of
+        jurisdiction-level patterns from entity-level exchanges.
+
+  \item[Monoidality]
+        Structure allowing associative combination with a neutral element.
+        Monetary values are monoidal under addition (zero is neutral). A mapping
+        is \emph{monoidal} if it preserves this combining structure.
+        See \emph{monoidal category} in CEP Appendix~E.
+
+  \item[Naturality]
+        A transformation is \emph{natural} if it works uniformly across all
+        instances without depending on arbitrary choices. Natural mappings are
+        canonical rather than ad hoc.
+        See \emph{natural transformation} in CEP Appendix~E.
+
+  \item[Oplaxity]
+        A relaxed form of structure preservation where equations become directed
+        inequalities. Oplax mappings allow ``preservation up to a coherence map''
+        rather than strict equality, accommodating real-world data where
+        composition may lose information.
+        See \emph{oplax functor} in CEP Appendix~E.
+
+  \item[Permutability]
+        The property that certain operations can be performed in any order with
+        the same result. Permutable operations simplify parallel processing and
+        reduce coordination requirements in distributed systems.
+
+  \item[Preordered]
+        A set equipped with a reflexive and transitive relation (not necessarily
+        antisymmetric). Time stamps and version numbers form preorders,
+        generalizing ``earlier than'' or ``less detailed than.''
+
+  \item[Quotienting]
+        Collapsing distinctions by treating related elements as equivalent.
+        Quotienting by jurisdiction aggregates city-level data into state-level
+        summaries, treating individual cities as interchangeable for certain
+        analyses.
+
+\end{description}
