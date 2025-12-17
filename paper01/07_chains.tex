@@ -6,11 +6,11 @@
 This section describes how laws and regulations are represented within the CAE
 ontology and how they participate in accountability chains without requiring
 exhaustive modeling of legal texts.
-CAE treats statutes and regulations as Instruments that ground 
+CAE treats statutes and regulations as Instruments that ground
 authority, obligations, and enforcement while remaining
-structurally compatible with exchange and evidence semantics.
+structurally suited to accountability analysis.
 
-The objective is not to encode legal doctrine, but to preserve the causal and
+The objective is not to encode legal doctrine, but to preserve the
 accountability structure through which public authority produces concrete
 actions and observable outcomes.
 
@@ -28,7 +28,7 @@ specifying procedures, thresholds, or reporting requirements.
 Both normative and regulatory instruments share the defining property of
 grounding accountability relationships.
 They differ only in scope and level of abstraction, not in ontological kind.
-This approach avoids proliferating entity types while preserving 
+This approach avoids proliferating entity types while preserving
 the hierarchical structure of legal authority.
 
 \subsection{Delegation and Implementation Chains}
@@ -43,14 +43,14 @@ These downstream instruments constrain Events and give rise to Observations.
 For example, a statute enacted by a legislature delegates authority to an agency.
 The agency issues regulations implementing the statute, which authorize permits
 governing the operation of facilities.
-Compliance reports, inspections, and violations occur as Events under these permits, 
+Compliance reports, inspections, and violations occur as Events under these permits,
 and population-level impacts are captured as Observations.
 
 Representing delegation and implementation explicitly allows CAE to trace how
 authority flows from abstract law to concrete outcomes without conflating
 normative intent with execution.
 
-\subsection{Selective Inclusion and Lazy Modeling}
+\subsection{Selective Inclusion and Modeling}
 \label{subsec:selective}
 
 CAE does not require comprehensive inclusion of all laws or regulations.
@@ -65,7 +65,7 @@ The presence of an instrument in CAE is therefore driven
 by its operational relevance rather than by its legal prominence.
 
 This design ensures that CAE remains extensible and performant while preserving
-the structural relationships necessary for downstream semantics.
+the structural relationships necessary for accountability analysis.
 
 \subsection{Jurisdictional Scope and Applicability}
 \label{subsec:scope}
@@ -92,7 +92,7 @@ Such chains make explicit how public authority is exercised and how its conseque
 
 CAE does not assert causal claims within these chains.
 Instead, it provides a structural representation that allows causal hypotheses to be articulated,
-tested, or debated using evidence attached through CEE.
+tested, or debated using evidence and explanations attached at analytic layers above CAE.
 This separation of structure from inference ensures neutrality while enabling rigorous analysis.
 
 \subsection{Implications for Longitudinal Analysis}

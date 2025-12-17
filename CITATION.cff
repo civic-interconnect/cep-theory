@@ -1,8 +1,13 @@
+# REQ.UNIVERSAL: Professional project standards SHOULD include CITATION.cff.
+# WHY: Support correct citation and attribution.
+# ALT: Internal or private repositories may omit citation metadata; remove or modify this file as appropriate.
+# CUSTOM: Update author, repository, license, and keyword fields to reflect project specifics.
+# USAGE: Update fields below; see https://citation-file-format.github.io/ for details.
+
 cff-version: 1.2.0
-message: "If you use this work, please cite as shown below."
-title: "Civic Exchange Protocol - Mathematical Theory"
-# WHY: Single citation for the complete three-paper framework
-# OBS: Covers CAE ontology, CEP semantics, and CEE verticals
+type: paperset
+title: Civic Interconnect Mathematical Theory
+message: If you use this repository, please cite it as below.
 
 authors:
   - family-names: Case
@@ -10,14 +15,13 @@ authors:
     orcid: "https://orcid.org/0000-0001-6165-7389"
     affiliation: "Northwest Missouri State University; Civic Interconnect"
 
-date-released: 2025-12-14 # WHY: Updated to current date
-version: "draft" # OBS: Papers under active development
-type: dataset # WHY: Repository contains multiple papers plus code/data
-repository-code: "https://github.com/civic-interconnect/cep-theory"
+date-released: 2025-12-14
+version: draft
+repository-code: https://github.com/civic-interconnect/cep-theory
 
 abstract: >
   This repository contains the mathematical foundations for civic accountability
-  tracking through three formal papers: (1) A Categorical Ontology for Civic
+  tracking through three formal papers: (1) A Formal Ontology for Civic
   Accountable Entities (CAE), which partitions civic reality into six
   non-overlapping entity kinds; (2) A Categorical Semantics for the Civic
   Exchange Protocol (CEP), which defines the minimum structure required for
@@ -26,7 +30,7 @@ abstract: >
   explanations for civic decisions and defines vertical domain slices.
   Includes LaTeX sources, figures, and reproducibility materials.
 
-keywords: # WHY: Helps with discovery
+keywords:
   - civic accountability
   - category theory
   - data exchange protocols
@@ -36,7 +40,7 @@ keywords: # WHY: Helps with discovery
 # WHY: Individual paper references for granular citation
 references:
   - type: article
-    title: "A Categorical Ontology for Civic Accountable Entities (CAE)"
+    title: "A Formal Ontology for Civic Accountable Entities (CAE)"
     authors:
       - family-names: Case
         given-names: Denise M.

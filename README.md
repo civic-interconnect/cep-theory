@@ -59,15 +59,21 @@ See draft papers at:
 
 ## Papers
 
-1. CAE - civic accountable entities (what exists)
-2. CEP - entity, relationship, exchange, envelope (how things move)
-3. CEE - vertical stacks and spines; how claims are supported and explained (evidence)
+1. CAE - civic accountable entities (what kinds of things exist)
+2. CEP - entity, relationship, exchange, envelope (how hings relate and transform, morphisms)
+3. CEE - vertical stacks and spines; how claims are supported and explained (evidence, 2-morphisms)
 
-| Layer    | Name | Role                                     |
-| -------- | ---- | ---------------------------------------- |
-| Ontology | CAE  | Accountable entities and kinds           |
-| Exchange | CEP  | Entity, relationship, exchange, envelope |
-| Evidence | CEE  | Observations, provenance, explanations   |
+| Paper    | Layer    | Framework         | Role                                     |
+| -------- | -------- | ----------------- | ---------------------------------------- |
+| P1 (CAE) | Ontology | Ontology/KR       | Accountable entities and kinds           |
+| P2 (CEP) | Exchange | Category theory   | Entity, relationship, exchange, envelope |
+| P3 (CEE) | Evidence | Bicategory theory | Observations, provenance, explanations   |
+
+The stack builds upward:
+
+- P1 provides sorts. There are Actors, Sites/Assets, Instruments, Events, Jurisdictions, Observations. They are disjoint. Here's what makes each kind what it is.
+- P2 provides morphisms. Here's what it means for value to flow from Actor A to Actor B under Instrument I, recorded as Event E. Here's how such exchanges compose. Here's what structure is preserved.
+- P3 provides 2-morphisms. Here's how one interpretation of an exchange relates to another interpretation. Here's how an explanation justifies a claim. Here's how different models reaching different conclusions from the same data can be compared.
 
 ### Civic Accountable Entities (CAE)
 
@@ -80,7 +86,7 @@ Each accountable entity is assigned exactly one kind.
 - Jurisdictions (J) - scope authority and applicability.
 - Observations (O) - measurements and indicators describing state, outcomes, or performance over time.
 
-### Civic Exchange Protocol
+### Civic Exchange Protocol (CEP)
 
 An exchange is not an entity; it is a constrained subgraph **pattern**.
 A record or dataset is admissible to CEP if and only if it contains,
@@ -124,8 +130,9 @@ built on the CAE/CEP/CEE framework.
 
 ## Annotations
 
-This repository uses [Civic Interconnect ANNOTATIONS.md](https://github.com/civic-interconnect/civic-interconnect/blob/main/ANNOTATIONS.md)
-to document decisions inline, demonstrating CEE principles in practice.
+This repository documents decisions using Civic Interconnect Contextual Evidence & Explanations (CEE)
+annotation standard defined in:
+[Civic Interconnect ANNOTATIONS.md](https://github.com/civic-interconnect/civic-interconnect/blob/main/ANNOTATIONS.md).
 
 ## Civic Interconnect
 

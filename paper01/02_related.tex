@@ -1,0 +1,132 @@
+% !TeX root = 00P1_cae_ontology.tex
+
+\section{Related Work}
+\label{sec:related}
+
+CAE is informed by foundational work in formal ontology while making
+distinct commitments suited to civic accountability.
+This section positions CAE relative to upper ontologies, ontological
+methodology, and relevant domain standards.
+
+\subsection{Upper Ontologies}
+
+The Basic Formal Ontology (BFO)~\cite{smith2015bfo} provides
+a realist upper ontology grounded in scientific practice.
+BFO distinguishes continuants (entities that persist through time) from
+occurrents (entities that unfold in time), a distinction reflected in
+CAE's separation of enduring entities (Actors, Sites/Assets, Instruments,
+Jurisdictions) from time-indexed entities (Events, Observations).
+However, BFO adopts a realist stance in which entities are included by
+virtue of mind-independent existence.
+CAE takes a more operational approach: entities are included insofar as
+they participate in accountability-bearing relationships, independent of
+broader metaphysical commitments.
+
+DOLCE (Descriptive Ontology for Linguistic and Cognitive
+Engineering)~\cite{masolo2004wonderweb} adopts a descriptive orientation,
+modeling categories as they are conceptualized rather than as they exist independently.
+CAE shares this pragmatic stance but is substantially more constrained:
+where DOLCE provides a general-purpose upper ontology with rich taxonomic
+structure, CAE defines exactly six entity kinds with no subkind hierarchy
+at the ontological level.
+This minimalism is deliberate;
+taxonomic and sectoral distinctions are deferred to vocabularies and attributes.
+
+\subsection{Ontological Methodology}
+
+The design of CAE reflects methodological principles from
+OntoClean~\cite{guarino2002evaluating,guarino2009ontology}.
+OntoClean emphasizes rigorous identity criteria and the distinction between
+rigid properties (essential to an entity's identity) and anti-rigid
+properties (borne contingently).
+CAE's commitment to disjoint entity kinds reflects the OntoClean
+requirement that taxonomic structures respect identity:
+an entity's kind is rigid and invariant, while roles such as
+regulator, funder, or recipient are modeled as anti-rigid
+relational properties.
+
+This treatment prevents the ontological confusion that arises when
+roles are reified as entity types, a common source of inconsistency
+in information systems~\cite{guarino2009ontology}.
+
+\subsection{Provenance and Evidence}
+
+The W3C PROV-O ontology~\cite{lebo2013prov} provides a widely adopted
+model for representing provenance of entities, activities, and agents.
+CAE's Events bear resemblance to PROV-O's Activity class, and
+Observations relate to PROV-O's Entity as a record of state.
+However, CAE makes distinctions not explicit in PROV-O.
+Events in CAE are time-indexed occurrences asserted under the authority
+of Instruments; they are not merely activities but accountability-bearing
+assertions.
+Observations are measurements or indicators with associated provenance,
+distinct from the Events they may describe.
+
+Instruments, as enduring normative constructs that create or constrain
+obligations, have no direct counterpart in PROV-O, which models
+provenance rather than authority.
+CAE's Instrument kind is closer to deontic and legal ontology concepts
+discussed below.
+
+\subsection{Legal and Institutional Ontologies}
+
+Modeling legal and institutional structures has been addressed by
+several ontology efforts.
+LKIF-Core~\cite{hoekstra2007lkif} provides an ontology for legal
+knowledge, including norms, roles, and legal documents.
+CAE's Instruments overlap conceptually with LKIF's normative concepts
+but are more abstractly defined: an Instrument in CAE is any enduring
+construct that grounds obligations, whether a statute, contract, permit,
+or formally adopted program.
+
+The Financial Industry Business Ontology (FIBO)~\cite{bennett2013fibo}
+models contracts, parties, and obligations in the financial domain.
+CAE shares FIBO's concern with obligations and parties but is
+domain-neutral; where FIBO provides rich financial semantics,
+CAE provides minimal cross-domain structure intended to support
+interoperability across procurement, health, environment, education,
+and other civic domains.
+
+\subsection{Information Artifacts}
+
+The Information Artifact Ontology (IAO)~\cite{ceusters2012iao}, developed
+as an extension to BFO, models information-bearing entities such as
+documents, data items, and specifications.
+CAE's Instruments might be analyzed as information artifacts in the IAO
+sense---they are often realized as documents (contracts, statutes,
+permits) that carry normative content.
+However, CAE treats Instruments as a primitive kind defined by their
+functional role (grounding obligations and authority) rather than by
+their material realization.
+A single Instrument may be realized in multiple documents or amendments
+over time; CAE abstracts over this multiplicity.
+
+\subsection{Positioning CAE}
+
+CAE is neither an upper ontology nor a domain ontology in the
+traditional sense.
+It occupies a middle position:
+a small, stable set of entity kinds
+designed to support interoperability across civic domains
+without imposing the full apparatus of a foundational ontology or the
+specificity of a sectoral model.
+
+Readers familiar with foundational ontologies may recognize parallels
+between CAE's enduring entities and time-indexed entities and distinctions
+such as continuant/occurrent (BFO) or endurant/perdurant (DOLCE).
+These references are provided for orientation;
+CAE does not inherit, extend, or depend on any upper ontology.
+
+The six CAE kinds are intended to be necessary and sufficient to
+represent the structural relationships (obligations, authority,
+action, measurement) that underlie civic accountability.
+Richer semantics, domain vocabularies, and explanatory structures
+are expected to be layered above CAE rather than incorporated into it.
+
+While the foundational ontologies and standards reviewed above provide
+essential grounding, none directly addresses
+cross-domain civic accountability:
+a minimal, stable partition of entity kinds sufficient to represent
+obligations, authority, action, and measurement without imposing
+domain-specific semantics or comprehensive legal modeling.
+CAE is designed to fill this gap.

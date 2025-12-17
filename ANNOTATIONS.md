@@ -1,5 +1,6 @@
 # Annotations
 
-<!-- WHY: Structured comments make decisions transparent and scannable -->
+<!-- WHY: This repository documents decisions using Civic Interconnect Contextual Evidence & Explanations (CEE). -->
 
-This repository uses [Civic Interconnect ANNOTATIONS.md](https://github.com/civic-interconnect/civic-interconnect/ANNOTATIONS.md).
+This repository uses the Civic Interconnect annotation standard defined in:
+https://github.com/civic-interconnect/civic-interconnect/ANNOTATIONS.md

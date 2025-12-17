@@ -1,37 +1,67 @@
-# WHY: Prevents versioning files that are generated, temporary, or machine-specific
-# WHY: Committing those files causes merge conflicts and inappropriately bloats repository history
-# OBS: Sections organized: universal (all repos) then repo-specific
-# REQ: Keep this file to avoid versioning inappropriate files
+# REQ.UNIVERSAL: All professional GitHub project repositories MUST include .gitignore.
+# WHY: Prevent committing generated artifacts, local state, secrets, and OS-specific files.
+# ALT: Repository may customize ignores, but MUST preserve universal safety rules.
+# CUSTOM: Add repo-specific patterns in the dedicated section at the bottom.
 
-# === Universal across all repos ===
+# === Universal (all projects, all languages) ===
 
-# WHY: OS-generated files
-$RECYCLE.BIN/      # Windows recycle bin
-._*                # macOS resource fork files
-.AppleDouble       # macOS resource forks
-.DS_Store          # macOS folder metadata
-.LSOverride        # macOS icon positions
-.Spotlight-V100/   # macOS search index
-.Trashes           # macOS trash folder
-Desktop.ini        # Windows folder config
-ehthumbs.db        # Windows thumbnail cache
-Icon\r             # macOS custom icon
-Thumbs.db          # Windows thumbnails
+# WHY: Logs are useful during debugging and verification.
+# ALT: Uncomment temporarily if logs must be inspected or validated.
+# *.log
+# logs/
 
-# WHY: Editor-generated files
-.history/          # VS Code local history
-*~                 # Vim/Emacs backups
-*.bak              # Backup files
-*.backup           # Backup files
-*.swo              # Vim swap files
-*.swp              # Vim swap files
-*.tmp              # Temporary files
+# WHY: Temporary, backup, and swap files are machine-local noise.
+*.swo
+*.swp
+*.tmp
+*~
+*.bak
+*.backup
 
-# === Repo-specific: LaTeX theory papers ===
+# WHY: Generic caches are machine-local and should not be tracked.
+.cache/
 
-# WHY: Python virtual environments (if using scripts)
-.venv/
-__pycache__/
+# WHY: OS-generated metadata files should never be tracked.
+$RECYCLE.BIN/
+.AppleDouble
+.DS_Store
+.LSOverride
+.Spotlight-V100/
+.Trashes
+._*
+Icon\r
+desktop.ini
+Desktop.ini
+ehthumbs.db
+Thumbs.db
+
+# WHY: IDE/editor metadata is machine-local and should not be tracked.
+.idea/
+*.code-workspace
+.history/
+
+# === VS Code (special case) ===
+
+# WHY: Ignore editor state while allowing a shared baseline configuration.
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+# ALT: Commit .vscode/tasks.json only if tasks are essential to the workflow.
+# !.vscode/tasks.json
+
+# === Environment variables and secrets ===
+
+# WHY: Never commit credentials or environment-specific configuration.
+.env
+.env.*
+*.env
+
+# === Documentation / site build output ===
+
+# WHY: Static site build output is generated.
+site/
+
+# === LaTeX papers ===
 
 # WHY: LaTeX build artifacts - regenerated on each compile
 *.aux              # Cross-references
@@ -54,6 +84,9 @@ __pycache__/
 # WHY: Build directory and intermediate PDFs
 build/
 *.pdf
+
+# === Project-Specific ===
+# WHY: Include key reference PDFs in the repository root
 !00P1_cae_ontology.pdf
 !00P2_cep_semantics.pdf
 !00P3_cee_verticals.pdf

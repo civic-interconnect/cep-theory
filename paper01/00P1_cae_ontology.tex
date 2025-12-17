@@ -95,7 +95,7 @@
 \providecommand{\Raw}{\mathrm{Raw}}
 \providecommand{\Canon}{\mathrm{Canon}}
 
-\title{A Categorical Ontology for Civic Accountable Entities (CAE)}
+\title{A Formal Ontology for Civic Accountable Entities (CAE)}
 
 \author[1,2]{Denise M. Case}
 \affil[1]{Northwest Missouri State University, Computer Science and Information Systems, Maryville, MO, USA}
@@ -116,57 +116,56 @@
 \end{tcolorbox}
 
 \begin{abstract}
-    We present a categorical ontology of civic accountable entities (CAE)
-    intended as a foundational object universe for formal semantics of civic data systems.
-    CAE defines a strict, disjoint partition of entities according to their role in
-    exchanges, obligations, authority, and accountability, rather than
-    domain, sector, or function.
-    The ontology distinguishes six entity kinds:
-    Actors, Assets, Instruments, Events, Jurisdictions, and Observations.
-    These categories are designed to be invariant under representation,
-    stable over time, and sufficient to model long-term public investments,
+    We present a formal ontology of Civic Accountable Entities (CAE),
+    defining the kinds of entities that participate in civic accountability relationships.
+    CAE partitions entities into six disjoint kinds:
+    Actors (A), Sites/Assets (S), Instruments (I), Events (E), Jurisdictions (J), and Observations (O),
+    according to their role in obligations, authority relationships, and accountability-bearing exchanges,
+    rather than by domain, sector, or function.
+
+    The ontology is explicitly obligation-driven:
+    entities are included only insofar as they participate in
+    accountability relationships, and
+    apparent role changes are modeled through relationships
+    rather than reclassification.
+    Roles, classifications, and sectoral labels are treated as attributes or relations
+    rather than entity kinds, ensuring disjointness and preventing ontological overlap.
+    Laws and regulations are modeled as enduring Instruments that ground
+    concrete Events without requiring exhaustive modeling of legal texts.
+
+    The six kinds are designed to be stable over time
+    and sufficient to represent long-term public investments,
     regulatory regimes, financial flows, and outcome measurements across
-    domains such as procurement, health, environment, education, and infrastructure.
-
-    The ontology is explicitly exchange-driven:
-    entities are introduced only insofar as they participate in
-    obligations, authority relationships, or accountability-bearing events.
-    Roles, classifications, and sectoral labels are modeled as relations
-    or attributes rather than entity kinds, ensuring disjointness and
-    preventing ontological overlap.
-    Laws and regulations are treated as normative and regulatory instruments
-    that ground concrete events and outcomes without requiring exhaustive legal modeling.
-
-    CAE is intended to serve as the object-level foundation for
-    subsequent category semantics of the Civic Exchange Protocol (CEP)
-    and Contextual Evidence and Explanations (CEE).
-    By separating ontological commitment from exchange semantics and
-    evidentiary reasoning, CAE enables interoperable, auditable, and
-    longitudinal analysis of public systems while remaining neutral
+    domains including procurement, health, environment, education, and infrastructure.
+    CAE provides the ontological foundation for the Civic Exchange Protocol (CEP),
+    which models how entities exchange value and authority,
+    and for Contextual Evidence and Explanations (CEE),
+    which attaches structured explanations to civic decisions.
+    By separating what exists from how it moves and how decisions are explained,
+    CAE enables interoperable, auditable, and longitudinal analysis
+    of public systems while remaining neutral
     with respect to policy positions or causal claims.
-    This structure supports comparative analysis across jurisdictions and time,
-    making long-term public outcomes inspectable without
-    collapsing into advocacy or narrative-driven interpretation.
 \end{abstract}
 
 \begin{keywords}
-    Categorical ontology,
-    accountable entities,
-    civic data,
-    public accountability,
-    exchange semantics,
-    longitudinal outcomes,
-    formal semantics.
+    Formal ontology,
+    civic accountability,
+    knowledge representation,
+    applied ontology,
+    public data interoperability,
+    accountability relationships.
 \end{keywords}
 
-\input{01_intro}       % Introduction and Motivation
-\input{02_principles}  % Design Principles and Scope
-\input{03_cae}         % Ontological Partition of Accountable Entities
-\input{04_constraints} % Relationships and Structural Constraints
-\input{05_chains}      % Laws, Regulations, and Accountability Chains
-\input{06_value}       % Outcomes, Observations, and Public Value
-\input{07_fit}         % Relationship to CEP and CEE
-\input{90_conclusion}  % Limitations, Future Work, Conclusion
+\input{01_intro}           % Section 1: Introduction and Motivation
+\input{02_related}         % Section 2: Related Work
+\input{03_principles}      % Section 3: Design Principles and Scope
+\input{04_cae}             % Section 4: Ontological Partition 
+\input{05_relationships}     % Section 5: Relationships and Structural Constraints
+\input{06_eval}          % Section 6: Evaluation via Competency Questions
+
+\input{07_chains}          % Section 7: Laws, Regulations, and Accountability Chains
+\input{08_value}           % Section 8: Outcomes, Observations, and Public Value
+\input{90_conclusion}      % Section 9, 10: Discussions and Limitations, Conclusion
 
 \appendix
 \clearpage

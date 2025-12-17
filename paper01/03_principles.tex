@@ -4,8 +4,12 @@
 \section{Design Principles and Scope}
 \label{sec:principles}
 
-The design of CAE is guided by a small number of explicit principles intended to
+In light of the foundational and methodological work reviewed above,
+CAE adopts a small number of explicit design principles intended to
 ensure clarity, stability, and extensibility.
+
+CAE is a domain-constrained reference ontology designed for accountability analysis,
+rather than a foundational or upper ontology.
 
 \subsection{Accountability-Driven Inclusion}
 
@@ -17,40 +21,51 @@ and evaluation.
 CAE does not attempt to enumerate all organizations, facilities,
 laws, or social phenomena exhaustively.
 
-This exchange and obligation-driven inclusion rule prevents ontological bloat
+This accountability-driven inclusion rule prevents ontological bloat
 and ensures that the ontology remains focused on structures that matter for civic
 accountability~\cite{bowker2000sorting}.
-
-In CEP, admissibility is determined by the presence of instrument-grounded events involving accountable actors.
 
 \subsection{Disjoint Entity Kinds}
 
 CAE defines a strict partition of entities into disjoint kinds.
 Each entity is assigned exactly one kind, and entity kinds do not overlap.
-This disjointness is
-a foundational constraint: it prevents ambiguity and supports formal reasoning
-over relationships.
+This disjointness follows established ontological methodology
+for maintaining clear identity conditions and avoiding category overlap
+following OntoClean methodology~\cite{guarino2002evaluating}.
+It is a foundational constraint:
+it prevents ambiguity and supports formal reasoning
+over accountability-bearing relationships.
 
 Changes in function, responsibility, or context are represented through
 relationships rather than reclassification.
-An entity does not change kind over
-time, even as its role within civic systems evolves.
+An entity does not change kind over time,
+even as its role within civic systems evolves.
+
+For compact reference, the six entity kinds are occasionally denoted
+by single-letter symbols (A, S, I, E, J, O).
+These symbols are introduced here for concise notation
+and are used sparingly in this paper.
+
 
 \subsection{Roles as Relationships}
 
 CAE does not model roles, sectors, or functions as entity kinds.
-Concepts such as regulator, funder, operator, recipient, or subject of regulation are represented
-as patterns of relationships among entities.
+Concepts such as regulator, funder, operator, recipient, or subject of regulation
+are represented as patterns of relationships among entities.
 This approach avoids proliferation of role-specific entity types and
 ensures that entity identity remains stable across contexts.
 
-\subsection{Selective and Lazy Modeling}
+This design aligns with established ontological treatments of roles
+as anti-rigid properties that an entity may gain or lose without
+affecting its identity~\cite{guarino1998roles,masolo2004wonderweb}.
+
+\subsection{Selective Modeling}
 
 Entities, particularly laws and regulations, are included selectively based on
 their operational relevance.
 Normative or regulatory instruments are introduced
 only when they ground concrete events or observations.
-This lazy modeling strategy supports scalable implementation
+This selective modeling strategy supports scalable implementation
 and avoids premature commitment to comprehensive legal or administrative catalogs.
 
 \subsection{Neutrality and Separation of Concerns}
@@ -63,7 +78,7 @@ but it does not assert that particular instruments cause particular
 outcomes or that specific outcomes are desirable~\cite{pearl2009causality}.
 
 Interpretation, explanation, and evidentiary reasoning are deferred to analytic
-layers built upon CAE, including CEP and CEE.
+layers built upon CAE.
 This separation of concerns
 supports transparency, reproducibility, and pluralistic analysis.
 

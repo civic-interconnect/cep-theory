@@ -4,7 +4,74 @@
 \section*{Appendix A. Worked Examples}
 \addcontentsline{toc}{section}{Appendix A. Worked Examples}
 
-This appendix provides concrete examples illustrating how CAE's six entity
+% ------------------------------------------------------------
+\subsection*{A.1 Instrument Examples\footnotemark}
+% ------------------------------------------------------------
+
+\footnotetext{
+    These examples are illustrative and do not define a controlled vocabulary
+    or formal typology of Instruments.
+}
+
+\textbf{Scope note (non-normative):}
+The labels used in this subsection (e.g., ``normative,'' ``programmatic,''
+``procedural'') are descriptive only.
+They do not introduce formal subclasses, types, or constraints on Instruments within CAE.
+All entities listed here remain members of the single Instrument kind defined
+in Section~\ref{subsec:instruments}.
+
+These examples illustrate common kinds of authoritative documents and the general
+instrumental function they represent.
+
+A normative Instrument may be a high-level authoritative document that establishes
+obligations, rights, or responsibilities.
+Examples may include:
+\begin{itemize}
+    \item A federal statute enacted by Congress (e.g., the Clean Water Act).
+    \item A state regulation promulgated by an environmental agency (e.g., air quality standards).
+    \item A municipal ordinance adopted by a city council (e.g., zoning regulations).
+    \item An international treaty ratified by national governments (e.g., Paris Agreement on climate change).
+    \item A constitutional provision establishing fundamental rights or governance structures.
+\end{itemize}
+
+A programmatic Instrument may be an Instrument explicitly established by an authority
+that creates standing obligations or eligibility conditions.
+These exist independently of any single payment, award, or inspection, and
+continue to ground accountability over time.
+Examples may include:
+
+\begin{itemize}
+    \item A federal grant program established by statute or agency rule
+          (e.g., a transportation infrastructure grant program with defined eligibility, reporting, and audit requirements).
+    \item A state procurement program that defines allowable vendors, contracting thresholds, and compliance obligations.
+    \item A public benefits program (housing assistance, health coverage, educational aid)
+          with formally defined enrollment rules and verification requirements.
+    \item A research funding program operated by a public agency with binding reporting, data-sharing, or compliance conditions.
+    \item A regulatory compliance program (e.g., emissions reporting, safety certification)
+          that structures recurring obligations across many Events.
+\end{itemize}
+
+A formally adopted procedural regime may be a procedural Instrument that is binding because it is adopted.
+These constrain how decisions or actions must be carried out, not just what is allowed.
+
+Examples may include:
+\begin{itemize}
+    \item A procurement evaluation procedure formally adopted by an agency (e.g., a scoring rubric mandated by policy or regulation).
+    \item A compliance review process required by regulation (e.g., mandatory inspection sequences or escalation rules).
+    \item A grant review workflow codified in agency policy that determines eligibility, ranking, and award decisions.
+    \item A data reporting protocol mandated by regulation (e.g., required schemas, submission cycles, validation steps).
+    \item A formally adopted analytical methodology when explicitly named in statute, rule, or contract
+          (e.g., a required risk-scoring method used for eligibility or enforcement).
+\end{itemize}
+
+Many Instruments combine multiple functional aspects.
+For example, a statute may authorize a program, mandate procedures,
+and define reporting obligations.
+CAE does not require assigning an Instrument to a single functional pattern;
+the examples above highlight dominant characteristics only.
+Formal typologies of Instruments are outside the scope of this paper.
+
+This appendix also provides concrete examples illustrating how CAE's six entity
 kinds and relationship constraints apply across different civic domains.
 The goal is to demonstrate that the ontology is sufficient for modeling
 diverse accountability scenarios without domain-specific extensions.
@@ -13,7 +80,7 @@ The following examples use real-world entities purely for illustrative purposes.
 No evaluative, legal, or causal claims are implied beyond the structural relationships shown.
 
 % ------------------------------------------------------------
-\subsection*{A.1 Chicago Procurement: Following Federal Funds to Local Contractors}
+\subsection*{A.2 Chicago Procurement: Following Federal Funds to Local Contractors}
 % ------------------------------------------------------------
 
 
@@ -35,9 +102,9 @@ company to repair Chicago infrastructure.
 
     \textbf{Instruments (I):}
     \begin{itemize}[nosep]
-        \item Federal Highway Act (normative instrument)
-        \item IDOT-FHWA Grant Agreement (programmatic instrument)
-        \item Construction Contract (programmatic instrument)
+        \item Federal Highway Act (normative Instrument)
+        \item IDOT-FHWA Grant Agreement (programmatic Instrument)
+        \item Construction Contract (programmatic Instrument)
     \end{itemize}
 
     \textbf{Events (E):}
@@ -62,7 +129,8 @@ company to repair Chicago infrastructure.
     \textbf{Observations (O):}
     \begin{itemize}[nosep]
         \item Bridge safety rating (2025-01-10: "Good")
-        \item Project completion rate (100\%, within budget)
+        \item Project completion rate (100\%
+        )
     \end{itemize}
 \end{mdframed}
 
@@ -84,14 +152,16 @@ unless they participate in accountability-bearing relationships relevant to
 this exchange.
 
 % ------------------------------------------------------------
-\subsection*{A.2 Public Health Program: Statute to Population Outcomes}
+\subsection*{A.3 Public Health Program: Statute to Population Outcomes}
 % ------------------------------------------------------------
 
 
 \textbf{Scenario:}
 The Affordable Care Act (ACA) authorizes the Department of Health and Human
 Services (HHS) to expand Medicaid.
-States adopt the expansion, health insurance coverage increases, and population health outcomes improve over time.
+States adopt the expansion, 
+health insurance coverage changes over time, 
+with longitudinal changes observed in population health indicators.
 
 \textbf{CAE Representation:}
 
@@ -106,9 +176,9 @@ States adopt the expansion, health insurance coverage increases, and population 
 
     \textbf{Instruments (I):}
     \begin{itemize}[nosep]
-        \item Affordable Care Act (normative instrument)
-        \item Medicaid Expansion Regulation (regulatory instrument)
-        \item California Medicaid Plan (programmatic instrument)
+        \item Affordable Care Act (normative Instrument)
+        \item Medicaid Expansion Regulation (regulatory Instrument)
+        \item California Medicaid Plan (programmatic Instrument)
     \end{itemize}
 
     \textbf{Events (E):}
@@ -144,7 +214,7 @@ CAE does not assert that the ACA caused the improvements, but it makes the
 structural connections explicit for hypothesis testing.
 
 % ------------------------------------------------------------
-\subsection*{A.3 Environmental Regulation: Permits and Emissions}
+\subsection*{A.4 Environmental Regulation: Permits and Emissions}
 % ------------------------------------------------------------
 
 
@@ -165,8 +235,8 @@ The plant submits emissions reports, and air quality is monitored.
 
     \textbf{Instruments (I):}
     \begin{itemize}[nosep]
-        \item Clean Air Act (normative instrument)
-        \item Title V Operating Permit (regulatory instrument)
+        \item Clean Air Act (normative Instrument)
+        \item Title V Operating Permit (regulatory Instrument)
     \end{itemize}
 
     \textbf{Events (E):}
@@ -205,7 +275,7 @@ FirstEnergy (Actor) operates the Sammis Plant (Site).
 The permit constrains the Site's operations, while FirstEnergy bears the legal obligation to comply.
 
 % ------------------------------------------------------------
-\subsection*{A.4 Infrastructure Investment: Long-Term Public Value}
+\subsection*{A.5 Infrastructure Investment: Long-Term Public Value}
 % ------------------------------------------------------------
 
 
@@ -226,9 +296,9 @@ Over time, internet access and economic indicators improve.
 
     \textbf{Instruments (I):}
     \begin{itemize}[nosep]
-        \item Minnesota Broadband Development Act (normative instrument)
-        \item Bond authorization (programmatic instrument)
-        \item Construction grant (programmatic instrument)
+        \item Minnesota Broadband Development Act (normative Instrument)
+        \item Bond authorization (programmatic Instrument)
+        \item Construction grant (programmatic Instrument)
     \end{itemize}
 
     \textbf{Events (E):}
@@ -270,7 +340,7 @@ Observations capture these outcomes explicitly rather
 than inferring them from transaction Events.
 
 % ------------------------------------------------------------
-\subsection*{A.5 Role Multiplicity: University as Multi-Role Actor}
+\subsection*{A.6 Role Multiplicity: University as Multi-Role Actor}
 % ------------------------------------------------------------
 
 

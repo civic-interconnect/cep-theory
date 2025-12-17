@@ -1,6 +1,5 @@
 % !TeX root = 00P1_cae_ontology.tex
 
-
 \section{Introduction and Motivation}
 \label{sec:introduction}
 
@@ -10,7 +9,8 @@ Data describing these systems is typically fragmented across domains such as pro
 health, environmental regulation, education, and infrastructure.
 While each domain is often supported by mature data systems, the structural relationships
 that connect authority, obligation, action, and long-term outcomes are
-rarely represented in a unified or interoperable form~\cite{bowker2000sorting,edwards2011infrastructure}.
+rarely represented in a unified or
+interoperable form~\cite{bowker2000sorting,edwards2011infrastructure}.
 
 This fragmentation presents a fundamental obstacle to accountability and
 longitudinal analysis.
@@ -32,16 +32,43 @@ layer or embedding interpretive assumptions directly into data models~\cite{bowk
 
 This paper introduces the Civic Accountable Entities (CAE) ontology as a
 foundational response to this challenge.
-CAE defines a categorical ontology of entities that participate in
+CAE defines a formal ontology of entities that participate in
 obligations, authority, and accountability within civic systems.
 Rather than modeling domains or sectors directly, CAE identifies
 a small set of disjoint entity kinds that are stable across time and context and
-sufficient to ground formal semantics of exchange and evidence~ \cite{cep2025spec}.
+sufficient to represent the structural relationships underlying civic accountability.
 
-CAE is intended to serve as the object-level foundation for subsequent category
-semantics of the Civic Exchange Protocol (CEP) and Contextual Evidence and
-Explanations (CEE).
-By separating ontological commitment from exchange semantics
-and evidentiary reasoning, CAE enables interoperable, auditable, and longitudinal
-analysis while remaining neutral with respect to policy positions or causal
-claims.
+The design of CAE emphasizes ontological clarity over descriptive completeness.
+Entities are partitioned into disjoint kinds with explicit identity criteria;
+roles, classifications, and sectoral labels are modeled as attributes or
+relationships rather than as entity kinds.
+This discipline prevents ontological overlap and supports formal reasoning
+about obligations, authority, and evidence.
+
+CAE draws on foundational work in formal ontology, particularly the
+emphasis on rigorous categorization found in BFO~\cite{smith2015bfo} and
+DOLCE~\cite{masolo2004wonderweb}, while making commitments tailored to
+civic accountability: entities are included in CAE only insofar as they
+participate in accountability-bearing relationships, and the ontology
+is designed to remain stable as domains, policies, and tooling evolve.
+Section~\ref{sec:related} discusses these relationships in detail.
+
+CAE provides the ontological foundation for the Civic Exchange Protocol (CEP),
+which models how entities exchange value and authority, and for Contextual
+Evidence and Explanations (CEE), which attaches structured explanations to
+civic decisions.
+By separating what exists from how it moves and how decisions are explained,
+CAE enables interoperable, auditable, and longitudinal analysis of public
+systems while remaining neutral with respect to policy positions or causal claims.
+
+The remainder of this paper is organized as follows:
+Section~\ref{sec:related} situates CAE within related work in formal ontology;
+Section~\ref{sec:principles} outlines the design principles and scope
+of CAE;
+Section~\ref{sec:ontology} defines the six disjoint entity kinds;
+Section~\ref{sec:relationships} discusses relationships and structural constraints;
+Section~\ref{sec:evaluation} evaluates CAE via competency questions;
+Section~\ref{sec:laws} discusses laws, regulations, and accountability chains;
+Section~\ref{sec:outcomes} discusses outcomes, observations, and public value;
+Section~\ref{sec:discussion} includes discussion and future work;
+and Section~\ref{sec:conclusion} provides a conclusion.

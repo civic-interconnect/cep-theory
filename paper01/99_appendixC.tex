@@ -1,58 +1,152 @@
 % !TeX root = 00P1_cae_ontology.tex
 
 \clearpage
-\section*{Appendix C. Glossary of CAE Terms}
-\addcontentsline{toc}{section}{Appendix C. Glossary of CAE Terms}
+\section*{Appendix C. Glossary of Terms}
+\addcontentsline{toc}{section}{Appendix C. Glossary of Terms}
 
-This appendix provides definitions of key terms used throughout the paper
-to make CAE accessible to readers from public administration, civic technology,
-data engineering, and policy analysis communities.
 
-\textbf{Accountability Chain:}
-A connected subgraph linking normative instruments to concrete events and
-observations through delegation, issuance, participation, and measurement
-relationships.
-Makes explicit how public authority is exercised and consequences observed.
+
+This appendix provides concise definitions of key terms used throughout the paper.
+
+\subsection*{Entity Kinds}
 
 \textbf{Actor (A):}
 An entity capable of bearing rights, obligations, or responsibilities within
-civic systems.
-Examples: governments, agencies, businesses, nonprofits, universities.
+civic systems when acting as an accountable party.
+Examples include governments, public agencies, businesses, nonprofits, and universities.
 
-\textbf{Asset/Site (S):}
+\textbf{Site/Asset (S):}
 A physical or operational entity that is acted upon but does not bear obligations.
-Examples: facilities, buildings, infrastructure, power plants.
-
-\textbf{Event (E):}
-A time-indexed occurrence asserted under the authority of an Instrument.
-Examples: payments, inspections, filings, violations, audits.
+Examples include facilities, buildings, infrastructure, and power plants.
 
 \textbf{Instrument (I):}
 An enduring construct that creates, modifies, or constrains rights, obligations,
 or authority.
-Examples: statutes, regulations, contracts, grants, permits, licenses.
+Examples include statutes, regulations, contracts, grants, permits, and licenses.
+
+\textbf{Event (E):}
+A time-indexed occurrence asserted under the authority of an Instrument.
+Examples include payments, inspections, filings, violations, and audits.
 
 \textbf{Jurisdiction (J):}
-An entity that scopes authority, applicability, and governance.
-Defines where
-Instruments apply and Events occur.
-Examples: nations, states, municipalities, regulatory regions.
+An entity that scopes authority, applicability, and governance, defining where
+Instruments apply and where Events occur.
+Examples include nations, states, municipalities, and regulatory regions.
 
 \textbf{Observation (O):}
 A measurement or indicator describing state, performance, or outcomes.
-Does not create obligations.
-Examples: health outcomes, coverage rates, emissions intensity, educational attainment.
+Observations do not create obligations or authorize actions.
+Examples include health outcomes, coverage rates, emissions intensity measures,
+and educational attainment indicators.
 
-\textbf{Lazy Modeling:}
-The selective inclusion of entities based on operational relevance rather than
-exhaustive enumeration.
-Instruments introduced only when they ground concrete events or observations.
+\subsection*{Design Concepts}
 
-\textbf{Normative Instrument:}
-A high-level Instrument that establishes authority or defines obligations.
-Examples: statutes, acts, treaties.
+\textbf{Accountability Analysis:}
+The examination of relationships, obligations, and authority structures within
+civic systems in order to make responsibility and oversight inspectable.
 
-\textbf{Regulatory Instrument:}
-An Instrument that operationalizes normative instruments by specifying procedures,
-thresholds, or requirements.
-Examples: regulations, rules, administrative codes.
+\textbf{Accountability-bearing Relationship:}
+A relationship that establishes or reflects accountability obligations between
+entities, such as delegation of authority, participation in an Event, or the
+measurement of outcomes.
+
+\textbf{Applied Ontology:}
+The use of ontological methods and principles to structure, clarify, and analyze
+real-world domains for practical purposes.
+
+\textbf{Competency Questions:}
+Questions that an ontology should be able to answer, used to guide its development
+and to evaluate its adequacy for the intended domain.
+
+\textbf{Completeness:}
+The extent to which an ontology captures the concepts and relationships required
+for its stated purpose, without implying exhaustive coverage of all possible phenomena.
+
+\textbf{Disjointness:}
+The property that entity kinds do not overlap;
+each entity belongs to exactly one kind.
+
+\textbf{Domain Ontology:}
+An ontology that captures concepts and relationships specific to a particular
+application domain.
+CAE is not a domain ontology.
+
+\textbf{Domain-Constrained Reference Ontology:}
+An ontology that provides a stable, reusable set of entity kinds and relationships
+tailored to a particular domain, without committing to sector-specific taxonomies.
+CAE is a domain-constrained reference ontology.
+
+\textbf{Enduring Entity:}
+An entity that persists through time while maintaining its identity, even as its
+properties or relationships change.
+
+\textbf{Entity Kind:}
+A fundamental category of entities within the ontology, defined by distinct
+identity criteria and invariant over time.
+
+\textbf{Longitudinal Change:}
+Variation or trends in data, conditions, or outcomes observed over extended periods
+of time.
+
+\textbf{Knowledge Representation:}
+The formal specification of entities, relationships, and structures within a domain
+to support interoperability and structured analysis.
+
+\textbf{Ontology:}
+A formal representation of entities within a domain
+and the relationships that hold between them.
+
+\textbf{Ontology Drift:}
+The gradual divergence of an ontology's scope, structure, or commitments
+from its original design intent.
+
+\textbf{Selective Modeling:}
+The inclusion of entities based on operational relevance rather than exhaustive
+enumeration, introducing entities only when they participate in
+accountability-bearing relationships.
+
+\textbf{Semantics:}
+The interpretation of structures and relationships defined by an ontology, without
+implying evaluative or causal claims at the ontological level.
+
+\textbf{Soundness:}
+The property that an ontology's definitions and constraints are internally
+consistent and aligned with their intended interpretations.
+
+\textbf{Subclassing:}
+The creation of a hierarchy of classes or categories within an ontology,
+where more specific classes inherit properties and relationships from more
+general ones.
+CEA avoids subclassing within its six entity kinds.
+
+\textbf{Time-Indexed Entity:}
+An entity whose identity or assertions are associated with specific points or
+intervals in time.
+
+\textbf{Upper Ontology:}
+A domain-independent ontology intended to provide general categories applicable
+across many domains.
+CAE is not an upper ontology.
+
+\subsection*{Instrument Roles (Descriptive)}
+
+\textbf{Normative role (descriptive):}
+A functional role in which an Instrument establishes authority or defines
+obligations.
+Examples include statutes, acts, and treaties.
+
+\textbf{Regulatory role (descriptive):}
+A functional role in which an Instrument specifies procedures, thresholds, or
+requirements.
+Examples include regulations, rules, and administrative codes.
+
+
+\subsection*{Methodological Context}
+
+CAE is a formal ontology in the knowledge representation tradition:
+a specification of what kinds of entities exist in the civic accountability domain,
+what properties they have, and what relationships hold between them.
+The six entity kinds form a strict partition: each entity belongs to exactly one
+kind, and kinds do not overlap.
+This structure supports rigorous, neutral reasoning about obligations, authority,
+and evidence without embedding causal or evaluative assumptions.

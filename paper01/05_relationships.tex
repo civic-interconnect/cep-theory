@@ -4,8 +4,8 @@
 \label{sec:relationships}
 
 Having defined the disjoint kinds of civic accountable entities, we now specify
-the admissible relationships between them and the structural constraints that
-govern their composition.
+the allowed relationships between them and the structural constraints that
+govern their valid configuration.
 CAE does not enumerate all possible relationships;
 instead, it constrains the space of valid relationships so that accountability,
 authority, and evidence can be expressed without ontological ambiguity.
@@ -16,15 +16,6 @@ over time.
 Roles, classifications, and contextual interpretations are expressed
 through relationships and attributes rather than through reclassification of
 entities.
-
-\subsection{Exchange Patterns and Admissibility}
-\label{subsec:exchange-patterns}
-
-\begin{itemize}[nosep]
-    \item Exchanges are subgraph patterns
-    \item CEP operates only on admissible patterns
-    \item CAE constrains but does not enumerate them
-\end{itemize}
 
 \subsection{Kind-Constrained Relationships}
 \label{subsec:kind-constrained}
@@ -111,33 +102,5 @@ CAE enforces several structural invariants:
     \item No relationship may violate declared kind constraints.
 \end{itemize}
 
-These invariants are necessary for defining categorical semantics of exchange and
-evidence in subsequent sections and papers.
-
-\subsection{Implications for Exchange and Evidence Semantics}
-\label{subsec:implications}
-
-By constraining relationships independently of domain or sector, CAE enables
-exchange protocols and evidentiary reasoning to be defined uniformly across
-contexts.
-CEP operates over CAE entities by interpreting specific relationship
-patterns as exchanges, transfers, or obligations, while CEE operates by attaching
-evidence and explanations to Events and Observations grounded in these same
-structures.
-
-This separation of concerns ensures that extensions to exchange semantics or
-evidence models do not require modification of the underlying ontology.
-
-Context tags (CTags) are interpretive annotations attached to a record
-without altering its canonical identity.
-Their semantics is captured by a
-\emph{fibered category}
-\begin{equation}
-    \pi : \mathbf{CT} \longrightarrow \mathbf{CEP},
-\end{equation}
-where:
-\begin{itemize}
-    \item $\mathbf{CEP}$ is the base category of identity-bearing records,
-    \item $\mathbf{CT}$ consists of pairs $(R, T)$ of a CEP record $R$ and an attached context tag $T$,
-    \item $\pi$ is the projection functor $\pi(R, T) = R$.
-\end{itemize}
+These invariants ensure that CAE remains internally consistent and
+supports formal reasoning about accountability relationships.

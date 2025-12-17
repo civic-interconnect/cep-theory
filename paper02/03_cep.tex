@@ -78,15 +78,15 @@ than represented within $\mathbf{CEP}$.
 
 To qualify as a morphism, $f$ must preserve CEP's core invariants:
 \begin{enumerate}
-  \item \textbf{Schema validity}: 
+  \item \textbf{Schema validity}:
         $\mathrm{Schema}(R) \to \mathrm{Schema}(R')$ must be respected,
         meaning $R'$ remains valid under the same or a successor schema.
 
-  \item \textbf{Revision monotonicity}:  
+  \item \textbf{Revision monotonicity}:
         $\mathrm{Revision}(R) \leq \mathrm{Revision}(R')$.
         Updates must advance (not rewind) the revision counter.
 
-  \item \textbf{Identity invariance}:  
+  \item \textbf{Identity invariance}:
         The canonical identifier (SNFEI) associated with the canonical
         payload of $R$ must match that of $R'$.
         This ensures that morphisms do not alter identity-bearing fields.
@@ -139,9 +139,9 @@ of records.
 Examples include:
 
 \begin{itemize}
-  \item extracting only the attestation sequence of a record,  
+  \item extracting only the attestation sequence of a record,
   \item projecting a relationship record onto one of its participating entities,
-  \item isolating the canonical payload while omitting context tags.  
+  \item isolating the canonical payload while omitting context tags.
 \end{itemize}
 
 Because subobjects inherit morphisms from the ambient category,
@@ -150,3 +150,9 @@ under updates, can be expressed cleanly and compositionally.
 Intuitively, this means that when part of a record is updated, any
 well-defined subpart evolves in a compatible way without requiring
 special-case rules.
+
+\subsection{Formalism Commitment Boundary}
+
+CEP commits to categorical semantics only insofar
+as they support compositional reasoning over civic exchanges;
+it does not aim to provide a general-purpose categorical data model.

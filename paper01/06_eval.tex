@@ -1,0 +1,112 @@
+% !TeX root = 00P1_cae_ontology.tex
+
+\section{Evaluation via Competency Questions}
+\label{sec:evaluation}
+
+This section evaluates the adequacy of the CAE ontology using explicit
+competency questions grounded in real civic data.
+The goal is not exhaustive validation, but to demonstrate that the
+ontological distinctions introduced by CAE enable representations that
+are difficult or ambiguous under common alternative models.
+
+\subsection{Explicit Competency Questions}
+
+The following competency questions guided the design of CAE and are used
+here to assess its expressive adequacy:
+
+\begin{itemize}[nosep]
+      \item \textbf{CQ1:} Can the ontology distinguish enduring sources of authority
+            from the time-indexed events that realize or execute that authority?
+
+      \item \textbf{CQ2:} Can a single civic entity participate simultaneously in
+            multiple accountability roles (e.g., regulator, operator, recipient)
+            without reclassification or type mutation?
+
+      \item \textbf{CQ3:} Can outcomes and public value be represented as
+            observable entities without asserting causal claims or embedding
+            evaluative judgments in the ontology?
+
+      \item \textbf{CQ4:} Can accountability chains be traced across jurisdictions
+            and over time without redefining entity identity?
+
+      \item \textbf{CQ5:} Can delegation of authority be represented explicitly
+            through instruments, rather than implicitly through role-based entity types?
+\end{itemize}
+
+These questions are answered through a worked mapping of a real public
+grant record and a comparative discussion with an established provenance model.
+
+\subsection{Dataset Mapping: USAspending Grant Example}
+
+To illustrate these competency questions, we consider a representative
+grant record published via USAspending.gov.
+The example is intentionally minimal and descriptive; it is not intended
+as a comprehensive schema mapping.
+
+A typical grant record involves the following elements:
+
+\begin{itemize}[nosep]
+      \item \textbf{Actors (A):} a federal awarding agency and a recipient organization
+      \item \textbf{Instruments (I):} an enduring grant program and a specific grant award
+      \item \textbf{Events (E):} obligation and payment events occurring at specific times
+      \item \textbf{Jurisdictions (J):} federal and state jurisdictions governing applicability
+      \item \textbf{Observations (O):} optional outcome indicators (e.g., program-level performance metrics)
+\end{itemize}
+
+In CAE, the grant program is modeled as an enduring \emph{Instrument}
+that grounds authority and eligibility conditions.
+The grant award and subsequent payments are modeled as \emph{Events}
+occurring under that instrument.
+The recipient organization remains a single \emph{Actor} throughout,
+even as it occupies the roles of applicant, awardee, and reporting entity.
+
+This representation directly addresses CQ1, CQ2, and CQ4 by separating
+authority from execution, preserving entity identity, and allowing
+longitudinal analysis across jurisdictions.
+
+\subsection{Comparative Limitation of Provenance-Oriented Models}
+
+In widely used provenance ontologies such as PROV-O,
+both grant programs and grant awards are typically represented as
+\texttt{prov:Entity}, while payments are represented as
+\texttt{prov:Activity}.
+While sufficient for recording provenance, this structure does not
+enforce a distinction between enduring normative constructs and
+time-indexed realizations.
+
+As a result, expressing the difference between a standing source of
+authority (e.g., a grant program) and the events that execute or fulfill
+that authority requires additional modeling conventions external to the
+ontology.
+Similarly, role distinctions (e.g., regulator versus operator) must be
+handled informally or through application-specific typing.
+
+\subsection{CAE Representation of the Same Scenario}
+
+CAE addresses these limitations through its disjoint partition of entity kinds.
+In the same grant scenario:
+
+\begin{itemize}[nosep]
+      \item The grant program is modeled as an \emph{Instrument} (enduring authority).
+      \item The award and payments are modeled as \emph{Events} (time-indexed occurrences).
+      \item The recipient organization remains a single \emph{Actor}, with roles
+            emerging from relationship patterns rather than reclassification.
+\end{itemize}
+
+No subclassing, role entities, or ad hoc conventions are required.
+Authority, execution, and observation are separated structurally rather
+than procedurally.
+
+\subsection{Discussion of Results}
+
+These examples demonstrate that CAE's disjoint partition enables
+ontological distinctions that are not enforced in
+provenance-oriented or transaction-centric models.
+In particular, CAE supports explicit representation of authority,
+delegation, execution, and outcomes while remaining neutral with respect
+to causal interpretation or policy evaluation.
+
+The evaluation indicates that CAE satisfies the stated competency
+questions and provides a stable ontological foundation for downstream
+exchange semantics and explanatory frameworks, without requiring their
+inclusion in the present paper.
