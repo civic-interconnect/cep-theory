@@ -70,7 +70,7 @@ jobs:
       # WHY: Download this artifact to upload to arxiv.org
       # OBS: Artifact includes paper directory name for clarity
       - name: Upload arXiv source artifact
-        uses: actions/upload-artifact@v6 # OBS: v6 current as of Dec 2025
+        uses: actions/upload-artifact@v7 # OBS: v6 current as of Dec 2025
         with:
           name: arxiv-source-${{ env.PAPER_DIR }}
           path: arxiv-source.zip
