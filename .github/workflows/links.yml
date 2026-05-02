@@ -53,7 +53,7 @@ jobs:
       # WHY: Provide helpful feedback on PRs with broken links
       - name: Comment on PR if links broken
         if: failure() && github.event_name == 'pull_request'
-        uses: actions/github-script@v8 # OBS: v8 current as of Dec 2025
+        uses: actions/github-script@v9 # OBS: v8 current as of Dec 2025
         with:
           script: |
             const comment = `## Link Check Results
@@ -71,7 +71,7 @@ jobs:
       # OBS: Only creates issue if none already open with 'broken-links' label
       - name: Create issue for scheduled failures
         if: failure() && github.event_name == 'schedule'
-        uses: actions/github-script@v8 # OBS: v8 current as of Dec 2025
+        uses: actions/github-script@v9 # OBS: v8 current as of Dec 2025
         with:
           script: |
             const title = `Link Check Failed - ${new Date().toISOString().split('T')[0]}`;
